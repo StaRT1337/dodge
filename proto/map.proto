@@ -1,6 +1,11 @@
 syntax = "proto3";
 package map;
 
+message Coin {
+    float x = 1;
+    float y = 2;
+}
+
 message Cube {
     enum cube_type {
         BORDER_CUBE = 0;
@@ -17,4 +22,5 @@ message Cube {
 
 message map {
     repeated Cube cubes = 1;
+    repeated Coin coins = 2;
 }

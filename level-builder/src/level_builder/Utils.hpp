@@ -17,7 +17,7 @@ namespace Utils
 
 	const std::string get_str_from_click(const click_type& type);
 
-	Cube get_cube(const POINT& mouse_position, std::vector<Cube>* cubes);
+	Cube get_cube(const float x, const float y, std::vector<Cube>* cubes);
 
 	template <typename T>
 	inline void safe_release(T** ptr)

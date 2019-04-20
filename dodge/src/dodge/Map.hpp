@@ -2,6 +2,7 @@
 #include "Cube.hpp"
 #include "Button.hpp"
 #include "Player.hpp"
+#include "Coin.hpp"
 
 #include "map.pb.h"
 
@@ -23,13 +24,13 @@ private:
 	std::wstring_convert<std::codecvt_utf8<wchar_t>> conv_;
 
 	std::string map_name_;
+
 	std::vector<Cube> cubes_;
+	std::vector<std::pair<Coin, bool>> coins_;
 
 	click_type type_;
 
 	map::map savemap_;
-
-	void start();
 public:
 	Button menu_button;
 

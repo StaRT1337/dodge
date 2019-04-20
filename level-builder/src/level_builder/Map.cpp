@@ -127,7 +127,7 @@ void Map::on_click(const POINT& mouse_position, const mouse_type& type)
 	save_button.check_click(mouse_position, type);
 	menu_button.check_click(mouse_position, type);
 
-	auto cube = Utils::get_cube(mouse_position, &_cubes);
+	auto cube = Utils::get_cube(mouse_position.x, mouse_position.y, &_cubes);
 	if (cube.get_vec_pos() == 0xcccccccc || cube.get_position().y < 60 || cube.get_position().y > 420) return;
 
 	switch (_type)
@@ -143,6 +143,42 @@ void Map::on_click(const POINT& mouse_position, const mouse_type& type)
 		break;
 	case click_type::END_CUBE:
 		cube.set_type(cube_type::END_CUBE);
+	case click_type::ADD_COIN:
+	{
+		if (cube.get_type() != cube_type::REGULAR_CUBE) break;
+
+		bool same = false;
+
+		for (auto& coin : coins_)
+		{
+			if (coin.get_cube() == cube)
+			{
+				same = true;
+			}
+		}
+
+		if (same) break;
+
+		Coin coin;
+		coin.set_cube(cube);
+
+		coins_.emplace_back(coin);
+		break;
+	}
+	case click_type::REMOVE_COIN:
+	{
+		if (cube.get_type() != cube_type::REGULAR_CUBE || coins_.size() == 0) break;
+
+		auto iter = std::find_if(coins_.begin(), coins_.end(), [&cube = cube](Coin& coin) {
+			return cube == coin.get_cube();
+			});
+
+		if (iter != coins_.end())
+		{
+			coins_.erase(iter);
+		}
+		break;
+	}
 	}
 
 	_changed = true;
@@ -154,6 +190,10 @@ void Map::create_new(IDWriteFactory* dw_factory)
 	setup(dw_factory);
 
 	_cubes.clear();
+	_cubes.shrink_to_fit();
+
+	coins_.clear();
+	coins_.shrink_to_fit();
 
 	_is_new = true;
 
@@ -201,6 +241,11 @@ void Map::set_map(IDWriteFactory* dw_factory, const std::string& map_name)
 	_map_name = map_name;
 
 	_cubes.clear();
+	_cubes.shrink_to_fit();
+
+	coins_.clear();
+	coins_.shrink_to_fit();
+
 	_is_new = false;
 
 	setup(dw_factory);
@@ -229,8 +274,18 @@ void Map::set_map(IDWriteFactory* dw_factory, const std::string& map_name)
 		}
 
 		cube.set_pos(_cubes.size());
-		_cubes.push_back(cube);
+		_cubes.emplace_back(cube);
 	}
+
+	Coin coin;
+
+	for (const auto& p_coin : _map.coins())
+	{
+		auto cube = Utils::get_cube(p_coin.x(), p_coin.y(), &_cubes);
+		coin.set_cube(cube);
+
+		coins_.emplace_back(coin);
+	} 
 }
 
 void Map::save_map()
@@ -238,7 +293,9 @@ void Map::save_map()
 	if (!_changed) return;
 
 	_saving = true;
+
 	_savemap.clear_cubes();
+	_savemap.clear_coins();
 
 	for (auto& cube : _cubes)
 	{
@@ -262,6 +319,14 @@ void Map::save_map()
 			p_cube->set_type(map::Cube_cube_type::Cube_cube_type_END_CUBE);
 			break;
 		}
+	}
+
+	for (auto& coin : coins_)
+	{
+		auto p_coin = _savemap.add_coins();
+
+		p_coin->set_x(coin.get_position().x);
+		p_coin->set_y(coin.get_position().y);
 	}
 
 	if (_is_new)
@@ -303,6 +368,11 @@ void Map::draw(ID2D1HwndRenderTarget* d2d1_rt, ID2D1SolidColorBrush* d2d1_solidb
 		{
 			cube.draw(d2d1_rt, d2d1_solidbrush);
 		}
+	}
+
+	for (auto& coin : coins_)
+	{
+		coin.draw(d2d1_rt, d2d1_solidbrush);
 	}
 
 	save_button.draw(d2d1_rt, d2d1_solidbrush);

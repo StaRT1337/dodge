@@ -10,7 +10,7 @@ constexpr int d = 0x44;
 
 constexpr int speed = 4;
 
-void Player::on_type(std::vector<bool>* keys, std::vector<Cube>* cubes)
+void Player::on_type(std::vector<bool>* keys, std::vector<Cube>* cubes, std::vector<std::pair<Coin, bool>>* coins)
 {
 	if (stroke_rect_.left == -1 && stroke_rect_.top == -1) return;
 
@@ -69,14 +69,48 @@ void Player::on_type(std::vector<bool>* keys, std::vector<Cube>* cubes)
 	switch (check_collision(temp_stroke, cubes))
 	{
 	case 0:
+	{
 		stroke_rect_ = temp_stroke;
 		player_rect_ = temp_player;
+
+		float x;
+		float y;
+
+		for (auto& pair : *coins)
+		{
+			x = pair.first.get_position().x - stroke_rect_.left;
+			y = pair.first.get_position().y - stroke_rect_.top;
+
+			if ((x <= 23.0f && x > 0) && (y <= 23.0f && y > 0))
+			{
+				pair.second = true;
+			}
+		}
+
 		break;
+	}
 	case 1:
 		break;
 	case 2:
-		start(cubes);
+		stroke_rect_ = temp_stroke;
+		player_rect_ = temp_player;
+
+		auto iter = std::find_if_not(coins->begin(), coins->end(), [](std::pair<Coin, bool>& pair) {
+			return pair.second;
+		});
+
+		if (iter == coins->end())
+		{
+			start(cubes, coins);
+		}
+
+		break;
 	}
+}
+
+D2D1_RECT_F Player::get_position()
+{
+	return stroke_rect_;
 }
 
 void Player::set_position(const int x, const int y)
@@ -125,9 +159,9 @@ const int Player::check_collision(const D2D1_RECT_F& temp_stroke, std::vector<Cu
 
 	for (const auto& pair : points)
 	{
-		auto type = Utils::get_cube(POINT{ static_cast<long>(pair.first), static_cast<long>(pair.second) }, cubes).get_type();
+		auto type = Utils::get_cube(pair.first, pair.second, cubes).get_type();
 
-		if (type == cube_type::BORDER_CUBE || pair.first >= 750 || pair.first <= 0)
+		if (type == cube_type::BORDER_CUBE || pair.first >= 725 || pair.first <= 0)
 		{
 			return 1;
 		}
@@ -140,16 +174,16 @@ const int Player::check_collision(const D2D1_RECT_F& temp_stroke, std::vector<Cu
 	return 0;
 }
 
-void Player::start(std::vector<Cube>* cubes)
+void Player::start(std::vector<Cube>* cubes, std::vector<std::pair<Coin, bool>>* coins)
 {
-	std::vector<std::pair<int, int>> spawn_cubes;
+	std::vector<std::pair<float, float>> spawn_cubes;
 
 	for (auto& cube : *cubes)
 	{
 		if (cube.get_type() == cube_type::SPAWN_CUBE)
 		{
 			auto position = cube.get_position();
-			spawn_cubes.emplace_back(static_cast<int>(position.x), static_cast<int>(position.y));
+			spawn_cubes.emplace_back(position.x, position.y);
 		}
 	}
 
@@ -162,9 +196,9 @@ void Player::start(std::vector<Cube>* cubes)
 		auto x = (spawn_cubes.back().first + spawn_cubes.front().first) / 2;
 		auto y = (spawn_cubes.back().second + spawn_cubes.front().second) / 2;
 
-		if (Utils::get_cube(POINT{ x, y }, cubes).get_type() != cube_type::SPAWN_CUBE)
+		if (Utils::get_cube(x, y, cubes).get_type() != cube_type::SPAWN_CUBE)
 		{
-			std::vector<std::pair<int, int>> out;
+			std::vector<std::pair<float, float>> out;
 			std::sample(spawn_cubes.begin(), spawn_cubes.end(), std::back_inserter(out), 1, std::mt19937{ std::random_device{}() });
 
 			x = out.front().first;
@@ -172,5 +206,10 @@ void Player::start(std::vector<Cube>* cubes)
 		}
 
 		set_position(x, y);
+	}
+
+	for (auto& pair : *coins)
+	{
+		pair.second = false;
 	}
 }

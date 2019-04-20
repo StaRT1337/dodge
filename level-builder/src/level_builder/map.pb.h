@@ -42,7 +42,7 @@ struct TableStruct_map_2eproto {
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
   static const ::google::protobuf::internal::AuxillaryParseTableField aux[]
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
-  static const ::google::protobuf::internal::ParseTable schema[2]
+  static const ::google::protobuf::internal::ParseTable schema[3]
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
   static const ::google::protobuf::internal::FieldMetadata field_metadata[];
   static const ::google::protobuf::internal::SerializationTable serialization_table[];
@@ -50,6 +50,9 @@ struct TableStruct_map_2eproto {
 };
 void AddDescriptors_map_2eproto();
 namespace map {
+class Coin;
+class CoinDefaultTypeInternal;
+extern CoinDefaultTypeInternal _Coin_default_instance_;
 class Cube;
 class CubeDefaultTypeInternal;
 extern CubeDefaultTypeInternal _Cube_default_instance_;
@@ -59,6 +62,7 @@ extern mapDefaultTypeInternal _map_default_instance_;
 }  // namespace map
 namespace google {
 namespace protobuf {
+template<> ::map::Coin* Arena::CreateMaybeMessage<::map::Coin>(Arena*);
 template<> ::map::Cube* Arena::CreateMaybeMessage<::map::Cube>(Arena*);
 template<> ::map::map* Arena::CreateMaybeMessage<::map::map>(Arena*);
 }  // namespace protobuf
@@ -89,6 +93,125 @@ inline bool Cube_cube_type_Parse(
     Cube_cube_type_descriptor(), name, value);
 }
 // ===================================================================
+
+class Coin :
+    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:map.Coin) */ {
+ public:
+  Coin();
+  virtual ~Coin();
+
+  Coin(const Coin& from);
+
+  inline Coin& operator=(const Coin& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  #if LANG_CXX11
+  Coin(Coin&& from) noexcept
+    : Coin() {
+    *this = ::std::move(from);
+  }
+
+  inline Coin& operator=(Coin&& from) noexcept {
+    if (GetArenaNoVirtual() == from.GetArenaNoVirtual()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+  #endif
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return default_instance().GetDescriptor();
+  }
+  static const Coin& default_instance();
+
+  static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
+  static inline const Coin* internal_default_instance() {
+    return reinterpret_cast<const Coin*>(
+               &_Coin_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    0;
+
+  void Swap(Coin* other);
+  friend void swap(Coin& a, Coin& b) {
+    a.Swap(&b);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline Coin* New() const final {
+    return CreateMaybeMessage<Coin>(nullptr);
+  }
+
+  Coin* New(::google::protobuf::Arena* arena) const final {
+    return CreateMaybeMessage<Coin>(arena);
+  }
+  void CopyFrom(const ::google::protobuf::Message& from) final;
+  void MergeFrom(const ::google::protobuf::Message& from) final;
+  void CopyFrom(const Coin& from);
+  void MergeFrom(const Coin& from);
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  #if GOOGLE_PROTOBUF_ENABLE_EXPERIMENTAL_PARSER
+  static const char* _InternalParse(const char* begin, const char* end, void* object, ::google::protobuf::internal::ParseContext* ctx);
+  ::google::protobuf::internal::ParseFunc _ParseFunc() const final { return _InternalParse; }
+  #else
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input) final;
+  #endif  // GOOGLE_PROTOBUF_ENABLE_EXPERIMENTAL_PARSER
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const final;
+  ::google::protobuf::uint8* InternalSerializeWithCachedSizesToArray(
+      ::google::protobuf::uint8* target) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(Coin* other);
+  private:
+  inline ::google::protobuf::Arena* GetArenaNoVirtual() const {
+    return nullptr;
+  }
+  inline void* MaybeArenaPtr() const {
+    return nullptr;
+  }
+  public:
+
+  ::google::protobuf::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // float x = 1;
+  void clear_x();
+  static const int kXFieldNumber = 1;
+  float x() const;
+  void set_x(float value);
+
+  // float y = 2;
+  void clear_y();
+  static const int kYFieldNumber = 2;
+  float y() const;
+  void set_y(float value);
+
+  // @@protoc_insertion_point(class_scope:map.Coin)
+ private:
+  class HasBitSetters;
+
+  ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
+  float x_;
+  float y_;
+  mutable ::google::protobuf::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_map_2eproto;
+};
+// -------------------------------------------------------------------
 
 class Cube :
     public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:map.Cube) */ {
@@ -128,7 +251,7 @@ class Cube :
                &_Cube_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    0;
+    1;
 
   void Swap(Cube* other);
   friend void swap(Cube& a, Cube& b) {
@@ -284,7 +407,7 @@ class map :
                &_map_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    1;
+    2;
 
   void Swap(map* other);
   friend void swap(map& a, map& b) {
@@ -353,12 +476,25 @@ class map :
   const ::google::protobuf::RepeatedPtrField< ::map::Cube >&
       cubes() const;
 
+  // repeated .map.Coin coins = 2;
+  int coins_size() const;
+  void clear_coins();
+  static const int kCoinsFieldNumber = 2;
+  ::map::Coin* mutable_coins(int index);
+  ::google::protobuf::RepeatedPtrField< ::map::Coin >*
+      mutable_coins();
+  const ::map::Coin& coins(int index) const;
+  ::map::Coin* add_coins();
+  const ::google::protobuf::RepeatedPtrField< ::map::Coin >&
+      coins() const;
+
   // @@protoc_insertion_point(class_scope:map.map)
  private:
   class HasBitSetters;
 
   ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
   ::google::protobuf::RepeatedPtrField< ::map::Cube > cubes_;
+  ::google::protobuf::RepeatedPtrField< ::map::Coin > coins_;
   mutable ::google::protobuf::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_map_2eproto;
 };
@@ -371,6 +507,38 @@ class map :
   #pragma GCC diagnostic push
   #pragma GCC diagnostic ignored "-Wstrict-aliasing"
 #endif  // __GNUC__
+// Coin
+
+// float x = 1;
+inline void Coin::clear_x() {
+  x_ = 0;
+}
+inline float Coin::x() const {
+  // @@protoc_insertion_point(field_get:map.Coin.x)
+  return x_;
+}
+inline void Coin::set_x(float value) {
+  
+  x_ = value;
+  // @@protoc_insertion_point(field_set:map.Coin.x)
+}
+
+// float y = 2;
+inline void Coin::clear_y() {
+  y_ = 0;
+}
+inline float Coin::y() const {
+  // @@protoc_insertion_point(field_get:map.Coin.y)
+  return y_;
+}
+inline void Coin::set_y(float value) {
+  
+  y_ = value;
+  // @@protoc_insertion_point(field_set:map.Coin.y)
+}
+
+// -------------------------------------------------------------------
+
 // Cube
 
 // .map.Cube.cube_type type = 1;
@@ -449,9 +617,41 @@ map::cubes() const {
   return cubes_;
 }
 
+// repeated .map.Coin coins = 2;
+inline int map::coins_size() const {
+  return coins_.size();
+}
+inline void map::clear_coins() {
+  coins_.Clear();
+}
+inline ::map::Coin* map::mutable_coins(int index) {
+  // @@protoc_insertion_point(field_mutable:map.map.coins)
+  return coins_.Mutable(index);
+}
+inline ::google::protobuf::RepeatedPtrField< ::map::Coin >*
+map::mutable_coins() {
+  // @@protoc_insertion_point(field_mutable_list:map.map.coins)
+  return &coins_;
+}
+inline const ::map::Coin& map::coins(int index) const {
+  // @@protoc_insertion_point(field_get:map.map.coins)
+  return coins_.Get(index);
+}
+inline ::map::Coin* map::add_coins() {
+  // @@protoc_insertion_point(field_add:map.map.coins)
+  return coins_.Add();
+}
+inline const ::google::protobuf::RepeatedPtrField< ::map::Coin >&
+map::coins() const {
+  // @@protoc_insertion_point(field_list:map.map.coins)
+  return coins_;
+}
+
 #ifdef __GNUC__
   #pragma GCC diagnostic pop
 #endif  // __GNUC__
+// -------------------------------------------------------------------
+
 // -------------------------------------------------------------------
 
 
