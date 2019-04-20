@@ -29,7 +29,7 @@ private:
 
 	map::map savemap_;
 
-	//void setup(IDWriteFactory* dw_factory);
+	void start();
 public:
 	Button menu_button;
 

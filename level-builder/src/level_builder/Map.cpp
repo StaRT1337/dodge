@@ -141,6 +141,8 @@ void Map::on_click(const POINT& mouse_position, const mouse_type& type)
 	case click_type::SPAWN_CUBE:
 		cube.set_type(cube_type::SPAWN_CUBE);
 		break;
+	case click_type::END_CUBE:
+		cube.set_type(cube_type::END_CUBE);
 	}
 
 	_changed = true;
@@ -221,6 +223,9 @@ void Map::set_map(IDWriteFactory* dw_factory, const std::string& map_name)
 		case map::Cube_cube_type::Cube_cube_type_SPAWN_CUBE:
 			cube.set_type(cube_type::SPAWN_CUBE);
 			break;
+		case map::Cube_cube_type::Cube_cube_type_END_CUBE:
+			cube.set_type(cube_type::END_CUBE);
+			break;
 		}
 
 		cube.set_pos(_cubes.size());
@@ -252,6 +257,9 @@ void Map::save_map()
 			break;
 		case cube_type::SPAWN_CUBE:
 			p_cube->set_type(map::Cube_cube_type::Cube_cube_type_SPAWN_CUBE);
+			break;
+		case cube_type::END_CUBE:
+			p_cube->set_type(map::Cube_cube_type::Cube_cube_type_END_CUBE);
 			break;
 		}
 	}

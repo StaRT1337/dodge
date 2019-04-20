@@ -60,6 +60,8 @@ namespace Utils
 			return "Remove cube";
 		case click_type::SPAWN_CUBE:
 			return "Add spawn cube";
+		case click_type::END_CUBE:
+			return "Add end cube";
 		}
 	}
 

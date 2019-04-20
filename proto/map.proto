@@ -6,6 +6,7 @@ message Cube {
         BORDER_CUBE = 0;
         REGULAR_CUBE = 1;
         SPAWN_CUBE = 2;
+        END_CUBE = 3;
     }
 
     cube_type type = 1;

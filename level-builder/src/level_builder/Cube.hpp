@@ -4,7 +4,8 @@ enum class cube_type : std::uint32_t
 {
 	BORDER_CUBE,
 	REGULAR_CUBE,
-	SPAWN_CUBE
+	SPAWN_CUBE,
+	END_CUBE
 };
 
 class Cube

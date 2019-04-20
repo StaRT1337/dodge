@@ -69,12 +69,13 @@ enum Cube_cube_type {
   Cube_cube_type_BORDER_CUBE = 0,
   Cube_cube_type_REGULAR_CUBE = 1,
   Cube_cube_type_SPAWN_CUBE = 2,
+  Cube_cube_type_END_CUBE = 3,
   Cube_cube_type_Cube_cube_type_INT_MIN_SENTINEL_DO_NOT_USE_ = std::numeric_limits<::google::protobuf::int32>::min(),
   Cube_cube_type_Cube_cube_type_INT_MAX_SENTINEL_DO_NOT_USE_ = std::numeric_limits<::google::protobuf::int32>::max()
 };
 bool Cube_cube_type_IsValid(int value);
 const Cube_cube_type Cube_cube_type_cube_type_MIN = Cube_cube_type_BORDER_CUBE;
-const Cube_cube_type Cube_cube_type_cube_type_MAX = Cube_cube_type_SPAWN_CUBE;
+const Cube_cube_type Cube_cube_type_cube_type_MAX = Cube_cube_type_END_CUBE;
 const int Cube_cube_type_cube_type_ARRAYSIZE = Cube_cube_type_cube_type_MAX + 1;
 
 const ::google::protobuf::EnumDescriptor* Cube_cube_type_descriptor();
@@ -189,6 +190,8 @@ class Cube :
     Cube_cube_type_REGULAR_CUBE;
   static const cube_type SPAWN_CUBE =
     Cube_cube_type_SPAWN_CUBE;
+  static const cube_type END_CUBE =
+    Cube_cube_type_END_CUBE;
   static inline bool cube_type_IsValid(int value) {
     return Cube_cube_type_IsValid(value);
   }

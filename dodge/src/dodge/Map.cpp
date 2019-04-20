@@ -42,8 +42,6 @@ void Map::set_map(IDWriteFactory* dw_factory, const std::string& map_name)
 	menu_button.set_text_size(25.0f);
 	menu_button.on_hover = Utils::button_hover;
 
-	std::vector<std::pair<int, int>> spawn_cubes;
-
 	Cube cube;
 	cube.set_size(30, 30);
 
@@ -61,12 +59,43 @@ void Map::set_map(IDWriteFactory* dw_factory, const std::string& map_name)
 			break;
 		case map::Cube_cube_type::Cube_cube_type_SPAWN_CUBE:
 			cube.set_type(cube_type::SPAWN_CUBE);
-			spawn_cubes.emplace_back(p_cube.x(), p_cube.y());
-
+			break;
+		case map::Cube_cube_type::Cube_cube_type_END_CUBE:
+			cube.set_type(cube_type::END_CUBE);
 			break;
 		}
 
 		cubes_.push_back(cube);
+	}
+
+	player_.start(&cubes_);
+}
+
+void Map::draw(ID2D1HwndRenderTarget* d2d1_rt, ID2D1SolidColorBrush* d2d1_solidbrush)
+{
+	if (cubes_.size() >= 425)
+	{
+		for (auto& cube : cubes_)
+		{
+			cube.draw(d2d1_rt, d2d1_solidbrush);
+		}
+	}
+
+	menu_button.draw(d2d1_rt, d2d1_solidbrush);
+	player_.draw(d2d1_rt, d2d1_solidbrush);
+}
+
+void Map::start()
+{
+	std::vector<std::pair<int, int>> spawn_cubes;
+
+	for (auto& cube : cubes_)
+	{
+		if (cube.get_type() == cube_type::SPAWN_CUBE)
+		{
+			auto position = cube.get_position();
+			spawn_cubes.emplace_back(position.x, position.y);
+		}
 	}
 
 	if (spawn_cubes.size() == 0)
@@ -89,18 +118,4 @@ void Map::set_map(IDWriteFactory* dw_factory, const std::string& map_name)
 
 		player_.set_position(x, y);
 	}
-}
-
-void Map::draw(ID2D1HwndRenderTarget* d2d1_rt, ID2D1SolidColorBrush* d2d1_solidbrush)
-{
-	if (cubes_.size() >= 425)
-	{
-		for (auto& cube : cubes_)
-		{
-			cube.draw(d2d1_rt, d2d1_solidbrush);
-		}
-	}
-
-	menu_button.draw(d2d1_rt, d2d1_solidbrush);
-	player_.draw(d2d1_rt, d2d1_solidbrush);
 }

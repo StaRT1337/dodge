@@ -66,14 +66,16 @@ void Player::on_type(std::vector<bool>* keys, std::vector<Cube>* cubes)
 		temp_player.left -= speed;
 	}
 
-	if (check_collision(temp_stroke, cubes))
+	switch (check_collision(temp_stroke, cubes))
 	{
-		return;
-	}
-	else
-	{
+	case 0:
 		stroke_rect_ = temp_stroke;
 		player_rect_ = temp_player;
+		break;
+	case 1:
+		break;
+	case 2:
+		start(cubes);
 	}
 }
 
@@ -109,7 +111,7 @@ void Player::draw(ID2D1HwndRenderTarget* d2d1_rt, ID2D1SolidColorBrush* d2d1_sol
 	);
 }
 
-const bool Player::check_collision(const D2D1_RECT_F& temp_stroke, std::vector<Cube>* cubes)
+const int Player::check_collision(const D2D1_RECT_F& temp_stroke, std::vector<Cube>* cubes)
 {
 	std::vector<std::pair<float, float>> points;
 
@@ -123,11 +125,52 @@ const bool Player::check_collision(const D2D1_RECT_F& temp_stroke, std::vector<C
 
 	for (const auto& pair : points)
 	{
-		if (Utils::get_cube(POINT{ static_cast<long>(pair.first), static_cast<long>(pair.second) }, cubes).get_type() == cube_type::BORDER_CUBE || pair.first >= 750 || pair.first <= 0)
+		auto type = Utils::get_cube(POINT{ static_cast<long>(pair.first), static_cast<long>(pair.second) }, cubes).get_type();
+
+		if (type == cube_type::BORDER_CUBE || pair.first >= 750 || pair.first <= 0)
 		{
-			return true;
+			return 1;
+		}
+		else if (type == cube_type::END_CUBE)
+		{
+			return 2;
 		}
 	}
 
-	return false;
+	return 0;
+}
+
+void Player::start(std::vector<Cube>* cubes)
+{
+	std::vector<std::pair<int, int>> spawn_cubes;
+
+	for (auto& cube : *cubes)
+	{
+		if (cube.get_type() == cube_type::SPAWN_CUBE)
+		{
+			auto position = cube.get_position();
+			spawn_cubes.emplace_back(static_cast<int>(position.x), static_cast<int>(position.y));
+		}
+	}
+
+	if (spawn_cubes.size() == 0)
+	{
+		set_position(-1, -1);
+	}
+	else
+	{
+		auto x = (spawn_cubes.back().first + spawn_cubes.front().first) / 2;
+		auto y = (spawn_cubes.back().second + spawn_cubes.front().second) / 2;
+
+		if (Utils::get_cube(POINT{ x, y }, cubes).get_type() != cube_type::SPAWN_CUBE)
+		{
+			std::vector<std::pair<int, int>> out;
+			std::sample(spawn_cubes.begin(), spawn_cubes.end(), std::back_inserter(out), 1, std::mt19937{ std::random_device{}() });
+
+			x = out.front().first;
+			y = out.front().second;
+		}
+
+		set_position(x, y);
+	}
 }

@@ -11,6 +11,7 @@ enum class click_type : std::uint32_t
 	ADD_CUBE,
 	REMOVE_CUBE,
 	SPAWN_CUBE,
+	END_CUBE,
 	last
 };
 

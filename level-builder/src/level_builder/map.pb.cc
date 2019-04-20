@@ -99,16 +99,17 @@ static ::google::protobuf::Message const * const file_default_instances[] = {
 };
 
 const char descriptor_table_protodef_map_2eproto[] =
-  "\n\tmap.proto\022\003map\"\177\n\004Cube\022!\n\004type\030\001 \001(\0162\023"
-  ".map.Cube.cube_type\022\t\n\001x\030\002 \001(\005\022\t\n\001y\030\003 \001("
-  "\005\">\n\tcube_type\022\017\n\013BORDER_CUBE\020\000\022\020\n\014REGUL"
-  "AR_CUBE\020\001\022\016\n\nSPAWN_CUBE\020\002\"\037\n\003map\022\030\n\005cube"
-  "s\030\001 \003(\0132\t.map.Cubeb\006proto3"
+  "\n\tmap.proto\022\003map\"\215\001\n\004Cube\022!\n\004type\030\001 \001(\0162"
+  "\023.map.Cube.cube_type\022\t\n\001x\030\002 \001(\005\022\t\n\001y\030\003 \001"
+  "(\005\"L\n\tcube_type\022\017\n\013BORDER_CUBE\020\000\022\020\n\014REGU"
+  "LAR_CUBE\020\001\022\016\n\nSPAWN_CUBE\020\002\022\014\n\010END_CUBE\020\003"
+  "\"\037\n\003map\022\030\n\005cubes\030\001 \003(\0132\t.map.Cubeb\006proto"
+  "3"
   ;
 ::google::protobuf::internal::DescriptorTable descriptor_table_map_2eproto = {
   false, InitDefaults_map_2eproto, 
   descriptor_table_protodef_map_2eproto,
-  "map.proto", &assign_descriptors_table_map_2eproto, 186,
+  "map.proto", &assign_descriptors_table_map_2eproto, 201,
 };
 
 void AddDescriptors_map_2eproto() {
@@ -130,6 +131,7 @@ bool Cube_cube_type_IsValid(int value) {
     case 0:
     case 1:
     case 2:
+    case 3:
       return true;
     default:
       return false;
@@ -140,6 +142,7 @@ bool Cube_cube_type_IsValid(int value) {
 const Cube_cube_type Cube::BORDER_CUBE;
 const Cube_cube_type Cube::REGULAR_CUBE;
 const Cube_cube_type Cube::SPAWN_CUBE;
+const Cube_cube_type Cube::END_CUBE;
 const Cube_cube_type Cube::cube_type_MIN;
 const Cube_cube_type Cube::cube_type_MAX;
 const int Cube::cube_type_ARRAYSIZE;

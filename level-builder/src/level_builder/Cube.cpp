@@ -33,6 +33,9 @@ void Cube::draw(ID2D1RenderTarget* render_target, ID2D1SolidColorBrush* solid_br
 		color = calculate_color();
 		break;
 	case cube_type::SPAWN_CUBE:
+		color = Utils::create_d2d1_color(81, 179, 255, 255);
+		break;
+	case cube_type::END_CUBE:
 		color = Utils::create_d2d1_color(181, 254, 180, 255);
 		break;
 	}
