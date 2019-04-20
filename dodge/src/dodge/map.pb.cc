@@ -73,11 +73,8 @@ const ::google::protobuf::uint32 TableStruct_map_2eproto::offsets[] PROTOBUF_SEC
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   PROTOBUF_FIELD_OFFSET(::map::Cube, type_),
-  PROTOBUF_FIELD_OFFSET(::map::Cube, pos_),
   PROTOBUF_FIELD_OFFSET(::map::Cube, x_),
   PROTOBUF_FIELD_OFFSET(::map::Cube, y_),
-  PROTOBUF_FIELD_OFFSET(::map::Cube, w_),
-  PROTOBUF_FIELD_OFFSET(::map::Cube, h_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::map::map, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -87,7 +84,7 @@ const ::google::protobuf::uint32 TableStruct_map_2eproto::offsets[] PROTOBUF_SEC
 };
 static const ::google::protobuf::internal::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
   { 0, -1, sizeof(::map::Cube)},
-  { 11, -1, sizeof(::map::map)},
+  { 8, -1, sizeof(::map::map)},
 };
 
 static ::google::protobuf::Message const * const file_default_instances[] = {
@@ -102,17 +99,16 @@ static ::google::protobuf::Message const * const file_default_instances[] = {
 };
 
 const char descriptor_table_protodef_map_2eproto[] =
-  "\n\tmap.proto\022\003map\"\242\001\n\004Cube\022!\n\004type\030\001 \001(\0162"
-  "\023.map.Cube.cube_type\022\013\n\003pos\030\002 \001(\r\022\t\n\001x\030\003"
-  " \001(\005\022\t\n\001y\030\004 \001(\005\022\t\n\001w\030\005 \001(\005\022\t\n\001h\030\006 \001(\005\">\n"
-  "\tcube_type\022\017\n\013BORDER_CUBE\020\000\022\020\n\014REGULAR_C"
-  "UBE\020\001\022\016\n\nSPAWN_CUBE\020\002\"\037\n\003map\022\030\n\005cubes\030\001 "
-  "\003(\0132\t.map.Cubeb\006proto3"
+  "\n\tmap.proto\022\003map\"\177\n\004Cube\022!\n\004type\030\001 \001(\0162\023"
+  ".map.Cube.cube_type\022\t\n\001x\030\002 \001(\005\022\t\n\001y\030\003 \001("
+  "\005\">\n\tcube_type\022\017\n\013BORDER_CUBE\020\000\022\020\n\014REGUL"
+  "AR_CUBE\020\001\022\016\n\nSPAWN_CUBE\020\002\"\037\n\003map\022\030\n\005cube"
+  "s\030\001 \003(\0132\t.map.Cubeb\006proto3"
   ;
 ::google::protobuf::internal::DescriptorTable descriptor_table_map_2eproto = {
   false, InitDefaults_map_2eproto, 
   descriptor_table_protodef_map_2eproto,
-  "map.proto", &assign_descriptors_table_map_2eproto, 222,
+  "map.proto", &assign_descriptors_table_map_2eproto, 186,
 };
 
 void AddDescriptors_map_2eproto() {
@@ -159,11 +155,8 @@ class Cube::HasBitSetters {
 
 #if !defined(_MSC_VER) || _MSC_VER >= 1900
 const int Cube::kTypeFieldNumber;
-const int Cube::kPosFieldNumber;
 const int Cube::kXFieldNumber;
 const int Cube::kYFieldNumber;
-const int Cube::kWFieldNumber;
-const int Cube::kHFieldNumber;
 #endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
 
 Cube::Cube()
@@ -176,15 +169,15 @@ Cube::Cube(const Cube& from)
       _internal_metadata_(nullptr) {
   _internal_metadata_.MergeFrom(from._internal_metadata_);
   ::memcpy(&type_, &from.type_,
-    static_cast<size_t>(reinterpret_cast<char*>(&h_) -
-    reinterpret_cast<char*>(&type_)) + sizeof(h_));
+    static_cast<size_t>(reinterpret_cast<char*>(&y_) -
+    reinterpret_cast<char*>(&type_)) + sizeof(y_));
   // @@protoc_insertion_point(copy_constructor:map.Cube)
 }
 
 void Cube::SharedCtor() {
   ::memset(&type_, 0, static_cast<size_t>(
-      reinterpret_cast<char*>(&h_) -
-      reinterpret_cast<char*>(&type_)) + sizeof(h_));
+      reinterpret_cast<char*>(&y_) -
+      reinterpret_cast<char*>(&type_)) + sizeof(y_));
 }
 
 Cube::~Cube() {
@@ -211,8 +204,8 @@ void Cube::Clear() {
   (void) cached_has_bits;
 
   ::memset(&type_, 0, static_cast<size_t>(
-      reinterpret_cast<char*>(&h_) -
-      reinterpret_cast<char*>(&type_)) + sizeof(h_));
+      reinterpret_cast<char*>(&y_) -
+      reinterpret_cast<char*>(&type_)) + sizeof(y_));
   _internal_metadata_.Clear();
 }
 
@@ -237,38 +230,17 @@ const char* Cube::_InternalParse(const char* begin, const char* end, void* objec
         GOOGLE_PROTOBUF_PARSER_ASSERT(ptr);
         break;
       }
-      // uint32 pos = 2;
+      // int32 x = 2;
       case 2: {
         if (static_cast<::google::protobuf::uint8>(tag) != 16) goto handle_unusual;
-        msg->set_pos(::google::protobuf::internal::ReadVarint(&ptr));
-        GOOGLE_PROTOBUF_PARSER_ASSERT(ptr);
-        break;
-      }
-      // int32 x = 3;
-      case 3: {
-        if (static_cast<::google::protobuf::uint8>(tag) != 24) goto handle_unusual;
         msg->set_x(::google::protobuf::internal::ReadVarint(&ptr));
         GOOGLE_PROTOBUF_PARSER_ASSERT(ptr);
         break;
       }
-      // int32 y = 4;
-      case 4: {
-        if (static_cast<::google::protobuf::uint8>(tag) != 32) goto handle_unusual;
+      // int32 y = 3;
+      case 3: {
+        if (static_cast<::google::protobuf::uint8>(tag) != 24) goto handle_unusual;
         msg->set_y(::google::protobuf::internal::ReadVarint(&ptr));
-        GOOGLE_PROTOBUF_PARSER_ASSERT(ptr);
-        break;
-      }
-      // int32 w = 5;
-      case 5: {
-        if (static_cast<::google::protobuf::uint8>(tag) != 40) goto handle_unusual;
-        msg->set_w(::google::protobuf::internal::ReadVarint(&ptr));
-        GOOGLE_PROTOBUF_PARSER_ASSERT(ptr);
-        break;
-      }
-      // int32 h = 6;
-      case 6: {
-        if (static_cast<::google::protobuf::uint8>(tag) != 48) goto handle_unusual;
-        msg->set_h(::google::protobuf::internal::ReadVarint(&ptr));
         GOOGLE_PROTOBUF_PARSER_ASSERT(ptr);
         break;
       }
@@ -313,22 +285,9 @@ bool Cube::MergePartialFromCodedStream(
         break;
       }
 
-      // uint32 pos = 2;
+      // int32 x = 2;
       case 2: {
         if (static_cast< ::google::protobuf::uint8>(tag) == (16 & 0xFF)) {
-
-          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
-                   ::google::protobuf::uint32, ::google::protobuf::internal::WireFormatLite::TYPE_UINT32>(
-                 input, &pos_)));
-        } else {
-          goto handle_unusual;
-        }
-        break;
-      }
-
-      // int32 x = 3;
-      case 3: {
-        if (static_cast< ::google::protobuf::uint8>(tag) == (24 & 0xFF)) {
 
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
                    ::google::protobuf::int32, ::google::protobuf::internal::WireFormatLite::TYPE_INT32>(
@@ -339,39 +298,13 @@ bool Cube::MergePartialFromCodedStream(
         break;
       }
 
-      // int32 y = 4;
-      case 4: {
-        if (static_cast< ::google::protobuf::uint8>(tag) == (32 & 0xFF)) {
+      // int32 y = 3;
+      case 3: {
+        if (static_cast< ::google::protobuf::uint8>(tag) == (24 & 0xFF)) {
 
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
                    ::google::protobuf::int32, ::google::protobuf::internal::WireFormatLite::TYPE_INT32>(
                  input, &y_)));
-        } else {
-          goto handle_unusual;
-        }
-        break;
-      }
-
-      // int32 w = 5;
-      case 5: {
-        if (static_cast< ::google::protobuf::uint8>(tag) == (40 & 0xFF)) {
-
-          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
-                   ::google::protobuf::int32, ::google::protobuf::internal::WireFormatLite::TYPE_INT32>(
-                 input, &w_)));
-        } else {
-          goto handle_unusual;
-        }
-        break;
-      }
-
-      // int32 h = 6;
-      case 6: {
-        if (static_cast< ::google::protobuf::uint8>(tag) == (48 & 0xFF)) {
-
-          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
-                   ::google::protobuf::int32, ::google::protobuf::internal::WireFormatLite::TYPE_INT32>(
-                 input, &h_)));
         } else {
           goto handle_unusual;
         }
@@ -411,29 +344,14 @@ void Cube::SerializeWithCachedSizes(
       1, this->type(), output);
   }
 
-  // uint32 pos = 2;
-  if (this->pos() != 0) {
-    ::google::protobuf::internal::WireFormatLite::WriteUInt32(2, this->pos(), output);
-  }
-
-  // int32 x = 3;
+  // int32 x = 2;
   if (this->x() != 0) {
-    ::google::protobuf::internal::WireFormatLite::WriteInt32(3, this->x(), output);
+    ::google::protobuf::internal::WireFormatLite::WriteInt32(2, this->x(), output);
   }
 
-  // int32 y = 4;
+  // int32 y = 3;
   if (this->y() != 0) {
-    ::google::protobuf::internal::WireFormatLite::WriteInt32(4, this->y(), output);
-  }
-
-  // int32 w = 5;
-  if (this->w() != 0) {
-    ::google::protobuf::internal::WireFormatLite::WriteInt32(5, this->w(), output);
-  }
-
-  // int32 h = 6;
-  if (this->h() != 0) {
-    ::google::protobuf::internal::WireFormatLite::WriteInt32(6, this->h(), output);
+    ::google::protobuf::internal::WireFormatLite::WriteInt32(3, this->y(), output);
   }
 
   if (_internal_metadata_.have_unknown_fields()) {
@@ -455,29 +373,14 @@ void Cube::SerializeWithCachedSizes(
       1, this->type(), target);
   }
 
-  // uint32 pos = 2;
-  if (this->pos() != 0) {
-    target = ::google::protobuf::internal::WireFormatLite::WriteUInt32ToArray(2, this->pos(), target);
-  }
-
-  // int32 x = 3;
+  // int32 x = 2;
   if (this->x() != 0) {
-    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(3, this->x(), target);
+    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(2, this->x(), target);
   }
 
-  // int32 y = 4;
+  // int32 y = 3;
   if (this->y() != 0) {
-    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(4, this->y(), target);
-  }
-
-  // int32 w = 5;
-  if (this->w() != 0) {
-    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(5, this->w(), target);
-  }
-
-  // int32 h = 6;
-  if (this->h() != 0) {
-    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(6, this->h(), target);
+    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(3, this->y(), target);
   }
 
   if (_internal_metadata_.have_unknown_fields()) {
@@ -507,39 +410,18 @@ size_t Cube::ByteSizeLong() const {
       ::google::protobuf::internal::WireFormatLite::EnumSize(this->type());
   }
 
-  // uint32 pos = 2;
-  if (this->pos() != 0) {
-    total_size += 1 +
-      ::google::protobuf::internal::WireFormatLite::UInt32Size(
-        this->pos());
-  }
-
-  // int32 x = 3;
+  // int32 x = 2;
   if (this->x() != 0) {
     total_size += 1 +
       ::google::protobuf::internal::WireFormatLite::Int32Size(
         this->x());
   }
 
-  // int32 y = 4;
+  // int32 y = 3;
   if (this->y() != 0) {
     total_size += 1 +
       ::google::protobuf::internal::WireFormatLite::Int32Size(
         this->y());
-  }
-
-  // int32 w = 5;
-  if (this->w() != 0) {
-    total_size += 1 +
-      ::google::protobuf::internal::WireFormatLite::Int32Size(
-        this->w());
-  }
-
-  // int32 h = 6;
-  if (this->h() != 0) {
-    total_size += 1 +
-      ::google::protobuf::internal::WireFormatLite::Int32Size(
-        this->h());
   }
 
   int cached_size = ::google::protobuf::internal::ToCachedSize(total_size);
@@ -572,20 +454,11 @@ void Cube::MergeFrom(const Cube& from) {
   if (from.type() != 0) {
     set_type(from.type());
   }
-  if (from.pos() != 0) {
-    set_pos(from.pos());
-  }
   if (from.x() != 0) {
     set_x(from.x());
   }
   if (from.y() != 0) {
     set_y(from.y());
-  }
-  if (from.w() != 0) {
-    set_w(from.w());
-  }
-  if (from.h() != 0) {
-    set_h(from.h());
   }
 }
 
@@ -615,11 +488,8 @@ void Cube::InternalSwap(Cube* other) {
   using std::swap;
   _internal_metadata_.Swap(&other->_internal_metadata_);
   swap(type_, other->type_);
-  swap(pos_, other->pos_);
   swap(x_, other->x_);
   swap(y_, other->y_);
-  swap(w_, other->w_);
-  swap(h_, other->h_);
 }
 
 ::google::protobuf::Metadata Cube::GetMetadata() const {

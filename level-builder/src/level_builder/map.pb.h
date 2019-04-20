@@ -218,35 +218,17 @@ class Cube :
   ::map::Cube_cube_type type() const;
   void set_type(::map::Cube_cube_type value);
 
-  // uint32 pos = 2;
-  void clear_pos();
-  static const int kPosFieldNumber = 2;
-  ::google::protobuf::uint32 pos() const;
-  void set_pos(::google::protobuf::uint32 value);
-
-  // int32 x = 3;
+  // int32 x = 2;
   void clear_x();
-  static const int kXFieldNumber = 3;
+  static const int kXFieldNumber = 2;
   ::google::protobuf::int32 x() const;
   void set_x(::google::protobuf::int32 value);
 
-  // int32 y = 4;
+  // int32 y = 3;
   void clear_y();
-  static const int kYFieldNumber = 4;
+  static const int kYFieldNumber = 3;
   ::google::protobuf::int32 y() const;
   void set_y(::google::protobuf::int32 value);
-
-  // int32 w = 5;
-  void clear_w();
-  static const int kWFieldNumber = 5;
-  ::google::protobuf::int32 w() const;
-  void set_w(::google::protobuf::int32 value);
-
-  // int32 h = 6;
-  void clear_h();
-  static const int kHFieldNumber = 6;
-  ::google::protobuf::int32 h() const;
-  void set_h(::google::protobuf::int32 value);
 
   // @@protoc_insertion_point(class_scope:map.Cube)
  private:
@@ -254,11 +236,8 @@ class Cube :
 
   ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
   int type_;
-  ::google::protobuf::uint32 pos_;
   ::google::protobuf::int32 x_;
   ::google::protobuf::int32 y_;
-  ::google::protobuf::int32 w_;
-  ::google::protobuf::int32 h_;
   mutable ::google::protobuf::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_map_2eproto;
 };
@@ -405,21 +384,7 @@ inline void Cube::set_type(::map::Cube_cube_type value) {
   // @@protoc_insertion_point(field_set:map.Cube.type)
 }
 
-// uint32 pos = 2;
-inline void Cube::clear_pos() {
-  pos_ = 0u;
-}
-inline ::google::protobuf::uint32 Cube::pos() const {
-  // @@protoc_insertion_point(field_get:map.Cube.pos)
-  return pos_;
-}
-inline void Cube::set_pos(::google::protobuf::uint32 value) {
-  
-  pos_ = value;
-  // @@protoc_insertion_point(field_set:map.Cube.pos)
-}
-
-// int32 x = 3;
+// int32 x = 2;
 inline void Cube::clear_x() {
   x_ = 0;
 }
@@ -433,7 +398,7 @@ inline void Cube::set_x(::google::protobuf::int32 value) {
   // @@protoc_insertion_point(field_set:map.Cube.x)
 }
 
-// int32 y = 4;
+// int32 y = 3;
 inline void Cube::clear_y() {
   y_ = 0;
 }
@@ -445,34 +410,6 @@ inline void Cube::set_y(::google::protobuf::int32 value) {
   
   y_ = value;
   // @@protoc_insertion_point(field_set:map.Cube.y)
-}
-
-// int32 w = 5;
-inline void Cube::clear_w() {
-  w_ = 0;
-}
-inline ::google::protobuf::int32 Cube::w() const {
-  // @@protoc_insertion_point(field_get:map.Cube.w)
-  return w_;
-}
-inline void Cube::set_w(::google::protobuf::int32 value) {
-  
-  w_ = value;
-  // @@protoc_insertion_point(field_set:map.Cube.w)
-}
-
-// int32 h = 6;
-inline void Cube::clear_h() {
-  h_ = 0;
-}
-inline ::google::protobuf::int32 Cube::h() const {
-  // @@protoc_insertion_point(field_get:map.Cube.h)
-  return h_;
-}
-inline void Cube::set_h(::google::protobuf::int32 value) {
-  
-  h_ = value;
-  // @@protoc_insertion_point(field_set:map.Cube.h)
 }
 
 // -------------------------------------------------------------------

@@ -12,6 +12,8 @@ constexpr int speed = 4;
 
 void Player::on_type(std::vector<bool>* keys, std::vector<Cube>* cubes)
 {
+	if (stroke_rect_.left == -1 && stroke_rect_.top == -1) return;
+
 	/*
 		WARNING: What you are about to see, is the most shitcode ever created,
 		read at your own risk.
@@ -86,6 +88,8 @@ void Player::set_position(const int x, const int y)
 
 void Player::draw(ID2D1HwndRenderTarget* d2d1_rt, ID2D1SolidColorBrush* d2d1_solidbrush)
 {
+	if (stroke_rect_.left == -1 && stroke_rect_.top == -1) return;
+
 	stroke_rect_.right = stroke_rect_.left + 23;
 	stroke_rect_.bottom = stroke_rect_.top + 23;
 

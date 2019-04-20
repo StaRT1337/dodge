@@ -66,23 +66,29 @@ void Map::set_map(IDWriteFactory* dw_factory, const std::string& map_name)
 			break;
 		}
 
-		cube.set_pos(cubes_.size());
 		cubes_.push_back(cube);
 	}
 
-	auto x = (spawn_cubes.back().first + spawn_cubes.front().first) / 2;
-	auto y = (spawn_cubes.back().second + spawn_cubes.front().second) / 2;
-
-	if (Utils::get_cube(POINT{ x, y }, &cubes_).get_type() != cube_type::SPAWN_CUBE)
+	if (spawn_cubes.size() == 0)
 	{
-		std::vector<std::pair<int, int>> out;
-		std::sample(spawn_cubes.begin(), spawn_cubes.end(), std::back_inserter(out), 1, std::mt19937{ std::random_device{}() });
-
-		x = out.front().first;
-		y = out.front().second;
+		player_.set_position(-1, -1);
 	}
+	else
+	{
+		auto x = (spawn_cubes.back().first + spawn_cubes.front().first) / 2;
+		auto y = (spawn_cubes.back().second + spawn_cubes.front().second) / 2;
 
-	player_.set_position(x, y);
+		if (Utils::get_cube(POINT{ x, y }, &cubes_).get_type() != cube_type::SPAWN_CUBE)
+		{
+			std::vector<std::pair<int, int>> out;
+			std::sample(spawn_cubes.begin(), spawn_cubes.end(), std::back_inserter(out), 1, std::mt19937{ std::random_device{}() });
+
+			x = out.front().first;
+			y = out.front().second;
+		}
+
+		player_.set_position(x, y);
+	}
 }
 
 void Map::draw(ID2D1HwndRenderTarget* d2d1_rt, ID2D1SolidColorBrush* d2d1_solidbrush)

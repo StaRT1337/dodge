@@ -1,0 +1,19 @@
+syntax = "proto3";
+package map;
+
+message Cube {
+    enum cube_type {
+        BORDER_CUBE = 0;
+        REGULAR_CUBE = 1;
+        SPAWN_CUBE = 2;
+    }
+
+    cube_type type = 1;
+
+    int32 x = 2;
+    int32 y = 3;
+}
+
+message map {
+    repeated Cube cubes = 1;
+}

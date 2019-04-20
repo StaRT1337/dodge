@@ -239,9 +239,6 @@ void Map::save_map()
 	{
 		auto p_cube = _savemap.add_cubes();
 
-		p_cube->set_w(30);
-		p_cube->set_h(30);
-
 		p_cube->set_x(cube.get_position().x);
 		p_cube->set_y(cube.get_position().y);
 
@@ -257,8 +254,6 @@ void Map::save_map()
 			p_cube->set_type(map::Cube_cube_type::Cube_cube_type_SPAWN_CUBE);
 			break;
 		}
-
-		p_cube->set_pos(cube.get_vec_pos());
 	}
 
 	if (_is_new)
