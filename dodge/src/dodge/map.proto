@@ -1,0 +1,20 @@
+syntax = "proto3";
+package map;
+
+message Cube {
+    uint32 pos = 1;
+    
+    float r = 2;
+    float g = 3;
+    float b = 4;
+    float a = 5;
+
+    int32 x = 6;
+    int32 y = 7;
+    int32 w = 8;
+    int32 h = 9;
+}
+
+message map {
+    repeated Cube cubes = 1;
+}
