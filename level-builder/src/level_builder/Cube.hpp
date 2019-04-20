@@ -24,6 +24,7 @@ private:
 	const D2D1_COLOR_F calculate_color();
 public:
 	Cube() : _pos(-1) {};
+	bool operator==(const Cube& cube);
 
 	void set_size(std::uintptr_t width, std::uint32_t height);
 	void set_position(int x, int y);

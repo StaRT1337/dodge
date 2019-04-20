@@ -2,6 +2,7 @@
 #include "Cube.hpp"
 #include "Button.hpp"
 #include "Text.hpp"
+#include "Coin.hpp"
 
 #include "map.pb.h"
 
@@ -12,6 +13,8 @@ enum class click_type : std::uint32_t
 	REMOVE_CUBE,
 	SPAWN_CUBE,
 	END_CUBE,
+	ADD_COIN,
+	REMOVE_COIN,
 	last
 };
 
@@ -22,7 +25,9 @@ private:
 	std::wstring_convert<std::codecvt_utf8<wchar_t>> _conv;
 
 	std::string _map_name;
+
 	std::vector<Cube> _cubes;
+	std::vector<Coin> coins_;
 
 	click_type _type;
 

@@ -10,7 +10,7 @@ void Map::destroy()
 
 void Map::on_type(std::vector<bool>* keys)
 {
-	player_.on_type(keys, &cubes_);
+	player_.on_type(keys, &cubes_, &coins_);
 }
 
 void Map::set_map(IDWriteFactory* dw_factory, const std::string& map_name)
@@ -33,6 +33,11 @@ void Map::set_map(IDWriteFactory* dw_factory, const std::string& map_name)
 	map_name_ = map_name;
 
 	cubes_.clear();
+	cubes_.shrink_to_fit();
+
+	coins_.clear();
+	coins_.shrink_to_fit();
+
 	dw_factory_ = dw_factory;
 
 	menu_button.init(dw_factory_);
@@ -65,10 +70,20 @@ void Map::set_map(IDWriteFactory* dw_factory, const std::string& map_name)
 			break;
 		}
 
-		cubes_.push_back(cube);
+		cubes_.emplace_back(cube);
 	}
 
-	player_.start(&cubes_);
+	Coin coin;
+
+	for (const auto& p_coin : _map.coins())
+	{
+		auto cube = Utils::get_cube(p_coin.x(), p_coin.y(), &cubes_);
+		coin.set_cube(cube);
+
+		coins_.emplace_back(coin, false);
+	}
+
+	player_.start(&cubes_, &coins_);
 }
 
 void Map::draw(ID2D1HwndRenderTarget* d2d1_rt, ID2D1SolidColorBrush* d2d1_solidbrush)
@@ -81,41 +96,14 @@ void Map::draw(ID2D1HwndRenderTarget* d2d1_rt, ID2D1SolidColorBrush* d2d1_solidb
 		}
 	}
 
+	for (auto& pair : coins_)
+	{
+		if (!pair.second)
+		{
+			pair.first.draw(d2d1_rt, d2d1_solidbrush);
+		}
+	}
+
 	menu_button.draw(d2d1_rt, d2d1_solidbrush);
 	player_.draw(d2d1_rt, d2d1_solidbrush);
-}
-
-void Map::start()
-{
-	std::vector<std::pair<int, int>> spawn_cubes;
-
-	for (auto& cube : cubes_)
-	{
-		if (cube.get_type() == cube_type::SPAWN_CUBE)
-		{
-			auto position = cube.get_position();
-			spawn_cubes.emplace_back(position.x, position.y);
-		}
-	}
-
-	if (spawn_cubes.size() == 0)
-	{
-		player_.set_position(-1, -1);
-	}
-	else
-	{
-		auto x = (spawn_cubes.back().first + spawn_cubes.front().first) / 2;
-		auto y = (spawn_cubes.back().second + spawn_cubes.front().second) / 2;
-
-		if (Utils::get_cube(POINT{ x, y }, &cubes_).get_type() != cube_type::SPAWN_CUBE)
-		{
-			std::vector<std::pair<int, int>> out;
-			std::sample(spawn_cubes.begin(), spawn_cubes.end(), std::back_inserter(out), 1, std::mt19937{ std::random_device{}() });
-
-			x = out.front().first;
-			y = out.front().second;
-		}
-
-		player_.set_position(x, y);
-	}
 }

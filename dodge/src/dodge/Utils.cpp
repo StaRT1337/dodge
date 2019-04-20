@@ -65,14 +65,14 @@ namespace Utils
 		} 
 	} */
 
-	Cube get_cube(const POINT& mouse_position, std::vector<Cube>* cubes)
+	Cube get_cube(const float x, const float y, std::vector<Cube>* cubes)
 	{
 		for (auto& cube : *cubes)
 		{
-			auto x = mouse_position.x - cube.get_position().x;
-			auto y = mouse_position.y - cube.get_position().y;
+			auto x1 = x - cube.get_position().x;
+			auto y1 = y - cube.get_position().y;
 
-			if ((x <= 30 && x > 0) && (y <= 30 && y > 0))
+			if ((x1 <= 30 && x1 > 0) && (y1 <= 30 && y1 > 0))
 			{
 				return cube;
 			}
