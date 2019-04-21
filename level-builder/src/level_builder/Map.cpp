@@ -127,11 +127,7 @@ void Map::on_click(const POINT& mouse_position, const mouse_type& type)
 	save_button.check_click(mouse_position, type);
 	menu_button.check_click(mouse_position, type);
 
-<<<<<<< HEAD
 	auto cube = Utils::get_cube(mouse_position.x, mouse_position.y, &cubes_);
-=======
-	auto cube = Utils::get_cube(mouse_position.x, mouse_position.y, &_cubes);
->>>>>>> master
 	if (cube.get_vec_pos() == 0xcccccccc || cube.get_position().y < 60 || cube.get_position().y > 420) return;
 
 	switch (type_)
@@ -168,24 +164,6 @@ void Map::on_click(const POINT& mouse_position, const mouse_type& type)
 
 		coins_.emplace_back(coin);
 		break;
-<<<<<<< HEAD
-=======
-	}
-	case click_type::REMOVE_COIN:
-	{
-		if (cube.get_type() != cube_type::REGULAR_CUBE || coins_.size() == 0) break;
-
-		auto iter = std::find_if(coins_.begin(), coins_.end(), [&cube = cube](Coin& coin) {
-			return cube == coin.get_cube();
-			});
-
-		if (iter != coins_.end())
-		{
-			coins_.erase(iter);
-		}
-		break;
-	}
->>>>>>> master
 	}
 	case click_type::REMOVE_COIN:
 	{
@@ -211,13 +189,8 @@ void Map::create_new(IDWriteFactory* dw_factory)
 {
 	setup(dw_factory);
 
-<<<<<<< HEAD
 	cubes_.clear();
 	cubes_.shrink_to_fit();
-=======
-	_cubes.clear();
-	_cubes.shrink_to_fit();
->>>>>>> master
 
 	coins_.clear();
 	coins_.shrink_to_fit();
@@ -270,20 +243,10 @@ void Map::set_map(IDWriteFactory* dw_factory, const std::string& map_name)
 	cubes_.clear();
 	cubes_.shrink_to_fit();
 
-<<<<<<< HEAD
 	coins_.clear();
 	coins_.shrink_to_fit();
 
 	is_new_ = false;
-=======
-	_cubes.clear();
-	_cubes.shrink_to_fit();
-
-	coins_.clear();
-	coins_.shrink_to_fit();
-
-	_is_new = false;
->>>>>>> master
 
 	setup(dw_factory);
 
@@ -310,24 +273,15 @@ void Map::set_map(IDWriteFactory* dw_factory, const std::string& map_name)
 			break;
 		}
 
-<<<<<<< HEAD
 		cube.set_pos(cubes_.size());
 		cubes_.emplace_back(cube);
-=======
-		cube.set_pos(_cubes.size());
-		_cubes.emplace_back(cube);
->>>>>>> master
 	}
 
 	Coin coin;
 
 	for (const auto& p_coin : _map.coins())
 	{
-<<<<<<< HEAD
 		auto cube = Utils::get_cube(p_coin.x(), p_coin.y(), &cubes_);
-=======
-		auto cube = Utils::get_cube(p_coin.x(), p_coin.y(), &_cubes);
->>>>>>> master
 		coin.set_cube(cube);
 
 		coins_.emplace_back(coin);
@@ -338,14 +292,7 @@ void Map::save_map()
 {
 	if (!changed_) return;
 
-<<<<<<< HEAD
 	saving_ = true;
-=======
-	_saving = true;
-
-	_savemap.clear_cubes();
-	_savemap.clear_coins();
->>>>>>> master
 
 	savemap_.clear_cubes();
 	savemap_.clear_coins();
@@ -376,21 +323,13 @@ void Map::save_map()
 
 	for (auto& coin : coins_)
 	{
-<<<<<<< HEAD
 		auto p_coin = savemap_.add_coins();
-=======
-		auto p_coin = _savemap.add_coins();
->>>>>>> master
 
 		p_coin->set_x(coin.get_position().x);
 		p_coin->set_y(coin.get_position().y);
 	}
 
-<<<<<<< HEAD
 	if (is_new_)
-=======
-	if (_is_new)
->>>>>>> master
 	{
 		save_button.hide();
 		menu_button.hide();
