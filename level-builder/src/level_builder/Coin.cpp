@@ -1,7 +1,7 @@
 #include "stdafx.hpp"
-#include "Coin.hpp"
 
-#include "Utils.hpp"
+#include "include/Coin.hpp"
+#include "include/Utils.hpp"
 
 Cube Coin::get_cube()
 {

@@ -1,9 +1,9 @@
 #include "stdafx.hpp"
 
-#include "Editor.hpp"
+#include "include/Editor.hpp"
 
-#include "Utils.hpp"
-#include "Timer.hpp"
+#include "include/Utils.hpp"
+#include "include/Timer.hpp"
 
 Editor* editor;
 

@@ -1,7 +1,7 @@
 #include "stdafx.hpp"
-#include "Text.hpp"
 
-#include "Utils.hpp"
+#include "include/Text.hpp"
+#include "include/Utils.hpp"
 
 bool Text::operator==(const Text& text)
 {

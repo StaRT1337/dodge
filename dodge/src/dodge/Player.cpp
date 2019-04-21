@@ -1,7 +1,7 @@
 #include "stdafx.hpp"
-#include "Player.hpp"
 
-#include "Utils.hpp"
+#include "include/Player.hpp"
+#include "include/Utils.hpp"
 
 constexpr int w = 0x57;
 constexpr int a = 0x41;

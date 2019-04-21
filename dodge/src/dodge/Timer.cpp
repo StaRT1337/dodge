@@ -1,5 +1,5 @@
 #include "stdafx.hpp"
-#include "Timer.hpp"
+#include "include/Timer.hpp"
 
 float Timer::get_delta()
 {

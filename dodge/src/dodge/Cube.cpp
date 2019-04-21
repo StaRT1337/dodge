@@ -1,7 +1,7 @@
 #include "stdafx.hpp"
-#include "Cube.hpp"
 
-#include "Utils.hpp"
+#include "include/Cube.hpp"
+#include "include/Utils.hpp"
 
 void Cube::set_size(std::uintptr_t width, std::uint32_t height)
 {

@@ -1,7 +1,7 @@
 #include "stdafx.hpp"
-#include "Utils.hpp"
+#include "include/Utils.hpp"
 
-#include "Map.hpp"
+#include "include/Map.hpp"
 
 namespace Utils
 {

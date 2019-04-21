@@ -1,7 +1,7 @@
 #include "stdafx.hpp"
-#include "Cube.hpp"
 
-#include "Utils.hpp"
+#include "include/Cube.hpp"
+#include "include/Utils.hpp"
 
 bool Cube::operator==(const Cube & cube) {
 	return x_ == cube.x_ && y_ == cube.y_;

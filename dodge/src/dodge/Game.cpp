@@ -1,8 +1,8 @@
 #include "stdafx.hpp"
-#include "Game.hpp"
 
-#include "Utils.hpp"
-#include "Timer.hpp"
+#include "include/Game.hpp"
+#include "include/Utils.hpp"
+#include "include/Timer.hpp"
 
 Game* game;
 

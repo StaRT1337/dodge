@@ -1,8 +1,5 @@
 #include "stdafx.hpp"
-
-#include "Button.hpp"
-#include "Map.hpp"
-#include "Editor.hpp"
+#include "include/Editor.hpp"
 
 int __stdcall WinMain(HINSTANCE instance, HINSTANCE prev_instance, char* cmd_line, int cmd_show)
 {

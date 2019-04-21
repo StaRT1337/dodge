@@ -1,5 +1,5 @@
 #include "stdafx.hpp"
-#include "Game.hpp"
+#include "include/Game.hpp"
 
 int __stdcall WinMain(HINSTANCE instance, HINSTANCE prev_instance, char* cmd_line, int cmd_show)
 {

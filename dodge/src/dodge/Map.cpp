@@ -1,7 +1,7 @@
 #include "stdafx.hpp"
-#include "Map.hpp"
 
-#include "Utils.hpp"
+#include "include/Map.hpp"
+#include "include/Utils.hpp"
 
 void Map::destroy()
 {

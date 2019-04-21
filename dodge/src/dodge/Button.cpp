@@ -1,7 +1,7 @@
 #include "stdafx.hpp"
-#include "Button.hpp"
 
-#include "Utils.hpp"
+#include "include/Button.hpp"
+#include "include/Utils.hpp"
 
 Button::Button() : show_(true), fixedsize_(false), buttoncolor_(Utils::create_d2d1_color(255, 255, 255, 255)), strokecolor_(Utils::create_d2d1_color(0, 0, 0, 255))
 {
