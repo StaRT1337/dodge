@@ -165,7 +165,7 @@ const int Player::check_collision(const D2D1_RECT_F& temp_stroke, std::vector<Cu
 	{
 		auto type = Utils::get_cube(pair.first, pair.second, cubes).get_type();
 
-		if (type == cube_type::BORDER_CUBE || pair.first >= 750 || pair.first <= 0)
+		if (type == cube_type::BORDER_CUBE || pair.first >= 725 || pair.first <= 0)
 		{
 			top_collision = cube_type::BORDER_CUBE;
 		}

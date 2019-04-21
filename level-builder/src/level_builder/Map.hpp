@@ -24,7 +24,14 @@ private:
 	IDWriteFactory* dw_factory_;
 	std::wstring_convert<std::codecvt_utf8<wchar_t>> conv_;
 
+<<<<<<< HEAD
 	std::string map_name_;
+=======
+	std::string _map_name;
+
+	std::vector<Cube> _cubes;
+	std::vector<Coin> coins_;
+>>>>>>> master
 
 	std::vector<Cube> cubes_;
 	std::vector<Coin> coins_;

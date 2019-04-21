@@ -23,7 +23,11 @@ private:
 
 	const D2D1_COLOR_F calculate_color();
 public:
+<<<<<<< HEAD
 	Cube() : pos_(-1) {};
+=======
+	Cube() : _pos(-1) {};
+>>>>>>> master
 	bool operator==(const Cube& cube);
 
 	void set_size(std::uintptr_t width, std::uint32_t height);

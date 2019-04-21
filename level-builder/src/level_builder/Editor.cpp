@@ -422,8 +422,13 @@ void Editor::init_maps()
 			button.set_text_size(25.0f);
 			button.set_size(175, 70);
 
+<<<<<<< HEAD
 			button.on_click = [this, &in_menu = in_menu, &dw_factory_ = dw_factory_, &maps_ = maps_](Button* sender, const mouse_type& button) {
 				Utils::map_click(dw_factory_, &map_, sender, &maps_);
+=======
+			button.on_click = [this, &in_menu = in_menu, &dw_factory = dw_factory, &maps = maps](Button* sender, const mouse_type& button) {
+				Utils::map_click(dw_factory, &_map, sender, &maps);
+>>>>>>> master
 				in_menu = false;
 
 				map_.menu_button.on_click = [this, &maps_ = maps_, &in_menu = in_menu](Button* sender, const mouse_type& button) {

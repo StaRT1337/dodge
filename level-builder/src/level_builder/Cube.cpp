@@ -3,8 +3,14 @@
 
 #include "Utils.hpp"
 
+<<<<<<< HEAD
 bool Cube::operator==(const Cube & cube) {
     return x_ == cube.x_ && y_ == cube.y_;
+=======
+bool Cube::operator==(const Cube & cube)
+{
+	return _x == cube._x && _y == cube._y;
+>>>>>>> master
 }
 
 void Cube::set_size(std::uintptr_t width, std::uint32_t height)
