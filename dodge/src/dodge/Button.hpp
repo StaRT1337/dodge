@@ -10,16 +10,16 @@ enum class mouse_type : std::uint32_t
 class Button
 {
 private:
-	Text _text;
+	Text text_;
 
-	bool _show;
-	bool _fixedsize;
+	bool show_;
+	bool fixedsize_;
 
-	D2D1_RECT_F button_rect;
-	D2D1_RECT_F stroke_rect;
+	D2D1_RECT_F button_rect_;
+	D2D1_RECT_F stroke_rect_;
 
-	D2D1_COLOR_F _strokecolor;
-	D2D1_COLOR_F _buttoncolor;
+	D2D1_COLOR_F strokecolor_;
+	D2D1_COLOR_F buttoncolor_;
 
 	bool check_collision(const POINT& mouse_position);
 public:

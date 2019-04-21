@@ -5,7 +5,7 @@
 
 bool Text::operator==(const Text& text)
 {
-	return layout == text.layout && format == text.format;
+	return layout_ == text.layout_ && format_ == text.format_;
 }
 
 void Text::init(IDWriteFactory* factory)
@@ -16,87 +16,87 @@ void Text::init(IDWriteFactory* factory)
 		DWRITE_FONT_WEIGHT_NORMAL,
 		DWRITE_FONT_STYLE_NORMAL,
 		DWRITE_FONT_STRETCH_NORMAL,
-		_size,
+		size_,
 		L"en-us",
-		&format
+		&format_
 	);
 }
 
 void Text::destroy()
 {
-	Utils::safe_release(&format);
-	Utils::safe_release(&layout);
+	Utils::safe_release(&format_);
+	Utils::safe_release(&layout_);
 }
 
 void Text::hide()
 {
-	_show = false;
+	show_ = false;
 }
 
 void Text::show()
 {
-	_show = true;
+	show_ = true;
 }
 
 void Text::set_text(const std::wstring& string, IDWriteFactory* factory)
-{	
-	if (_text != string)
+{
+	if (text_ != string)
 	{
-		_text = string;
+		text_ = string;
 
-		Utils::safe_release(&layout);
+		Utils::safe_release(&layout_);
 		factory->CreateTextLayout(
-			_text.data(),
-			_text.length(),
-			format,
+			text_.data(),
+			text_.length(),
+			format_,
 			750,
 			510,
-			&layout
+			&layout_
 		);
 
-		layout->SetFontSize(_size, DWRITE_TEXT_RANGE{ 0, _text.length() });
+		layout_->SetFontSize(size_, DWRITE_TEXT_RANGE{ 0, text_.length() });
 	}
 }
 
 void Text::set_color(const D2D1_COLOR_F& color)
 {
-	_color = color;
+	color_ = color;
 }
 
 void Text::set_size(float size)
 {
-	_size = size;
-	layout->SetFontSize(_size, DWRITE_TEXT_RANGE{ 0, _text.length() });
+	size_ = size;
+	layout_->SetFontSize(size_, DWRITE_TEXT_RANGE{ 0, text_.length() });
 }
 
 void Text::set_position(float x, float y)
 {
-	_x = x;
-	_y = y;
+	x_ = x;
+	y_ = y;
 }
 
 const std::wstring Text::get_text()
 {
-	return _text;
+	return text_;
 }
 
 DWRITE_TEXT_METRICS Text::get_metrics()
 {
 	DWRITE_TEXT_METRICS metrics;
-	layout->GetMetrics(&metrics);
+	layout_->GetMetrics(&metrics);
 
 	return metrics;
 }
 
 void Text::draw(ID2D1HwndRenderTarget* d2d1_rt, ID2D1SolidColorBrush* d2d1_solidbrush)
 {
-	if (_show)
+	if (show_)
 	{
-		d2d1_solidbrush->SetColor(_color);
+		d2d1_solidbrush->SetColor(color_);
 
 		d2d1_rt->DrawTextLayout(
-			D2D1::Point2F(_x, _y),
-			layout,
+			D2D1::Point2F(x_, y_),
+			layout_,
 			d2d1_solidbrush
 		);
 	}

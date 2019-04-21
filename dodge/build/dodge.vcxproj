@@ -108,6 +108,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="..\src\dodge\Button.hpp" />
+    <ClInclude Include="..\src\dodge\Coin.hpp" />
     <ClInclude Include="..\src\dodge\Cube.hpp" />
     <ClInclude Include="..\src\dodge\Game.hpp" />
     <ClInclude Include="..\src\dodge\Map.hpp" />
@@ -119,6 +120,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\src\dodge\Button.cpp" />
+    <ClCompile Include="..\src\dodge\Coin.cpp" />
     <ClCompile Include="..\src\dodge\Cube.cpp" />
     <ClCompile Include="..\src\dodge\format.cc" />
     <ClCompile Include="..\src\dodge\Game.cpp" />

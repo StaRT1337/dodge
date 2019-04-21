@@ -147,28 +147,57 @@ void Player::draw(ID2D1HwndRenderTarget* d2d1_rt, ID2D1SolidColorBrush* d2d1_sol
 
 const int Player::check_collision(const D2D1_RECT_F& temp_stroke, std::vector<Cube>* cubes)
 {
-	std::vector<std::pair<float, float>> points;
+	std::vector<std::pair<float, float>> top_points;
+	std::vector<std::pair<float, float>> bottom_points;
 
-	points.emplace_back(temp_stroke.left, temp_stroke.top);
-	points.emplace_back(temp_stroke.left + (23 / 2), temp_stroke.top);
-	points.emplace_back(temp_stroke.left + 23, temp_stroke.top);
+	cube_type top_collision = cube_type::REGULAR_CUBE;
+	cube_type bottom_collision = cube_type::REGULAR_CUBE;
 
-	points.emplace_back(temp_stroke.left, temp_stroke.top + 23);
-	points.emplace_back(temp_stroke.left + (23 / 2), temp_stroke.top + 23);
-	points.emplace_back(temp_stroke.left + 23, temp_stroke.top + 23);
+	top_points.emplace_back(temp_stroke.left, temp_stroke.top);
+	top_points.emplace_back(temp_stroke.left + (23 / 2), temp_stroke.top);
+	bottom_points.emplace_back(temp_stroke.left + 23, temp_stroke.top);
 
-	for (const auto& pair : points)
+	bottom_points.emplace_back(temp_stroke.left, temp_stroke.top + 23);
+	bottom_points.emplace_back(temp_stroke.left + (23 / 2), temp_stroke.top + 23);
+	bottom_points.emplace_back(temp_stroke.left + 23, temp_stroke.top + 23);
+
+	for (const auto& pair : top_points)
 	{
 		auto type = Utils::get_cube(pair.first, pair.second, cubes).get_type();
 
 		if (type == cube_type::BORDER_CUBE || pair.first >= 725 || pair.first <= 0)
 		{
-			return 1;
+			top_collision = cube_type::BORDER_CUBE;
 		}
 		else if (type == cube_type::END_CUBE)
 		{
-			return 2;
+			top_collision = type;
 		}
+	}
+
+
+	for (const auto& pair : bottom_points)
+	{
+		auto type = Utils::get_cube(pair.first, pair.second, cubes).get_type();
+
+		if (type == cube_type::BORDER_CUBE || pair.first >= 750 || pair.first <= 0)
+		{
+			bottom_collision = cube_type::BORDER_CUBE;
+		}
+		else if (type == cube_type::END_CUBE)
+		{
+			bottom_collision = type;
+		}
+	}
+
+	if (top_collision == cube_type::BORDER_CUBE || bottom_collision == cube_type::BORDER_CUBE)
+	{
+		return 1;
+	}
+
+	if (top_collision == cube_type::END_CUBE || bottom_collision == cube_type::END_CUBE)
+	{
+		return 2;
 	}
 
 	return 0;

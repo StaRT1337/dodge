@@ -3,33 +3,38 @@
 
 #include "Utils.hpp"
 
+<<<<<<< HEAD
+bool Cube::operator==(const Cube & cube) {
+    return x_ == cube.x_ && y_ == cube.y_;
+=======
 bool Cube::operator==(const Cube & cube)
 {
 	return _x == cube._x && _y == cube._y;
+>>>>>>> master
 }
 
 void Cube::set_size(std::uintptr_t width, std::uint32_t height)
 {
-	_width = width;
-	_height = height;
+	width_ = width;
+	height_ = height;
 }
 
 void Cube::set_position(int x, int y)
 {
-	_x = x;
-	_y = y;
+	x_ = x;
+	y_ = y;
 }
 
 void Cube::set_pos(const std::uint32_t pos)
 {
-	_pos = pos;
+	pos_ = pos;
 }
 
 void Cube::draw(ID2D1RenderTarget* render_target, ID2D1SolidColorBrush* solid_brush)
 {
 	D2D1_COLOR_F color;
 
-	switch (_type)
+	switch (type_)
 	{
 	case cube_type::BORDER_CUBE:
 		color = Utils::create_d2d1_color(180, 181, 254, 255);
@@ -51,34 +56,34 @@ void Cube::draw(ID2D1RenderTarget* render_target, ID2D1SolidColorBrush* solid_br
 	}
 
 	render_target->FillRectangle(
-		D2D1::RectF(_x, _y, _x + _width, _y + _height),
+		D2D1::RectF(x_, y_, x_ + width_, y_ + height_),
 		solid_brush
 	);
 }
 
 void Cube::set_type(const cube_type& type)
 {
-	_type = type;
+	type_ = type;
 }
 
 void Cube::update(std::vector<Cube>* cubes)
 {
-	cubes->at(_pos) = *this;
+	cubes->at(pos_) = *this;
 }
 
 const std::uint32_t Cube::get_vec_pos()
 {
-	return _pos;
+	return pos_;
 }
 
 const D2D1_POINT_2F Cube::get_position()
 {
-	return D2D1::Point2F(_x, _y);
+	return D2D1::Point2F(x_, y_);
 }
 
 const cube_type Cube::get_type()
 {
-	return _type;
+	return type_;
 }
 
 const D2D1_COLOR_F Cube::calculate_color()
@@ -87,13 +92,13 @@ const D2D1_COLOR_F Cube::calculate_color()
 
 	bool white;
 
-	if ((_y / 10) % 2 == 0)
+	if ((y_ / 10) % 2 == 0)
 	{
-		white = (_x / 10) % 2 == 0;
+		white = (x_ / 10) % 2 == 0;
 	}
 	else
 	{
-		white = (_x / 10) % 2 != 0;
+		white = (x_ / 10) % 2 != 0;
 	}
 
 	white ? color = Utils::create_d2d1_color(255, 255, 255, 255) : color = Utils::create_d2d1_color(230, 230, 255, 255);

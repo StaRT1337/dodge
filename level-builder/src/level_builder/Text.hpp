@@ -3,20 +3,20 @@
 class Text
 {
 private:
-	std::wstring _text;
+	std::wstring text_;
 
-	IDWriteTextFormat* format;
-	IDWriteTextLayout* layout;
+	IDWriteTextFormat* format_;
+	IDWriteTextLayout* layout_;
 
-	float _size;
-	float _x;
-	float _y;
+	float size_;
+	float x_;
+	float y_;
 
-	bool _show;
+	bool show_;
 
-	D2D1_COLOR_F _color;
+	D2D1_COLOR_F color_;
 public:
-	Text() : _text(L""), _show(true), _size(1.0f), format(0), layout(0) {};
+	Text() : text_(L""), show_(true), size_(1.0f), format_(0), layout_(0) {};
 	bool operator==(const Text& text);
 
 	void init(IDWriteFactory* factory);

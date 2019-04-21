@@ -108,6 +108,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="..\src\level_builder\Button.hpp" />
+    <ClInclude Include="..\src\level_builder\Coin.hpp" />
     <ClInclude Include="..\src\level_builder\Cube.hpp" />
     <ClInclude Include="..\src\level_builder\Editor.hpp" />
     <ClInclude Include="..\src\level_builder\Map.hpp" />
@@ -119,6 +120,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\src\level_builder\Button.cpp" />
+    <ClCompile Include="..\src\level_builder\Coin.cpp" />
     <ClCompile Include="..\src\level_builder\Cube.cpp" />
     <ClCompile Include="..\src\level_builder\Editor.cpp" />
     <ClCompile Include="..\src\level_builder\format.cc" />

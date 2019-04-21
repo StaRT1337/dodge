@@ -17,7 +17,11 @@ void Coin::set_cube(const Cube& cube)
 {
 	cube_ = cube;
 	auto position = cube_.get_position();
+<<<<<<< HEAD
+
+=======
 	
+>>>>>>> master
 	position_.x = position.x + 15;
 	position_.y = position.y + 15;
 }

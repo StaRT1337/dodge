@@ -11,7 +11,7 @@ void Map::destroy()
 
 void Map::on_type(std::vector<std::pair<bool, short>>* keys)
 {
-	if (!_saving) return;
+	if (!saving_) return;
 
 	std::vector<std::pair<bool, short>> pressed;
 
@@ -27,54 +27,54 @@ void Map::on_type(std::vector<std::pair<bool, short>>* keys)
 		{
 		case 8:
 		{
-			auto text = _left_text.get_text();
+			auto text = left_text_.get_text();
 			text.pop_back();
 
-			_left_text.set_text(text, _dw_factory);
+			left_text_.set_text(text, dw_factory_);
 			break;
 		}
 		case 27:
-			_waiting_for_input = false;
-			_saving = false;
+			waiting_for_input_ = false;
+			saving_ = false;
 
-			_left_text.hide();
+			left_text_.hide();
 
 			save_button.show();
 			menu_button.show();
 			break;
 		case 13:
 		{
-			auto name = _left_text.get_text().substr(6, _left_text.get_text().length());
+			auto name = left_text_.get_text().substr(6, left_text_.get_text().length());
 
-			std::ofstream file(fmt::format("maps/{}.dodgemap", _conv.to_bytes(name)), std::ios::out | std::ios::trunc | std::ios::binary);
+			std::ofstream file(fmt::format("maps/{}.dodgemap", conv_.to_bytes(name)), std::ios::out | std::ios::trunc | std::ios::binary);
 
 			if (!file)
 			{
 				std::exception("Couldn't open file");
 			}
 
-			if (!_savemap.SerializeToOstream(&file))
+			if (!savemap_.SerializeToOstream(&file))
 			{
 				std::exception("Couldn't parse to ofstream");
 			}
 
-			_left_text.hide();
+			left_text_.hide();
 
 			menu_button.show();
 			save_button.show();
 
-			_waiting_for_input = false;
-			_saving = false;
+			waiting_for_input_ = false;
+			saving_ = false;
 			break;
 		}
 		default:
 		{
-			if (_waiting_for_input && _left_text.get_text().length() - 6 < 9)
+			if (waiting_for_input_ && left_text_.get_text().length() - 6 < 9)
 			{
 				if (front.second < 0x41 || front.second > 0x5A) return;
 
-				auto text = _left_text.get_text();
-				_left_text.set_text(fmt::format(L"{}{}", text, static_cast<char>(pressed.front().second + 32)), _dw_factory);
+				auto text = left_text_.get_text();
+				left_text_.set_text(fmt::format(L"{}{}", text, static_cast<char>(pressed.front().second + 32)), dw_factory_);
 			}
 			break;
 		}
@@ -86,51 +86,55 @@ void Map::on_wheel(const short delta)
 {
 	if (delta == 0 || delta < -10000) return;
 
-	auto int_type = static_cast<std::uint32_t>(_type);
+	auto inttype_ = static_cast<std::uint32_t>(type_);
 
 	if (delta > 0)
 	{
-		if (int_type + 1 == static_cast<std::uint32_t>(click_type::last))
+		if (inttype_ + 1 == static_cast<std::uint32_t>(click_type::last))
 		{
-			_type = static_cast<click_type>(static_cast<std::uint32_t>(click_type::first) + 1);
+			type_ = static_cast<click_type>(static_cast<std::uint32_t>(click_type::first) + 1);
 		}
 		else
 		{
-			_type = static_cast<click_type>(int_type + 1);
+			type_ = static_cast<click_type>(inttype_ + 1);
 		}
 	}
 	else
 	{
-		if (int_type - 1 == static_cast<std::uint32_t>(click_type::first))
+		if (inttype_ - 1 == static_cast<std::uint32_t>(click_type::first))
 		{
-			_type = static_cast<click_type>(static_cast<std::uint32_t>(click_type::last) - 1);
+			type_ = static_cast<click_type>(static_cast<std::uint32_t>(click_type::last) - 1);
 		}
 		else
 		{
-			_type = static_cast<click_type>(int_type - 1);
+			type_ = static_cast<click_type>(inttype_ - 1);
 		}
 	}
 
-	_right_text.set_text(_conv.from_bytes(fmt::format("Click type: {}", Utils::get_str_from_click(_type))), _dw_factory);
+	right_text_.set_text(conv_.from_bytes(fmt::format("Click type: {}", Utils::get_str_from_click(type_))), dw_factory_);
 }
 
 void Map::on_click(const POINT& mouse_position, const mouse_type& type)
 {
-	if (type == mouse_type::NONE || _saving)  return;
+	if (type == mouse_type::NONE || saving_)  return;
 
-	if (!_clicked)
+	if (!clicked_)
 	{
-		_clicked = true;
+		clicked_ = true;
 		return;
 	}
 
 	save_button.check_click(mouse_position, type);
 	menu_button.check_click(mouse_position, type);
 
+<<<<<<< HEAD
+	auto cube = Utils::get_cube(mouse_position.x, mouse_position.y, &cubes_);
+=======
 	auto cube = Utils::get_cube(mouse_position.x, mouse_position.y, &_cubes);
+>>>>>>> master
 	if (cube.get_vec_pos() == 0xcccccccc || cube.get_position().y < 60 || cube.get_position().y > 420) return;
 
-	switch (_type)
+	switch (type_)
 	{
 	case click_type::ADD_CUBE:
 		cube.set_type(cube_type::BORDER_CUBE);
@@ -164,6 +168,24 @@ void Map::on_click(const POINT& mouse_position, const mouse_type& type)
 
 		coins_.emplace_back(coin);
 		break;
+<<<<<<< HEAD
+=======
+	}
+	case click_type::REMOVE_COIN:
+	{
+		if (cube.get_type() != cube_type::REGULAR_CUBE || coins_.size() == 0) break;
+
+		auto iter = std::find_if(coins_.begin(), coins_.end(), [&cube = cube](Coin& coin) {
+			return cube == coin.get_cube();
+			});
+
+		if (iter != coins_.end())
+		{
+			coins_.erase(iter);
+		}
+		break;
+	}
+>>>>>>> master
 	}
 	case click_type::REMOVE_COIN:
 	{
@@ -181,21 +203,26 @@ void Map::on_click(const POINT& mouse_position, const mouse_type& type)
 	}
 	}
 
-	_changed = true;
-	cube.update(&_cubes);
+	changed_ = true;
+	cube.update(&cubes_);
 }
 
 void Map::create_new(IDWriteFactory* dw_factory)
 {
 	setup(dw_factory);
 
+<<<<<<< HEAD
+	cubes_.clear();
+	cubes_.shrink_to_fit();
+=======
 	_cubes.clear();
 	_cubes.shrink_to_fit();
+>>>>>>> master
 
 	coins_.clear();
 	coins_.shrink_to_fit();
 
-	_is_new = true;
+	is_new_ = true;
 
 	Cube cube;
 	cube.set_size(30, 30);
@@ -214,8 +241,8 @@ void Map::create_new(IDWriteFactory* dw_factory)
 				cube.set_type(cube_type::REGULAR_CUBE);
 			}
 
-			cube.set_pos(_cubes.size());
-			_cubes.push_back(cube);
+			cube.set_pos(cubes_.size());
+			cubes_.push_back(cube);
 		}
 	} 
 }
@@ -238,8 +265,17 @@ void Map::set_map(IDWriteFactory* dw_factory, const std::string& map_name)
 
 	file.close();
 
-	_map_name = map_name;
+	map_name_ = map_name;
 
+	cubes_.clear();
+	cubes_.shrink_to_fit();
+
+<<<<<<< HEAD
+	coins_.clear();
+	coins_.shrink_to_fit();
+
+	is_new_ = false;
+=======
 	_cubes.clear();
 	_cubes.shrink_to_fit();
 
@@ -247,6 +283,7 @@ void Map::set_map(IDWriteFactory* dw_factory, const std::string& map_name)
 	coins_.shrink_to_fit();
 
 	_is_new = false;
+>>>>>>> master
 
 	setup(dw_factory);
 
@@ -273,15 +310,24 @@ void Map::set_map(IDWriteFactory* dw_factory, const std::string& map_name)
 			break;
 		}
 
+<<<<<<< HEAD
+		cube.set_pos(cubes_.size());
+		cubes_.emplace_back(cube);
+=======
 		cube.set_pos(_cubes.size());
 		_cubes.emplace_back(cube);
+>>>>>>> master
 	}
 
 	Coin coin;
 
 	for (const auto& p_coin : _map.coins())
 	{
+<<<<<<< HEAD
+		auto cube = Utils::get_cube(p_coin.x(), p_coin.y(), &cubes_);
+=======
 		auto cube = Utils::get_cube(p_coin.x(), p_coin.y(), &_cubes);
+>>>>>>> master
 		coin.set_cube(cube);
 
 		coins_.emplace_back(coin);
@@ -290,16 +336,23 @@ void Map::set_map(IDWriteFactory* dw_factory, const std::string& map_name)
 
 void Map::save_map()
 {
-	if (!_changed) return;
+	if (!changed_) return;
 
+<<<<<<< HEAD
+	saving_ = true;
+=======
 	_saving = true;
 
 	_savemap.clear_cubes();
 	_savemap.clear_coins();
+>>>>>>> master
 
-	for (auto& cube : _cubes)
+	savemap_.clear_cubes();
+	savemap_.clear_coins();
+
+	for (auto& cube : cubes_)
 	{
-		auto p_cube = _savemap.add_cubes();
+		auto p_cube = savemap_.add_cubes();
 
 		p_cube->set_x(cube.get_position().x);
 		p_cube->set_y(cube.get_position().y);
@@ -323,48 +376,56 @@ void Map::save_map()
 
 	for (auto& coin : coins_)
 	{
+<<<<<<< HEAD
+		auto p_coin = savemap_.add_coins();
+=======
 		auto p_coin = _savemap.add_coins();
+>>>>>>> master
 
 		p_coin->set_x(coin.get_position().x);
 		p_coin->set_y(coin.get_position().y);
 	}
 
+<<<<<<< HEAD
+	if (is_new_)
+=======
 	if (_is_new)
+>>>>>>> master
 	{
 		save_button.hide();
 		menu_button.hide();
 
-		_left_text.set_text(L"Name: ", _dw_factory);
-		_left_text.set_size(25.0f);
-		_left_text.show();
+		left_text_.set_text(L"Name: ", dw_factory_);
+		left_text_.set_size(25.0f);
+		left_text_.show();
 
-		_waiting_for_input = true;
+		waiting_for_input_ = true;
 	}
 	else
 	{
-		std::ofstream file(fmt::format("maps/{}.dodgemap", _map_name), std::ios::out | std::ios::trunc | std::ios::binary);
+		std::ofstream file(fmt::format("maps/{}.dodgemap", map_name_), std::ios::out | std::ios::trunc | std::ios::binary);
 
 		if (!file)
 		{
 			throw std::exception("Map not found.");
 		}
 
-		if (!_savemap.SerializeToOstream(&file))
+		if (!savemap_.SerializeToOstream(&file))
 		{
 			throw std::exception("Couldn't serialize map to ostream.");
 		}
 
-		_saving = false;
+		saving_ = false;
 	}
 
-	_changed = false;
+	changed_ = false;
 }
 
 void Map::draw(ID2D1HwndRenderTarget* d2d1_rt, ID2D1SolidColorBrush* d2d1_solidbrush)
 {
-	if (_cubes.size() >= 425)
+	if (cubes_.size() >= 425)
 	{
-		for (auto& cube : _cubes)
+		for (auto& cube : cubes_)
 		{
 			cube.draw(d2d1_rt, d2d1_solidbrush);
 		}
@@ -378,40 +439,40 @@ void Map::draw(ID2D1HwndRenderTarget* d2d1_rt, ID2D1SolidColorBrush* d2d1_solidb
 	save_button.draw(d2d1_rt, d2d1_solidbrush);
 	menu_button.draw(d2d1_rt, d2d1_solidbrush);
 
-	_left_text.draw(d2d1_rt, d2d1_solidbrush);
-	_right_text.draw(d2d1_rt, d2d1_solidbrush);
+	left_text_.draw(d2d1_rt, d2d1_solidbrush);
+	right_text_.draw(d2d1_rt, d2d1_solidbrush);
 }
 
 void Map::setup(IDWriteFactory* dw_factory)
 {
-	_dw_factory = dw_factory;
-	_type = click_type::ADD_CUBE;
+	dw_factory_ = dw_factory;
+	type_ = click_type::ADD_CUBE;
 
-	_clicked = false;
-	_changed = false;
+	clicked_ = false;
+	changed_ = false;
 
-	_saving = false;
-	_waiting_for_input = false;
+	saving_ = false;
+	waiting_for_input_ = false;
 
-	_left_text.init(dw_factory);
+	left_text_.init(dw_factory_);
 
-	_left_text.set_text(L"dummy", dw_factory);
-	_left_text.set_size(25.0f);
-	_left_text.set_position(25, 15);
-	_left_text.set_color(Utils::create_d2d1_color(0, 0, 0, 255));
-	_left_text.hide();
+	left_text_.set_text(L"dummy", dw_factory_);
+	left_text_.set_size(25.0f);
+	left_text_.set_position(25, 15);
+	left_text_.set_color(Utils::create_d2d1_color(0, 0, 0, 255));
+	left_text_.hide();
 
-	_right_text.init(dw_factory);
+	right_text_.init(dw_factory_);
 
-	_right_text.set_text(_conv.from_bytes(fmt::format("Click type: {}", Utils::get_str_from_click(_type))), dw_factory);
-	_right_text.set_position(400, 15);
-	_right_text.set_size(25.0f);
-	_right_text.set_color(Utils::create_d2d1_color(0, 0, 0, 255));
+	right_text_.set_text(conv_.from_bytes(fmt::format("Click type: {}", Utils::get_str_from_click(type_))), dw_factory_);
+	right_text_.set_position(400, 15);
+	right_text_.set_size(25.0f);
+	right_text_.set_color(Utils::create_d2d1_color(0, 0, 0, 255));
 
-	save_button.init(dw_factory);
+	save_button.init(dw_factory_);
 
 	save_button.set_position(100, 8);
-	save_button.set_text(L"Save", dw_factory);
+	save_button.set_text(L"Save", dw_factory_);
 	save_button.set_text_size(25.0f);
 
 	save_button.on_hover = Utils::button_hover;
@@ -419,10 +480,10 @@ void Map::setup(IDWriteFactory* dw_factory)
 		this->save_map();
 	};
 
-	menu_button.init(dw_factory);
+	menu_button.init(dw_factory_);
 
 	menu_button.set_position(10, 8);
-	menu_button.set_text(L"Menu", dw_factory);
+	menu_button.set_text(L"Menu", dw_factory_);
 	menu_button.set_text_size(25.0f);
 
 	menu_button.on_hover = Utils::button_hover;
