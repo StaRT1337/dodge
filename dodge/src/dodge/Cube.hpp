@@ -11,19 +11,19 @@ enum class cube_type : std::uint32_t
 class Cube
 {
 private:
-	unsigned int _width;
-	unsigned int _height;
+	unsigned int width_;
+	unsigned int height_;
 
-	int _x;
-	int _y;
+	int x_;
+	int y_;
 
-	std::uint32_t _pos;
+	std::uint32_t pos_;
 
-	cube_type _type;
+	cube_type type_;
 
 	const D2D1_COLOR_F calculate_color();
 public:
-	Cube() : _pos(-1) {};
+	Cube() : pos_(-1) {};
 
 	void set_size(std::uintptr_t width, std::uint32_t height);
 	void set_position(int x, int y);

@@ -21,27 +21,27 @@ enum class click_type : std::uint32_t
 class Map
 {
 private:
-	IDWriteFactory* _dw_factory;
-	std::wstring_convert<std::codecvt_utf8<wchar_t>> _conv;
+	IDWriteFactory* dw_factory_;
+	std::wstring_convert<std::codecvt_utf8<wchar_t>> conv_;
 
-	std::string _map_name;
+	std::string map_name_;
 
-	std::vector<Cube> _cubes;
+	std::vector<Cube> cubes_;
 	std::vector<Coin> coins_;
 
-	click_type _type;
+	click_type type_;
 
-	Text _right_text;
-	Text _left_text;
+	Text right_text_;
+	Text left_text_;
 
-	map::map _savemap;
+	map::map savemap_;
 
-	bool _is_new;
-	bool _clicked;
-	bool _changed;
+	bool is_new_;
+	bool clicked_;
+	bool changed_;
 
-	bool _saving;
-	bool _waiting_for_input;
+	bool saving_;
+	bool waiting_for_input_;
 
 	void setup(IDWriteFactory* dw_factory);
 public:

@@ -6,32 +6,31 @@
 class Editor
 {
 private:
-	ID2D1Factory* d2d1_factory;
-	ID2D1HwndRenderTarget* d2d1_rt;
-	ID2D1SolidColorBrush* d2d1_solidbrush;
-	IDWriteFactory* dw_factory;
+	ID2D1Factory* d2d1_factory_;
+	ID2D1HwndRenderTarget* d2d1_rt_;
+	ID2D1SolidColorBrush* d2d1_solidbrush_;
+	IDWriteFactory* dw_factory_;
 
-	std::string _window_name;
-	std::string _class_name;
+	std::string window_name_;
+	std::string class_name_;
 
-	std::vector<bool> held_keys;
-	std::vector<std::pair<bool, short>> keys;
+	std::vector<std::pair<bool, short>> keys_;
 
-	std::vector<std::pair<Button, std::wstring>> maps;
+	std::vector<std::pair<Button, std::wstring>> maps_;
 
-	Map _map;
+	Map map_;
 
-	HWND _hwnd;
-	HRESULT _render_result;
-	PAINTSTRUCT _ps;
-	POINT mouse_position;
+	HWND hwnd_;
+	HRESULT render_result_;
+	PAINTSTRUCT ps_;
+	POINT mouse_position_;
 
-	mouse_type _mouse_type;
+	mouse_type mouse_type_;
 
-	unsigned int _width;
-	unsigned int _height;
+	unsigned int width_;
+	unsigned int height_;
 
-	short wheel_delta;
+	short wheel_delta_;
 
 	static long __stdcall window_proc_fake(HWND hwnd, std::uint32_t msg, std::uintptr_t w_param, long l_param);
 	long __stdcall window_proc(HWND hwnd, std::uint32_t msg, std::uintptr_t w_param, long l_param);
