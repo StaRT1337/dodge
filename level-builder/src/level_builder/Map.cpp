@@ -9,105 +9,115 @@ void Map::destroy()
 	menu_button.destroy();
 }
 
-void Map::on_type(std::vector<std::pair<bool, short>>* keys)
+void Map::on_type(const short key)
 {
+	if (key == -1) return;
+
+	switch (key)
+	{
+	case 13:
+		if (enemy_.has_points)
+		{
+			enemy_.finished = true;
+			enemy_.save();
+			
+			enemies_.emplace_back(enemy_);
+			enemy_ = Enemy();
+		}
+		break;
+	case 27:
+		enemy_.clear();
+		enemy_.has_points = false;
+		break;
+	}
+
 	if (!saving_) return;
 
-	std::vector<std::pair<bool, short>> pressed;
-
-	std::copy_if(keys->begin(), keys->end(), std::back_inserter(pressed), [](std::pair<bool, short> pair) {
-		return pair.first;
-	});
-
-	if (pressed.size() > 0)
+	switch (key)
 	{
-		auto front = pressed.front();
+	case 8:
+	{
+		auto text = left_text_.get_text();
+		text.pop_back();
 
-		switch (front.second)
-		{
-		case 8:
-		{
-			auto text = left_text_.get_text();
-			text.pop_back();
-
-			left_text_.set_text(text, dw_factory_);
-			break;
-		}
-		case 27:
-			waiting_for_input_ = false;
-			saving_ = false;
-
-			left_text_.hide();
-
-			save_button.show();
-			menu_button.show();
-			break;
-		case 13:
-		{
-			auto name = left_text_.get_text().substr(6, left_text_.get_text().length());
-
-			std::ofstream file(fmt::format("maps/{}.dodgemap", conv_.to_bytes(name)), std::ios::out | std::ios::trunc | std::ios::binary);
-
-			if (!file)
-			{
-				std::exception("Couldn't open file");
-			}
-
-			if (!savemap_.SerializeToOstream(&file))
-			{
-				std::exception("Couldn't parse to ofstream");
-			}
-
-			left_text_.hide();
-
-			menu_button.show();
-			save_button.show();
-
-			waiting_for_input_ = false;
-			saving_ = false;
-			break;
-		}
-		default:
-		{
-			if (waiting_for_input_ && left_text_.get_text().length() - 6 < 9)
-			{
-				if (front.second < 0x41 || front.second > 0x5A) return;
-
-				auto text = left_text_.get_text();
-				left_text_.set_text(fmt::format(L"{}{}", text, static_cast<char>(pressed.front().second + 32)), dw_factory_);
-			}
-			break;
-		}
-		}
+		left_text_.set_text(text, dw_factory_);
+		break;
 	}
+	case 27:
+		waiting_for_input_ = false;
+		saving_ = false;
+
+		left_text_.hide();
+
+		save_button.show();
+		menu_button.show();
+		break;
+	case 13:
+	{
+		auto name = left_text_.get_text().substr(6, left_text_.get_text().length());
+
+		std::ofstream file(fmt::format("maps/{}.dodgemap", conv_.to_bytes(name)), std::ios::out | std::ios::trunc | std::ios::binary);
+
+		if (!file)
+		{
+			std::exception("Couldn't open file");
+		}
+
+		if (!savemap_.SerializeToOstream(&file))
+		{
+			std::exception("Couldn't parse to ofstream");
+		}
+
+		left_text_.hide();
+
+		menu_button.show();
+		save_button.show();
+
+		waiting_for_input_ = false;
+		saving_ = false;
+		break;
+	}
+	default:
+	{
+		if (waiting_for_input_ && left_text_.get_text().length() - 6 < 9)
+		{
+			if (key < 0x41 || key > 0x5A) return;
+
+			auto text = left_text_.get_text();
+			left_text_.set_text(fmt::format(L"{}{}", text, static_cast<char>(key + 32)), dw_factory_);
+		}
+		break;
+	}
+	}
+	
 }
 
 void Map::on_wheel(const short delta)
 {
 	if (delta == 0 || delta < -10000) return;
 
-	auto inttype_ = static_cast<std::uint32_t>(type_);
+	auto int_type = static_cast<std::uint32_t>(type_);
 
 	if (delta > 0)
 	{
-		if (inttype_ + 1 == static_cast<std::uint32_t>(click_type::last))
+		if (int_type + 1 == static_cast<std::uint32_t>(click_type::last))
 		{
 			type_ = static_cast<click_type>(static_cast<std::uint32_t>(click_type::first) + 1);
 		}
 		else
 		{
-			type_ = static_cast<click_type>(inttype_ + 1);
+			type_ = static_cast<click_type>(int_type + 1);
 		}
 	}
 	else
 	{
-		if (inttype_ - 1 == static_cast<std::uint32_t>(click_type::first))
+		if (int_type - 1 == static_cast<std::uint32_t>(click_type::first))
 		{
 			type_ = static_cast<click_type>(static_cast<std::uint32_t>(click_type::last) - 1);
 		}
 		else
 		{
-			type_ = static_cast<click_type>(inttype_ - 1);
+			type_ = static_cast<click_type>(int_type - 1);
 		}
 	}
 
@@ -116,6 +126,8 @@ void Map::on_wheel(const short delta)
 
 void Map::on_click(const POINT& mouse_position, const mouse_type& type)
 {
+	mouse_position_ = mouse_position;
+
 	if (type == mouse_type::NONE || saving_)  return;
 
 	if (!clicked_)
@@ -124,24 +136,28 @@ void Map::on_click(const POINT& mouse_position, const mouse_type& type)
 		return;
 	}
 
-	save_button.check_click(mouse_position, type);
-	menu_button.check_click(mouse_position, type);
+	save_button.check_click(mouse_position_, type);
+	menu_button.check_click(mouse_position_, type);
 
-	auto cube = Utils::get_cube(mouse_position.x, mouse_position.y, &cubes_);
+	auto cube = Utils::get_cube(mouse_position_.x, mouse_position_.y, &cubes_);
 	if (cube.get_vec_pos() == 0xcccccccc || cube.get_position().y < 60 || cube.get_position().y > 420) return;
 
 	switch (type_)
 	{
 	case click_type::ADD_CUBE:
+		if (Utils::has_coin(cube, &coins_)) break;
 		cube.set_type(cube_type::BORDER_CUBE);
 		break;
 	case click_type::REMOVE_CUBE:
+		if (Utils::has_coin(cube, &coins_)) break;
 		cube.set_type(cube_type::REGULAR_CUBE);
 		break;
 	case click_type::SPAWN_CUBE:
+		if (Utils::has_coin(cube, &coins_)) break;
 		cube.set_type(cube_type::SPAWN_CUBE);
 		break;
 	case click_type::END_CUBE:
+		if (Utils::has_coin(cube, &coins_)) break;
 		cube.set_type(cube_type::END_CUBE);
 	case click_type::ADD_COIN:
 	{
@@ -179,6 +195,39 @@ void Map::on_click(const POINT& mouse_position, const mouse_type& type)
 		}
 		break;
 	}
+	case click_type::ADD_ENEMY:
+	{
+		if (cube.get_type() != cube_type::REGULAR_CUBE) break;
+
+		auto cube_x = cube.get_position().x;
+		auto cube_y = cube.get_position().y;
+
+		auto point = D2D1::Point2F(cube_x + 15, cube_y + 15);
+
+		if (enemy_.has_point(point)) break;
+
+		if (enemy_.has_points)
+		{
+			auto last_point = enemy_.last_point();
+
+			if (point.x != last_point.x && point.y != last_point.y) break;
+		}
+
+		enemy_.add_point(point);
+		break;
+	}
+	case click_type::REMOVE_ENEMY:
+	{
+		auto iter = std::find_if(enemies_.begin(), enemies_.end(), [&cube = cube, &cubes = cubes_](Enemy& enemy) {
+			return Utils::get_cube(enemy.get_position().x, enemy.get_position().y, &cubes) == cube;
+		});
+
+		if (iter != enemies_.end())
+		{
+			enemies_.erase(iter);
+		}
+		break;
+	}
 	}
 
 	changed_ = true;
@@ -195,6 +244,11 @@ void Map::create_new(IDWriteFactory* dw_factory)
 	coins_.clear();
 	coins_.shrink_to_fit();
 
+	enemies_.clear();
+	enemies_.shrink_to_fit();
+
+	enemy_ = Enemy();
+
 	is_new_ = true;
 
 	Cube cube;
@@ -205,6 +259,7 @@ void Map::create_new(IDWriteFactory* dw_factory)
 		for (auto x = 0u; x < 750; x += 30)
 		{
 			cube.set_position(x, y);
+
 			if (y < 60 || y > 420)
 			{
 				cube.set_type(cube_type::BORDER_CUBE);
@@ -246,6 +301,11 @@ void Map::set_map(IDWriteFactory* dw_factory, const std::string& map_name)
 	coins_.clear();
 	coins_.shrink_to_fit();
 
+	enemies_.clear();
+	enemies_.shrink_to_fit();
+
+	enemy_ = Enemy();
+
 	is_new_ = false;
 
 	setup(dw_factory);
@@ -253,9 +313,12 @@ void Map::set_map(IDWriteFactory* dw_factory, const std::string& map_name)
 	Cube cube;
 	cube.set_size(30, 30);
 
+	map::point_2f position;
+
 	for (const auto& p_cube : _map.cubes())
 	{
-		cube.set_position(p_cube.x(), p_cube.y());
+		position = p_cube.position();
+		cube.set_position(position.x(), position.y());
 
 		switch (p_cube.type())
 		{
@@ -281,11 +344,28 @@ void Map::set_map(IDWriteFactory* dw_factory, const std::string& map_name)
 
 	for (const auto& p_coin : _map.coins())
 	{
-		auto cube = Utils::get_cube(p_coin.x(), p_coin.y(), &cubes_);
+		position = p_coin.position();
+		auto cube = Utils::get_cube(position.x(), position.y(), &cubes_);
+
 		coin.set_cube(cube);
 
 		coins_.emplace_back(coin);
 	} 
+
+	for (const auto& p_enemy : _map.enemies())
+	{
+		Enemy enemy;
+
+		for (const auto& p_point : p_enemy.points())
+		{
+			enemy.add_point(D2D1::Point2F(p_point.x(), p_point.y()));
+		}
+
+		enemy.save();
+		enemy.finished = true;
+
+		enemies_.emplace_back(enemy);
+	}
 }
 
 void Map::save_map()
@@ -299,10 +379,13 @@ void Map::save_map()
 
 	for (auto& cube : cubes_)
 	{
+		auto position = new map::point_2f();
 		auto p_cube = savemap_.add_cubes();
 
-		p_cube->set_x(cube.get_position().x);
-		p_cube->set_y(cube.get_position().y);
+		position->set_x(cube.get_position().x);
+		position->set_y(cube.get_position().y);
+
+		p_cube->set_allocated_position(position);
 
 		switch (cube.get_type())
 		{
@@ -323,10 +406,27 @@ void Map::save_map()
 
 	for (auto& coin : coins_)
 	{
+		auto position = new map::point_2f();
 		auto p_coin = savemap_.add_coins();
 
-		p_coin->set_x(coin.get_position().x);
-		p_coin->set_y(coin.get_position().y);
+		position->set_x(coin.get_position().x);
+		position->set_y(coin.get_position().y);
+
+		p_coin->set_allocated_position(position);
+	}
+
+	for (auto& enemy : enemies_)
+	{
+		auto p_enemy = savemap_.add_enemies();
+		auto points = enemy.get_points();
+
+		for (const auto& point : points)
+		{
+			auto p_point = p_enemy->add_points();
+
+			p_point->set_x(point.x);
+			p_point->set_y(point.y);
+		}
 	}
 
 	if (is_new_)
@@ -373,6 +473,13 @@ void Map::draw(ID2D1HwndRenderTarget* d2d1_rt, ID2D1SolidColorBrush* d2d1_solidb
 	for (auto& coin : coins_)
 	{
 		coin.draw(d2d1_rt, d2d1_solidbrush);
+	}
+
+	enemy_.draw(d2d1_rt, d2d1_solidbrush, mouse_position_);
+
+	for (auto& enemy : enemies_)
+	{
+		enemy.draw(d2d1_rt, d2d1_solidbrush, mouse_position_);
 	}
 
 	save_button.draw(d2d1_rt, d2d1_solidbrush);

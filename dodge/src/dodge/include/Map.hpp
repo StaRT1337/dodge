@@ -3,6 +3,7 @@
 #include "Button.hpp"
 #include "Player.hpp"
 #include "Coin.hpp"
+#include "Enemy.hpp"
 
 #include "map.pb.h"
 
@@ -26,7 +27,8 @@ private:
 	std::string map_name_;
 
 	std::vector<Cube> cubes_;
-	std::vector<std::pair<Coin, bool>> coins_;
+	std::vector<Coin> coins_;
+	std::vector<Enemy> enemies_;
 
 	click_type type_;
 

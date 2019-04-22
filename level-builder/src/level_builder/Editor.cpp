@@ -19,8 +19,6 @@ Editor::Editor()
 	width_ = 750;
 	height_ = 510;
 
-	keys_.resize(256);
-
 #ifdef DEBUG
 	AllocConsole();
 	AttachConsole(GetCurrentProcessId());
@@ -40,6 +38,8 @@ Editor::~Editor()
 	fclose(stdout);
 	fclose(stdin);
 #endif
+	google::protobuf::ShutdownProtobufLibrary();
+
 	maps_button.destroy();
 	new_map_button.destroy();
 
@@ -248,7 +248,7 @@ LRESULT Editor::window_proc(HWND hwnd, std::uint32_t msg, std::uintptr_t w_param
 		DestroyWindow(hwnd);
 		break;
 	case WM_KEYDOWN:
-		keys_.at(w_param) = std::pair<bool, int>(true, w_param);
+		key_ = w_param;
 		break;
 	case WM_LBUTTONDOWN:
 		mouse_type_ = mouse_type::LBUTTON;
@@ -356,14 +356,14 @@ void Editor::update()
 		map_.menu_button.set_button_color(Utils::create_d2d1_color(255, 255, 255, 255));
 		map_.menu_button.check_hover(mouse_position_);
 
-		map_.on_type(&keys_);
+		map_.on_type(key_);
 		map_.on_click(mouse_position_, mouse_type_);
 		map_.on_wheel(wheel_delta_);
 		
 		wheel_delta_ = 0;
 	}
 
-	std::fill(keys_.begin(), keys_.end(), std::pair<bool, int>(false, 0));
+	key_ = -1;
 }
 
 void Editor::render()

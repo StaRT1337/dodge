@@ -16,9 +16,19 @@
 // @@protoc_insertion_point(includes)
 #include <google/protobuf/port_def.inc>
 
-extern PROTOBUF_INTERNAL_EXPORT_map_2eproto ::google::protobuf::internal::SCCInfo<0> scc_info_Coin_map_2eproto;
-extern PROTOBUF_INTERNAL_EXPORT_map_2eproto ::google::protobuf::internal::SCCInfo<0> scc_info_Cube_map_2eproto;
+extern PROTOBUF_INTERNAL_EXPORT_map_2eproto ::google::protobuf::internal::SCCInfo<0> scc_info_point_2f_map_2eproto;
+extern PROTOBUF_INTERNAL_EXPORT_map_2eproto ::google::protobuf::internal::SCCInfo<1> scc_info_Coin_map_2eproto;
+extern PROTOBUF_INTERNAL_EXPORT_map_2eproto ::google::protobuf::internal::SCCInfo<1> scc_info_Cube_map_2eproto;
+extern PROTOBUF_INTERNAL_EXPORT_map_2eproto ::google::protobuf::internal::SCCInfo<1> scc_info_Enemy_map_2eproto;
 namespace map {
+class point_2fDefaultTypeInternal {
+ public:
+  ::google::protobuf::internal::ExplicitlyConstructed<point_2f> _instance;
+} _point_2f_default_instance_;
+class EnemyDefaultTypeInternal {
+ public:
+  ::google::protobuf::internal::ExplicitlyConstructed<Enemy> _instance;
+} _Enemy_default_instance_;
 class CoinDefaultTypeInternal {
  public:
   ::google::protobuf::internal::ExplicitlyConstructed<Coin> _instance;
@@ -32,6 +42,35 @@ class mapDefaultTypeInternal {
   ::google::protobuf::internal::ExplicitlyConstructed<map> _instance;
 } _map_default_instance_;
 }  // namespace map
+static void InitDefaultspoint_2f_map_2eproto() {
+  GOOGLE_PROTOBUF_VERIFY_VERSION;
+
+  {
+    void* ptr = &::map::_point_2f_default_instance_;
+    new (ptr) ::map::point_2f();
+    ::google::protobuf::internal::OnShutdownDestroyMessage(ptr);
+  }
+  ::map::point_2f::InitAsDefaultInstance();
+}
+
+::google::protobuf::internal::SCCInfo<0> scc_info_point_2f_map_2eproto =
+    {{ATOMIC_VAR_INIT(::google::protobuf::internal::SCCInfoBase::kUninitialized), 0, InitDefaultspoint_2f_map_2eproto}, {}};
+
+static void InitDefaultsEnemy_map_2eproto() {
+  GOOGLE_PROTOBUF_VERIFY_VERSION;
+
+  {
+    void* ptr = &::map::_Enemy_default_instance_;
+    new (ptr) ::map::Enemy();
+    ::google::protobuf::internal::OnShutdownDestroyMessage(ptr);
+  }
+  ::map::Enemy::InitAsDefaultInstance();
+}
+
+::google::protobuf::internal::SCCInfo<1> scc_info_Enemy_map_2eproto =
+    {{ATOMIC_VAR_INIT(::google::protobuf::internal::SCCInfoBase::kUninitialized), 1, InitDefaultsEnemy_map_2eproto}, {
+      &scc_info_point_2f_map_2eproto.base,}};
+
 static void InitDefaultsCoin_map_2eproto() {
   GOOGLE_PROTOBUF_VERIFY_VERSION;
 
@@ -43,8 +82,9 @@ static void InitDefaultsCoin_map_2eproto() {
   ::map::Coin::InitAsDefaultInstance();
 }
 
-::google::protobuf::internal::SCCInfo<0> scc_info_Coin_map_2eproto =
-    {{ATOMIC_VAR_INIT(::google::protobuf::internal::SCCInfoBase::kUninitialized), 0, InitDefaultsCoin_map_2eproto}, {}};
+::google::protobuf::internal::SCCInfo<1> scc_info_Coin_map_2eproto =
+    {{ATOMIC_VAR_INIT(::google::protobuf::internal::SCCInfoBase::kUninitialized), 1, InitDefaultsCoin_map_2eproto}, {
+      &scc_info_point_2f_map_2eproto.base,}};
 
 static void InitDefaultsCube_map_2eproto() {
   GOOGLE_PROTOBUF_VERIFY_VERSION;
@@ -57,8 +97,9 @@ static void InitDefaultsCube_map_2eproto() {
   ::map::Cube::InitAsDefaultInstance();
 }
 
-::google::protobuf::internal::SCCInfo<0> scc_info_Cube_map_2eproto =
-    {{ATOMIC_VAR_INIT(::google::protobuf::internal::SCCInfoBase::kUninitialized), 0, InitDefaultsCube_map_2eproto}, {}};
+::google::protobuf::internal::SCCInfo<1> scc_info_Cube_map_2eproto =
+    {{ATOMIC_VAR_INIT(::google::protobuf::internal::SCCInfoBase::kUninitialized), 1, InitDefaultsCube_map_2eproto}, {
+      &scc_info_point_2f_map_2eproto.base,}};
 
 static void InitDefaultsmap_map_2eproto() {
   GOOGLE_PROTOBUF_VERIFY_VERSION;
@@ -71,37 +112,51 @@ static void InitDefaultsmap_map_2eproto() {
   ::map::map::InitAsDefaultInstance();
 }
 
-::google::protobuf::internal::SCCInfo<2> scc_info_map_map_2eproto =
-    {{ATOMIC_VAR_INIT(::google::protobuf::internal::SCCInfoBase::kUninitialized), 2, InitDefaultsmap_map_2eproto}, {
+::google::protobuf::internal::SCCInfo<3> scc_info_map_map_2eproto =
+    {{ATOMIC_VAR_INIT(::google::protobuf::internal::SCCInfoBase::kUninitialized), 3, InitDefaultsmap_map_2eproto}, {
       &scc_info_Cube_map_2eproto.base,
-      &scc_info_Coin_map_2eproto.base,}};
+      &scc_info_Coin_map_2eproto.base,
+      &scc_info_Enemy_map_2eproto.base,}};
 
 void InitDefaults_map_2eproto() {
+  ::google::protobuf::internal::InitSCC(&scc_info_point_2f_map_2eproto.base);
+  ::google::protobuf::internal::InitSCC(&scc_info_Enemy_map_2eproto.base);
   ::google::protobuf::internal::InitSCC(&scc_info_Coin_map_2eproto.base);
   ::google::protobuf::internal::InitSCC(&scc_info_Cube_map_2eproto.base);
   ::google::protobuf::internal::InitSCC(&scc_info_map_map_2eproto.base);
 }
 
-::google::protobuf::Metadata file_level_metadata_map_2eproto[3];
+::google::protobuf::Metadata file_level_metadata_map_2eproto[5];
 const ::google::protobuf::EnumDescriptor* file_level_enum_descriptors_map_2eproto[1];
 constexpr ::google::protobuf::ServiceDescriptor const** file_level_service_descriptors_map_2eproto = nullptr;
 
 const ::google::protobuf::uint32 TableStruct_map_2eproto::offsets[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
   ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::map::point_2f, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  PROTOBUF_FIELD_OFFSET(::map::point_2f, x_),
+  PROTOBUF_FIELD_OFFSET(::map::point_2f, y_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::map::Enemy, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  PROTOBUF_FIELD_OFFSET(::map::Enemy, points_),
+  ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::map::Coin, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
-  PROTOBUF_FIELD_OFFSET(::map::Coin, x_),
-  PROTOBUF_FIELD_OFFSET(::map::Coin, y_),
+  PROTOBUF_FIELD_OFFSET(::map::Coin, position_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::map::Cube, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   PROTOBUF_FIELD_OFFSET(::map::Cube, type_),
-  PROTOBUF_FIELD_OFFSET(::map::Cube, x_),
-  PROTOBUF_FIELD_OFFSET(::map::Cube, y_),
+  PROTOBUF_FIELD_OFFSET(::map::Cube, position_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::map::map, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -109,14 +164,19 @@ const ::google::protobuf::uint32 TableStruct_map_2eproto::offsets[] PROTOBUF_SEC
   ~0u,  // no _weak_field_map_
   PROTOBUF_FIELD_OFFSET(::map::map, cubes_),
   PROTOBUF_FIELD_OFFSET(::map::map, coins_),
+  PROTOBUF_FIELD_OFFSET(::map::map, enemies_),
 };
 static const ::google::protobuf::internal::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
-  { 0, -1, sizeof(::map::Coin)},
-  { 7, -1, sizeof(::map::Cube)},
-  { 15, -1, sizeof(::map::map)},
+  { 0, -1, sizeof(::map::point_2f)},
+  { 7, -1, sizeof(::map::Enemy)},
+  { 13, -1, sizeof(::map::Coin)},
+  { 19, -1, sizeof(::map::Cube)},
+  { 26, -1, sizeof(::map::map)},
 };
 
 static ::google::protobuf::Message const * const file_default_instances[] = {
+  reinterpret_cast<const ::google::protobuf::Message*>(&::map::_point_2f_default_instance_),
+  reinterpret_cast<const ::google::protobuf::Message*>(&::map::_Enemy_default_instance_),
   reinterpret_cast<const ::google::protobuf::Message*>(&::map::_Coin_default_instance_),
   reinterpret_cast<const ::google::protobuf::Message*>(&::map::_Cube_default_instance_),
   reinterpret_cast<const ::google::protobuf::Message*>(&::map::_map_default_instance_),
@@ -125,22 +185,25 @@ static ::google::protobuf::Message const * const file_default_instances[] = {
 ::google::protobuf::internal::AssignDescriptorsTable assign_descriptors_table_map_2eproto = {
   {}, AddDescriptors_map_2eproto, "map.proto", schemas,
   file_default_instances, TableStruct_map_2eproto::offsets,
-  file_level_metadata_map_2eproto, 3, file_level_enum_descriptors_map_2eproto, file_level_service_descriptors_map_2eproto,
+  file_level_metadata_map_2eproto, 5, file_level_enum_descriptors_map_2eproto, file_level_service_descriptors_map_2eproto,
 };
 
 const char descriptor_table_protodef_map_2eproto[] =
-  "\n\tmap.proto\022\003map\"\034\n\004Coin\022\t\n\001x\030\001 \001(\002\022\t\n\001y"
-  "\030\002 \001(\002\"\215\001\n\004Cube\022!\n\004type\030\001 \001(\0162\023.map.Cube"
-  ".cube_type\022\t\n\001x\030\002 \001(\005\022\t\n\001y\030\003 \001(\005\"L\n\tcube"
-  "_type\022\017\n\013BORDER_CUBE\020\000\022\020\n\014REGULAR_CUBE\020\001"
-  "\022\016\n\nSPAWN_CUBE\020\002\022\014\n\010END_CUBE\020\003\"9\n\003map\022\030\n"
-  "\005cubes\030\001 \003(\0132\t.map.Cube\022\030\n\005coins\030\002 \003(\0132\t"
-  ".map.Coinb\006proto3"
+  "\n\tmap.proto\022\003map\" \n\010point_2f\022\t\n\001x\030\001 \001(\002\022"
+  "\t\n\001y\030\002 \001(\002\"&\n\005Enemy\022\035\n\006points\030\001 \003(\0132\r.ma"
+  "p.point_2f\"\'\n\004Coin\022\037\n\010position\030\001 \001(\0132\r.m"
+  "ap.point_2f\"\230\001\n\004Cube\022!\n\004type\030\001 \001(\0162\023.map"
+  ".Cube.cube_type\022\037\n\010position\030\002 \001(\0132\r.map."
+  "point_2f\"L\n\tcube_type\022\017\n\013BORDER_CUBE\020\000\022\020"
+  "\n\014REGULAR_CUBE\020\001\022\016\n\nSPAWN_CUBE\020\002\022\014\n\010END_"
+  "CUBE\020\003\"V\n\003map\022\030\n\005cubes\030\001 \003(\0132\t.map.Cube\022"
+  "\030\n\005coins\030\002 \003(\0132\t.map.Coin\022\033\n\007enemies\030\003 \003"
+  "(\0132\n.map.Enemyb\006proto3"
   ;
 ::google::protobuf::internal::DescriptorTable descriptor_table_map_2eproto = {
   false, InitDefaults_map_2eproto, 
   descriptor_table_protodef_map_2eproto,
-  "map.proto", &assign_descriptors_table_map_2eproto, 257,
+  "map.proto", &assign_descriptors_table_map_2eproto, 382,
 };
 
 void AddDescriptors_map_2eproto() {
@@ -181,57 +244,57 @@ const int Cube::cube_type_ARRAYSIZE;
 
 // ===================================================================
 
-void Coin::InitAsDefaultInstance() {
+void point_2f::InitAsDefaultInstance() {
 }
-class Coin::HasBitSetters {
+class point_2f::HasBitSetters {
  public:
 };
 
 #if !defined(_MSC_VER) || _MSC_VER >= 1900
-const int Coin::kXFieldNumber;
-const int Coin::kYFieldNumber;
+const int point_2f::kXFieldNumber;
+const int point_2f::kYFieldNumber;
 #endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
 
-Coin::Coin()
+point_2f::point_2f()
   : ::google::protobuf::Message(), _internal_metadata_(nullptr) {
   SharedCtor();
-  // @@protoc_insertion_point(constructor:map.Coin)
+  // @@protoc_insertion_point(constructor:map.point_2f)
 }
-Coin::Coin(const Coin& from)
+point_2f::point_2f(const point_2f& from)
   : ::google::protobuf::Message(),
       _internal_metadata_(nullptr) {
   _internal_metadata_.MergeFrom(from._internal_metadata_);
   ::memcpy(&x_, &from.x_,
     static_cast<size_t>(reinterpret_cast<char*>(&y_) -
     reinterpret_cast<char*>(&x_)) + sizeof(y_));
-  // @@protoc_insertion_point(copy_constructor:map.Coin)
+  // @@protoc_insertion_point(copy_constructor:map.point_2f)
 }
 
-void Coin::SharedCtor() {
+void point_2f::SharedCtor() {
   ::memset(&x_, 0, static_cast<size_t>(
       reinterpret_cast<char*>(&y_) -
       reinterpret_cast<char*>(&x_)) + sizeof(y_));
 }
 
-Coin::~Coin() {
-  // @@protoc_insertion_point(destructor:map.Coin)
+point_2f::~point_2f() {
+  // @@protoc_insertion_point(destructor:map.point_2f)
   SharedDtor();
 }
 
-void Coin::SharedDtor() {
+void point_2f::SharedDtor() {
 }
 
-void Coin::SetCachedSize(int size) const {
+void point_2f::SetCachedSize(int size) const {
   _cached_size_.Set(size);
 }
-const Coin& Coin::default_instance() {
-  ::google::protobuf::internal::InitSCC(&::scc_info_Coin_map_2eproto.base);
+const point_2f& point_2f::default_instance() {
+  ::google::protobuf::internal::InitSCC(&::scc_info_point_2f_map_2eproto.base);
   return *internal_default_instance();
 }
 
 
-void Coin::Clear() {
-// @@protoc_insertion_point(message_clear_start:map.Coin)
+void point_2f::Clear() {
+// @@protoc_insertion_point(message_clear_start:map.point_2f)
   ::google::protobuf::uint32 cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
@@ -243,9 +306,9 @@ void Coin::Clear() {
 }
 
 #if GOOGLE_PROTOBUF_ENABLE_EXPERIMENTAL_PARSER
-const char* Coin::_InternalParse(const char* begin, const char* end, void* object,
+const char* point_2f::_InternalParse(const char* begin, const char* end, void* object,
                   ::google::protobuf::internal::ParseContext* ctx) {
-  auto msg = static_cast<Coin*>(object);
+  auto msg = static_cast<point_2f*>(object);
   ::google::protobuf::int32 size; (void)size;
   int depth; (void)depth;
   ::google::protobuf::uint32 tag;
@@ -286,11 +349,11 @@ const char* Coin::_InternalParse(const char* begin, const char* end, void* objec
   return ptr;
 }
 #else  // GOOGLE_PROTOBUF_ENABLE_EXPERIMENTAL_PARSER
-bool Coin::MergePartialFromCodedStream(
+bool point_2f::MergePartialFromCodedStream(
     ::google::protobuf::io::CodedInputStream* input) {
 #define DO_(EXPRESSION) if (!PROTOBUF_PREDICT_TRUE(EXPRESSION)) goto failure
   ::google::protobuf::uint32 tag;
-  // @@protoc_insertion_point(parse_start:map.Coin)
+  // @@protoc_insertion_point(parse_start:map.point_2f)
   for (;;) {
     ::std::pair<::google::protobuf::uint32, bool> p = input->ReadTagWithCutoffNoLastTag(127u);
     tag = p.first;
@@ -334,18 +397,18 @@ bool Coin::MergePartialFromCodedStream(
     }
   }
 success:
-  // @@protoc_insertion_point(parse_success:map.Coin)
+  // @@protoc_insertion_point(parse_success:map.point_2f)
   return true;
 failure:
-  // @@protoc_insertion_point(parse_failure:map.Coin)
+  // @@protoc_insertion_point(parse_failure:map.point_2f)
   return false;
 #undef DO_
 }
 #endif  // GOOGLE_PROTOBUF_ENABLE_EXPERIMENTAL_PARSER
 
-void Coin::SerializeWithCachedSizes(
+void point_2f::SerializeWithCachedSizes(
     ::google::protobuf::io::CodedOutputStream* output) const {
-  // @@protoc_insertion_point(serialize_start:map.Coin)
+  // @@protoc_insertion_point(serialize_start:map.point_2f)
   ::google::protobuf::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
@@ -363,12 +426,12 @@ void Coin::SerializeWithCachedSizes(
     ::google::protobuf::internal::WireFormat::SerializeUnknownFields(
         _internal_metadata_.unknown_fields(), output);
   }
-  // @@protoc_insertion_point(serialize_end:map.Coin)
+  // @@protoc_insertion_point(serialize_end:map.point_2f)
 }
 
-::google::protobuf::uint8* Coin::InternalSerializeWithCachedSizesToArray(
+::google::protobuf::uint8* point_2f::InternalSerializeWithCachedSizesToArray(
     ::google::protobuf::uint8* target) const {
-  // @@protoc_insertion_point(serialize_to_array_start:map.Coin)
+  // @@protoc_insertion_point(serialize_to_array_start:map.point_2f)
   ::google::protobuf::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
@@ -380,6 +443,580 @@ void Coin::SerializeWithCachedSizes(
   // float y = 2;
   if (this->y() != 0) {
     target = ::google::protobuf::internal::WireFormatLite::WriteFloatToArray(2, this->y(), target);
+  }
+
+  if (_internal_metadata_.have_unknown_fields()) {
+    target = ::google::protobuf::internal::WireFormat::SerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields(), target);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:map.point_2f)
+  return target;
+}
+
+size_t point_2f::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:map.point_2f)
+  size_t total_size = 0;
+
+  if (_internal_metadata_.have_unknown_fields()) {
+    total_size +=
+      ::google::protobuf::internal::WireFormat::ComputeUnknownFieldsSize(
+        _internal_metadata_.unknown_fields());
+  }
+  ::google::protobuf::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // float x = 1;
+  if (this->x() != 0) {
+    total_size += 1 + 4;
+  }
+
+  // float y = 2;
+  if (this->y() != 0) {
+    total_size += 1 + 4;
+  }
+
+  int cached_size = ::google::protobuf::internal::ToCachedSize(total_size);
+  SetCachedSize(cached_size);
+  return total_size;
+}
+
+void point_2f::MergeFrom(const ::google::protobuf::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:map.point_2f)
+  GOOGLE_DCHECK_NE(&from, this);
+  const point_2f* source =
+      ::google::protobuf::DynamicCastToGenerated<point_2f>(
+          &from);
+  if (source == nullptr) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:map.point_2f)
+    ::google::protobuf::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:map.point_2f)
+    MergeFrom(*source);
+  }
+}
+
+void point_2f::MergeFrom(const point_2f& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:map.point_2f)
+  GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  ::google::protobuf::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (from.x() != 0) {
+    set_x(from.x());
+  }
+  if (from.y() != 0) {
+    set_y(from.y());
+  }
+}
+
+void point_2f::CopyFrom(const ::google::protobuf::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:map.point_2f)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+void point_2f::CopyFrom(const point_2f& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:map.point_2f)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool point_2f::IsInitialized() const {
+  return true;
+}
+
+void point_2f::Swap(point_2f* other) {
+  if (other == this) return;
+  InternalSwap(other);
+}
+void point_2f::InternalSwap(point_2f* other) {
+  using std::swap;
+  _internal_metadata_.Swap(&other->_internal_metadata_);
+  swap(x_, other->x_);
+  swap(y_, other->y_);
+}
+
+::google::protobuf::Metadata point_2f::GetMetadata() const {
+  ::google::protobuf::internal::AssignDescriptors(&::assign_descriptors_table_map_2eproto);
+  return ::file_level_metadata_map_2eproto[kIndexInFileMessages];
+}
+
+
+// ===================================================================
+
+void Enemy::InitAsDefaultInstance() {
+}
+class Enemy::HasBitSetters {
+ public:
+};
+
+#if !defined(_MSC_VER) || _MSC_VER >= 1900
+const int Enemy::kPointsFieldNumber;
+#endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
+
+Enemy::Enemy()
+  : ::google::protobuf::Message(), _internal_metadata_(nullptr) {
+  SharedCtor();
+  // @@protoc_insertion_point(constructor:map.Enemy)
+}
+Enemy::Enemy(const Enemy& from)
+  : ::google::protobuf::Message(),
+      _internal_metadata_(nullptr),
+      points_(from.points_) {
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  // @@protoc_insertion_point(copy_constructor:map.Enemy)
+}
+
+void Enemy::SharedCtor() {
+  ::google::protobuf::internal::InitSCC(
+      &scc_info_Enemy_map_2eproto.base);
+}
+
+Enemy::~Enemy() {
+  // @@protoc_insertion_point(destructor:map.Enemy)
+  SharedDtor();
+}
+
+void Enemy::SharedDtor() {
+}
+
+void Enemy::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+const Enemy& Enemy::default_instance() {
+  ::google::protobuf::internal::InitSCC(&::scc_info_Enemy_map_2eproto.base);
+  return *internal_default_instance();
+}
+
+
+void Enemy::Clear() {
+// @@protoc_insertion_point(message_clear_start:map.Enemy)
+  ::google::protobuf::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  points_.Clear();
+  _internal_metadata_.Clear();
+}
+
+#if GOOGLE_PROTOBUF_ENABLE_EXPERIMENTAL_PARSER
+const char* Enemy::_InternalParse(const char* begin, const char* end, void* object,
+                  ::google::protobuf::internal::ParseContext* ctx) {
+  auto msg = static_cast<Enemy*>(object);
+  ::google::protobuf::int32 size; (void)size;
+  int depth; (void)depth;
+  ::google::protobuf::uint32 tag;
+  ::google::protobuf::internal::ParseFunc parser_till_end; (void)parser_till_end;
+  auto ptr = begin;
+  while (ptr < end) {
+    ptr = ::google::protobuf::io::Parse32(ptr, &tag);
+    GOOGLE_PROTOBUF_PARSER_ASSERT(ptr);
+    switch (tag >> 3) {
+      // repeated .map.point_2f points = 1;
+      case 1: {
+        if (static_cast<::google::protobuf::uint8>(tag) != 10) goto handle_unusual;
+        do {
+          ptr = ::google::protobuf::io::ReadSize(ptr, &size);
+          GOOGLE_PROTOBUF_PARSER_ASSERT(ptr);
+          parser_till_end = ::map::point_2f::_InternalParse;
+          object = msg->add_points();
+          if (size > end - ptr) goto len_delim_till_end;
+          ptr += size;
+          GOOGLE_PROTOBUF_PARSER_ASSERT(ctx->ParseExactRange(
+              {parser_till_end, object}, ptr - size, ptr));
+          if (ptr >= end) break;
+        } while ((::google::protobuf::io::UnalignedLoad<::google::protobuf::uint64>(ptr) & 255) == 10 && (ptr += 1));
+        break;
+      }
+      default: {
+      handle_unusual:
+        if ((tag & 7) == 4 || tag == 0) {
+          ctx->EndGroup(tag);
+          return ptr;
+        }
+        auto res = UnknownFieldParse(tag, {_InternalParse, msg},
+          ptr, end, msg->_internal_metadata_.mutable_unknown_fields(), ctx);
+        ptr = res.first;
+        GOOGLE_PROTOBUF_PARSER_ASSERT(ptr != nullptr);
+        if (res.second) return ptr;
+      }
+    }  // switch
+  }  // while
+  return ptr;
+len_delim_till_end:
+  return ctx->StoreAndTailCall(ptr, end, {_InternalParse, msg},
+                               {parser_till_end, object}, size);
+}
+#else  // GOOGLE_PROTOBUF_ENABLE_EXPERIMENTAL_PARSER
+bool Enemy::MergePartialFromCodedStream(
+    ::google::protobuf::io::CodedInputStream* input) {
+#define DO_(EXPRESSION) if (!PROTOBUF_PREDICT_TRUE(EXPRESSION)) goto failure
+  ::google::protobuf::uint32 tag;
+  // @@protoc_insertion_point(parse_start:map.Enemy)
+  for (;;) {
+    ::std::pair<::google::protobuf::uint32, bool> p = input->ReadTagWithCutoffNoLastTag(127u);
+    tag = p.first;
+    if (!p.second) goto handle_unusual;
+    switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
+      // repeated .map.point_2f points = 1;
+      case 1: {
+        if (static_cast< ::google::protobuf::uint8>(tag) == (10 & 0xFF)) {
+          DO_(::google::protobuf::internal::WireFormatLite::ReadMessage(
+                input, add_points()));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
+      default: {
+      handle_unusual:
+        if (tag == 0) {
+          goto success;
+        }
+        DO_(::google::protobuf::internal::WireFormat::SkipField(
+              input, tag, _internal_metadata_.mutable_unknown_fields()));
+        break;
+      }
+    }
+  }
+success:
+  // @@protoc_insertion_point(parse_success:map.Enemy)
+  return true;
+failure:
+  // @@protoc_insertion_point(parse_failure:map.Enemy)
+  return false;
+#undef DO_
+}
+#endif  // GOOGLE_PROTOBUF_ENABLE_EXPERIMENTAL_PARSER
+
+void Enemy::SerializeWithCachedSizes(
+    ::google::protobuf::io::CodedOutputStream* output) const {
+  // @@protoc_insertion_point(serialize_start:map.Enemy)
+  ::google::protobuf::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // repeated .map.point_2f points = 1;
+  for (unsigned int i = 0,
+      n = static_cast<unsigned int>(this->points_size()); i < n; i++) {
+    ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
+      1,
+      this->points(static_cast<int>(i)),
+      output);
+  }
+
+  if (_internal_metadata_.have_unknown_fields()) {
+    ::google::protobuf::internal::WireFormat::SerializeUnknownFields(
+        _internal_metadata_.unknown_fields(), output);
+  }
+  // @@protoc_insertion_point(serialize_end:map.Enemy)
+}
+
+::google::protobuf::uint8* Enemy::InternalSerializeWithCachedSizesToArray(
+    ::google::protobuf::uint8* target) const {
+  // @@protoc_insertion_point(serialize_to_array_start:map.Enemy)
+  ::google::protobuf::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // repeated .map.point_2f points = 1;
+  for (unsigned int i = 0,
+      n = static_cast<unsigned int>(this->points_size()); i < n; i++) {
+    target = ::google::protobuf::internal::WireFormatLite::
+      InternalWriteMessageToArray(
+        1, this->points(static_cast<int>(i)), target);
+  }
+
+  if (_internal_metadata_.have_unknown_fields()) {
+    target = ::google::protobuf::internal::WireFormat::SerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields(), target);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:map.Enemy)
+  return target;
+}
+
+size_t Enemy::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:map.Enemy)
+  size_t total_size = 0;
+
+  if (_internal_metadata_.have_unknown_fields()) {
+    total_size +=
+      ::google::protobuf::internal::WireFormat::ComputeUnknownFieldsSize(
+        _internal_metadata_.unknown_fields());
+  }
+  ::google::protobuf::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // repeated .map.point_2f points = 1;
+  {
+    unsigned int count = static_cast<unsigned int>(this->points_size());
+    total_size += 1UL * count;
+    for (unsigned int i = 0; i < count; i++) {
+      total_size +=
+        ::google::protobuf::internal::WireFormatLite::MessageSize(
+          this->points(static_cast<int>(i)));
+    }
+  }
+
+  int cached_size = ::google::protobuf::internal::ToCachedSize(total_size);
+  SetCachedSize(cached_size);
+  return total_size;
+}
+
+void Enemy::MergeFrom(const ::google::protobuf::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:map.Enemy)
+  GOOGLE_DCHECK_NE(&from, this);
+  const Enemy* source =
+      ::google::protobuf::DynamicCastToGenerated<Enemy>(
+          &from);
+  if (source == nullptr) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:map.Enemy)
+    ::google::protobuf::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:map.Enemy)
+    MergeFrom(*source);
+  }
+}
+
+void Enemy::MergeFrom(const Enemy& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:map.Enemy)
+  GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  ::google::protobuf::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  points_.MergeFrom(from.points_);
+}
+
+void Enemy::CopyFrom(const ::google::protobuf::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:map.Enemy)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+void Enemy::CopyFrom(const Enemy& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:map.Enemy)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool Enemy::IsInitialized() const {
+  return true;
+}
+
+void Enemy::Swap(Enemy* other) {
+  if (other == this) return;
+  InternalSwap(other);
+}
+void Enemy::InternalSwap(Enemy* other) {
+  using std::swap;
+  _internal_metadata_.Swap(&other->_internal_metadata_);
+  CastToBase(&points_)->InternalSwap(CastToBase(&other->points_));
+}
+
+::google::protobuf::Metadata Enemy::GetMetadata() const {
+  ::google::protobuf::internal::AssignDescriptors(&::assign_descriptors_table_map_2eproto);
+  return ::file_level_metadata_map_2eproto[kIndexInFileMessages];
+}
+
+
+// ===================================================================
+
+void Coin::InitAsDefaultInstance() {
+  ::map::_Coin_default_instance_._instance.get_mutable()->position_ = const_cast< ::map::point_2f*>(
+      ::map::point_2f::internal_default_instance());
+}
+class Coin::HasBitSetters {
+ public:
+  static const ::map::point_2f& position(const Coin* msg);
+};
+
+const ::map::point_2f&
+Coin::HasBitSetters::position(const Coin* msg) {
+  return *msg->position_;
+}
+#if !defined(_MSC_VER) || _MSC_VER >= 1900
+const int Coin::kPositionFieldNumber;
+#endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
+
+Coin::Coin()
+  : ::google::protobuf::Message(), _internal_metadata_(nullptr) {
+  SharedCtor();
+  // @@protoc_insertion_point(constructor:map.Coin)
+}
+Coin::Coin(const Coin& from)
+  : ::google::protobuf::Message(),
+      _internal_metadata_(nullptr) {
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  if (from.has_position()) {
+    position_ = new ::map::point_2f(*from.position_);
+  } else {
+    position_ = nullptr;
+  }
+  // @@protoc_insertion_point(copy_constructor:map.Coin)
+}
+
+void Coin::SharedCtor() {
+  ::google::protobuf::internal::InitSCC(
+      &scc_info_Coin_map_2eproto.base);
+  position_ = nullptr;
+}
+
+Coin::~Coin() {
+  // @@protoc_insertion_point(destructor:map.Coin)
+  SharedDtor();
+}
+
+void Coin::SharedDtor() {
+  if (this != internal_default_instance()) delete position_;
+}
+
+void Coin::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+const Coin& Coin::default_instance() {
+  ::google::protobuf::internal::InitSCC(&::scc_info_Coin_map_2eproto.base);
+  return *internal_default_instance();
+}
+
+
+void Coin::Clear() {
+// @@protoc_insertion_point(message_clear_start:map.Coin)
+  ::google::protobuf::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  if (GetArenaNoVirtual() == nullptr && position_ != nullptr) {
+    delete position_;
+  }
+  position_ = nullptr;
+  _internal_metadata_.Clear();
+}
+
+#if GOOGLE_PROTOBUF_ENABLE_EXPERIMENTAL_PARSER
+const char* Coin::_InternalParse(const char* begin, const char* end, void* object,
+                  ::google::protobuf::internal::ParseContext* ctx) {
+  auto msg = static_cast<Coin*>(object);
+  ::google::protobuf::int32 size; (void)size;
+  int depth; (void)depth;
+  ::google::protobuf::uint32 tag;
+  ::google::protobuf::internal::ParseFunc parser_till_end; (void)parser_till_end;
+  auto ptr = begin;
+  while (ptr < end) {
+    ptr = ::google::protobuf::io::Parse32(ptr, &tag);
+    GOOGLE_PROTOBUF_PARSER_ASSERT(ptr);
+    switch (tag >> 3) {
+      // .map.point_2f position = 1;
+      case 1: {
+        if (static_cast<::google::protobuf::uint8>(tag) != 10) goto handle_unusual;
+        ptr = ::google::protobuf::io::ReadSize(ptr, &size);
+        GOOGLE_PROTOBUF_PARSER_ASSERT(ptr);
+        parser_till_end = ::map::point_2f::_InternalParse;
+        object = msg->mutable_position();
+        if (size > end - ptr) goto len_delim_till_end;
+        ptr += size;
+        GOOGLE_PROTOBUF_PARSER_ASSERT(ctx->ParseExactRange(
+            {parser_till_end, object}, ptr - size, ptr));
+        break;
+      }
+      default: {
+      handle_unusual:
+        if ((tag & 7) == 4 || tag == 0) {
+          ctx->EndGroup(tag);
+          return ptr;
+        }
+        auto res = UnknownFieldParse(tag, {_InternalParse, msg},
+          ptr, end, msg->_internal_metadata_.mutable_unknown_fields(), ctx);
+        ptr = res.first;
+        GOOGLE_PROTOBUF_PARSER_ASSERT(ptr != nullptr);
+        if (res.second) return ptr;
+      }
+    }  // switch
+  }  // while
+  return ptr;
+len_delim_till_end:
+  return ctx->StoreAndTailCall(ptr, end, {_InternalParse, msg},
+                               {parser_till_end, object}, size);
+}
+#else  // GOOGLE_PROTOBUF_ENABLE_EXPERIMENTAL_PARSER
+bool Coin::MergePartialFromCodedStream(
+    ::google::protobuf::io::CodedInputStream* input) {
+#define DO_(EXPRESSION) if (!PROTOBUF_PREDICT_TRUE(EXPRESSION)) goto failure
+  ::google::protobuf::uint32 tag;
+  // @@protoc_insertion_point(parse_start:map.Coin)
+  for (;;) {
+    ::std::pair<::google::protobuf::uint32, bool> p = input->ReadTagWithCutoffNoLastTag(127u);
+    tag = p.first;
+    if (!p.second) goto handle_unusual;
+    switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
+      // .map.point_2f position = 1;
+      case 1: {
+        if (static_cast< ::google::protobuf::uint8>(tag) == (10 & 0xFF)) {
+          DO_(::google::protobuf::internal::WireFormatLite::ReadMessage(
+               input, mutable_position()));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
+      default: {
+      handle_unusual:
+        if (tag == 0) {
+          goto success;
+        }
+        DO_(::google::protobuf::internal::WireFormat::SkipField(
+              input, tag, _internal_metadata_.mutable_unknown_fields()));
+        break;
+      }
+    }
+  }
+success:
+  // @@protoc_insertion_point(parse_success:map.Coin)
+  return true;
+failure:
+  // @@protoc_insertion_point(parse_failure:map.Coin)
+  return false;
+#undef DO_
+}
+#endif  // GOOGLE_PROTOBUF_ENABLE_EXPERIMENTAL_PARSER
+
+void Coin::SerializeWithCachedSizes(
+    ::google::protobuf::io::CodedOutputStream* output) const {
+  // @@protoc_insertion_point(serialize_start:map.Coin)
+  ::google::protobuf::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // .map.point_2f position = 1;
+  if (this->has_position()) {
+    ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
+      1, HasBitSetters::position(this), output);
+  }
+
+  if (_internal_metadata_.have_unknown_fields()) {
+    ::google::protobuf::internal::WireFormat::SerializeUnknownFields(
+        _internal_metadata_.unknown_fields(), output);
+  }
+  // @@protoc_insertion_point(serialize_end:map.Coin)
+}
+
+::google::protobuf::uint8* Coin::InternalSerializeWithCachedSizesToArray(
+    ::google::protobuf::uint8* target) const {
+  // @@protoc_insertion_point(serialize_to_array_start:map.Coin)
+  ::google::protobuf::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // .map.point_2f position = 1;
+  if (this->has_position()) {
+    target = ::google::protobuf::internal::WireFormatLite::
+      InternalWriteMessageToArray(
+        1, HasBitSetters::position(this), target);
   }
 
   if (_internal_metadata_.have_unknown_fields()) {
@@ -403,14 +1040,11 @@ size_t Coin::ByteSizeLong() const {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  // float x = 1;
-  if (this->x() != 0) {
-    total_size += 1 + 4;
-  }
-
-  // float y = 2;
-  if (this->y() != 0) {
-    total_size += 1 + 4;
+  // .map.point_2f position = 1;
+  if (this->has_position()) {
+    total_size += 1 +
+      ::google::protobuf::internal::WireFormatLite::MessageSize(
+        *position_);
   }
 
   int cached_size = ::google::protobuf::internal::ToCachedSize(total_size);
@@ -440,11 +1074,8 @@ void Coin::MergeFrom(const Coin& from) {
   ::google::protobuf::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
-  if (from.x() != 0) {
-    set_x(from.x());
-  }
-  if (from.y() != 0) {
-    set_y(from.y());
+  if (from.has_position()) {
+    mutable_position()->::map::point_2f::MergeFrom(from.position());
   }
 }
 
@@ -473,8 +1104,7 @@ void Coin::Swap(Coin* other) {
 void Coin::InternalSwap(Coin* other) {
   using std::swap;
   _internal_metadata_.Swap(&other->_internal_metadata_);
-  swap(x_, other->x_);
-  swap(y_, other->y_);
+  swap(position_, other->position_);
 }
 
 ::google::protobuf::Metadata Coin::GetMetadata() const {
@@ -486,15 +1116,21 @@ void Coin::InternalSwap(Coin* other) {
 // ===================================================================
 
 void Cube::InitAsDefaultInstance() {
+  ::map::_Cube_default_instance_._instance.get_mutable()->position_ = const_cast< ::map::point_2f*>(
+      ::map::point_2f::internal_default_instance());
 }
 class Cube::HasBitSetters {
  public:
+  static const ::map::point_2f& position(const Cube* msg);
 };
 
+const ::map::point_2f&
+Cube::HasBitSetters::position(const Cube* msg) {
+  return *msg->position_;
+}
 #if !defined(_MSC_VER) || _MSC_VER >= 1900
 const int Cube::kTypeFieldNumber;
-const int Cube::kXFieldNumber;
-const int Cube::kYFieldNumber;
+const int Cube::kPositionFieldNumber;
 #endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
 
 Cube::Cube()
@@ -506,16 +1142,21 @@ Cube::Cube(const Cube& from)
   : ::google::protobuf::Message(),
       _internal_metadata_(nullptr) {
   _internal_metadata_.MergeFrom(from._internal_metadata_);
-  ::memcpy(&type_, &from.type_,
-    static_cast<size_t>(reinterpret_cast<char*>(&y_) -
-    reinterpret_cast<char*>(&type_)) + sizeof(y_));
+  if (from.has_position()) {
+    position_ = new ::map::point_2f(*from.position_);
+  } else {
+    position_ = nullptr;
+  }
+  type_ = from.type_;
   // @@protoc_insertion_point(copy_constructor:map.Cube)
 }
 
 void Cube::SharedCtor() {
-  ::memset(&type_, 0, static_cast<size_t>(
-      reinterpret_cast<char*>(&y_) -
-      reinterpret_cast<char*>(&type_)) + sizeof(y_));
+  ::google::protobuf::internal::InitSCC(
+      &scc_info_Cube_map_2eproto.base);
+  ::memset(&position_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&type_) -
+      reinterpret_cast<char*>(&position_)) + sizeof(type_));
 }
 
 Cube::~Cube() {
@@ -524,6 +1165,7 @@ Cube::~Cube() {
 }
 
 void Cube::SharedDtor() {
+  if (this != internal_default_instance()) delete position_;
 }
 
 void Cube::SetCachedSize(int size) const {
@@ -541,9 +1183,11 @@ void Cube::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  ::memset(&type_, 0, static_cast<size_t>(
-      reinterpret_cast<char*>(&y_) -
-      reinterpret_cast<char*>(&type_)) + sizeof(y_));
+  if (GetArenaNoVirtual() == nullptr && position_ != nullptr) {
+    delete position_;
+  }
+  position_ = nullptr;
+  type_ = 0;
   _internal_metadata_.Clear();
 }
 
@@ -568,18 +1212,17 @@ const char* Cube::_InternalParse(const char* begin, const char* end, void* objec
         GOOGLE_PROTOBUF_PARSER_ASSERT(ptr);
         break;
       }
-      // int32 x = 2;
+      // .map.point_2f position = 2;
       case 2: {
-        if (static_cast<::google::protobuf::uint8>(tag) != 16) goto handle_unusual;
-        msg->set_x(::google::protobuf::internal::ReadVarint(&ptr));
+        if (static_cast<::google::protobuf::uint8>(tag) != 18) goto handle_unusual;
+        ptr = ::google::protobuf::io::ReadSize(ptr, &size);
         GOOGLE_PROTOBUF_PARSER_ASSERT(ptr);
-        break;
-      }
-      // int32 y = 3;
-      case 3: {
-        if (static_cast<::google::protobuf::uint8>(tag) != 24) goto handle_unusual;
-        msg->set_y(::google::protobuf::internal::ReadVarint(&ptr));
-        GOOGLE_PROTOBUF_PARSER_ASSERT(ptr);
+        parser_till_end = ::map::point_2f::_InternalParse;
+        object = msg->mutable_position();
+        if (size > end - ptr) goto len_delim_till_end;
+        ptr += size;
+        GOOGLE_PROTOBUF_PARSER_ASSERT(ctx->ParseExactRange(
+            {parser_till_end, object}, ptr - size, ptr));
         break;
       }
       default: {
@@ -597,6 +1240,9 @@ const char* Cube::_InternalParse(const char* begin, const char* end, void* objec
     }  // switch
   }  // while
   return ptr;
+len_delim_till_end:
+  return ctx->StoreAndTailCall(ptr, end, {_InternalParse, msg},
+                               {parser_till_end, object}, size);
 }
 #else  // GOOGLE_PROTOBUF_ENABLE_EXPERIMENTAL_PARSER
 bool Cube::MergePartialFromCodedStream(
@@ -623,26 +1269,11 @@ bool Cube::MergePartialFromCodedStream(
         break;
       }
 
-      // int32 x = 2;
+      // .map.point_2f position = 2;
       case 2: {
-        if (static_cast< ::google::protobuf::uint8>(tag) == (16 & 0xFF)) {
-
-          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
-                   ::google::protobuf::int32, ::google::protobuf::internal::WireFormatLite::TYPE_INT32>(
-                 input, &x_)));
-        } else {
-          goto handle_unusual;
-        }
-        break;
-      }
-
-      // int32 y = 3;
-      case 3: {
-        if (static_cast< ::google::protobuf::uint8>(tag) == (24 & 0xFF)) {
-
-          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
-                   ::google::protobuf::int32, ::google::protobuf::internal::WireFormatLite::TYPE_INT32>(
-                 input, &y_)));
+        if (static_cast< ::google::protobuf::uint8>(tag) == (18 & 0xFF)) {
+          DO_(::google::protobuf::internal::WireFormatLite::ReadMessage(
+               input, mutable_position()));
         } else {
           goto handle_unusual;
         }
@@ -682,14 +1313,10 @@ void Cube::SerializeWithCachedSizes(
       1, this->type(), output);
   }
 
-  // int32 x = 2;
-  if (this->x() != 0) {
-    ::google::protobuf::internal::WireFormatLite::WriteInt32(2, this->x(), output);
-  }
-
-  // int32 y = 3;
-  if (this->y() != 0) {
-    ::google::protobuf::internal::WireFormatLite::WriteInt32(3, this->y(), output);
+  // .map.point_2f position = 2;
+  if (this->has_position()) {
+    ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
+      2, HasBitSetters::position(this), output);
   }
 
   if (_internal_metadata_.have_unknown_fields()) {
@@ -711,14 +1338,11 @@ void Cube::SerializeWithCachedSizes(
       1, this->type(), target);
   }
 
-  // int32 x = 2;
-  if (this->x() != 0) {
-    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(2, this->x(), target);
-  }
-
-  // int32 y = 3;
-  if (this->y() != 0) {
-    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(3, this->y(), target);
+  // .map.point_2f position = 2;
+  if (this->has_position()) {
+    target = ::google::protobuf::internal::WireFormatLite::
+      InternalWriteMessageToArray(
+        2, HasBitSetters::position(this), target);
   }
 
   if (_internal_metadata_.have_unknown_fields()) {
@@ -742,24 +1366,17 @@ size_t Cube::ByteSizeLong() const {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
+  // .map.point_2f position = 2;
+  if (this->has_position()) {
+    total_size += 1 +
+      ::google::protobuf::internal::WireFormatLite::MessageSize(
+        *position_);
+  }
+
   // .map.Cube.cube_type type = 1;
   if (this->type() != 0) {
     total_size += 1 +
       ::google::protobuf::internal::WireFormatLite::EnumSize(this->type());
-  }
-
-  // int32 x = 2;
-  if (this->x() != 0) {
-    total_size += 1 +
-      ::google::protobuf::internal::WireFormatLite::Int32Size(
-        this->x());
-  }
-
-  // int32 y = 3;
-  if (this->y() != 0) {
-    total_size += 1 +
-      ::google::protobuf::internal::WireFormatLite::Int32Size(
-        this->y());
   }
 
   int cached_size = ::google::protobuf::internal::ToCachedSize(total_size);
@@ -789,14 +1406,11 @@ void Cube::MergeFrom(const Cube& from) {
   ::google::protobuf::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
+  if (from.has_position()) {
+    mutable_position()->::map::point_2f::MergeFrom(from.position());
+  }
   if (from.type() != 0) {
     set_type(from.type());
-  }
-  if (from.x() != 0) {
-    set_x(from.x());
-  }
-  if (from.y() != 0) {
-    set_y(from.y());
   }
 }
 
@@ -825,9 +1439,8 @@ void Cube::Swap(Cube* other) {
 void Cube::InternalSwap(Cube* other) {
   using std::swap;
   _internal_metadata_.Swap(&other->_internal_metadata_);
+  swap(position_, other->position_);
   swap(type_, other->type_);
-  swap(x_, other->x_);
-  swap(y_, other->y_);
 }
 
 ::google::protobuf::Metadata Cube::GetMetadata() const {
@@ -847,6 +1460,7 @@ class map::HasBitSetters {
 #if !defined(_MSC_VER) || _MSC_VER >= 1900
 const int map::kCubesFieldNumber;
 const int map::kCoinsFieldNumber;
+const int map::kEnemiesFieldNumber;
 #endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
 
 map::map()
@@ -858,7 +1472,8 @@ map::map(const map& from)
   : ::google::protobuf::Message(),
       _internal_metadata_(nullptr),
       cubes_(from.cubes_),
-      coins_(from.coins_) {
+      coins_(from.coins_),
+      enemies_(from.enemies_) {
   _internal_metadata_.MergeFrom(from._internal_metadata_);
   // @@protoc_insertion_point(copy_constructor:map.map)
 }
@@ -893,6 +1508,7 @@ void map::Clear() {
 
   cubes_.Clear();
   coins_.Clear();
+  enemies_.Clear();
   _internal_metadata_.Clear();
 }
 
@@ -939,6 +1555,22 @@ const char* map::_InternalParse(const char* begin, const char* end, void* object
               {parser_till_end, object}, ptr - size, ptr));
           if (ptr >= end) break;
         } while ((::google::protobuf::io::UnalignedLoad<::google::protobuf::uint64>(ptr) & 255) == 18 && (ptr += 1));
+        break;
+      }
+      // repeated .map.Enemy enemies = 3;
+      case 3: {
+        if (static_cast<::google::protobuf::uint8>(tag) != 26) goto handle_unusual;
+        do {
+          ptr = ::google::protobuf::io::ReadSize(ptr, &size);
+          GOOGLE_PROTOBUF_PARSER_ASSERT(ptr);
+          parser_till_end = ::map::Enemy::_InternalParse;
+          object = msg->add_enemies();
+          if (size > end - ptr) goto len_delim_till_end;
+          ptr += size;
+          GOOGLE_PROTOBUF_PARSER_ASSERT(ctx->ParseExactRange(
+              {parser_till_end, object}, ptr - size, ptr));
+          if (ptr >= end) break;
+        } while ((::google::protobuf::io::UnalignedLoad<::google::protobuf::uint64>(ptr) & 255) == 26 && (ptr += 1));
         break;
       }
       default: {
@@ -993,6 +1625,17 @@ bool map::MergePartialFromCodedStream(
         break;
       }
 
+      // repeated .map.Enemy enemies = 3;
+      case 3: {
+        if (static_cast< ::google::protobuf::uint8>(tag) == (26 & 0xFF)) {
+          DO_(::google::protobuf::internal::WireFormatLite::ReadMessage(
+                input, add_enemies()));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
       default: {
       handle_unusual:
         if (tag == 0) {
@@ -1038,6 +1681,15 @@ void map::SerializeWithCachedSizes(
       output);
   }
 
+  // repeated .map.Enemy enemies = 3;
+  for (unsigned int i = 0,
+      n = static_cast<unsigned int>(this->enemies_size()); i < n; i++) {
+    ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
+      3,
+      this->enemies(static_cast<int>(i)),
+      output);
+  }
+
   if (_internal_metadata_.have_unknown_fields()) {
     ::google::protobuf::internal::WireFormat::SerializeUnknownFields(
         _internal_metadata_.unknown_fields(), output);
@@ -1065,6 +1717,14 @@ void map::SerializeWithCachedSizes(
     target = ::google::protobuf::internal::WireFormatLite::
       InternalWriteMessageToArray(
         2, this->coins(static_cast<int>(i)), target);
+  }
+
+  // repeated .map.Enemy enemies = 3;
+  for (unsigned int i = 0,
+      n = static_cast<unsigned int>(this->enemies_size()); i < n; i++) {
+    target = ::google::protobuf::internal::WireFormatLite::
+      InternalWriteMessageToArray(
+        3, this->enemies(static_cast<int>(i)), target);
   }
 
   if (_internal_metadata_.have_unknown_fields()) {
@@ -1110,6 +1770,17 @@ size_t map::ByteSizeLong() const {
     }
   }
 
+  // repeated .map.Enemy enemies = 3;
+  {
+    unsigned int count = static_cast<unsigned int>(this->enemies_size());
+    total_size += 1UL * count;
+    for (unsigned int i = 0; i < count; i++) {
+      total_size +=
+        ::google::protobuf::internal::WireFormatLite::MessageSize(
+          this->enemies(static_cast<int>(i)));
+    }
+  }
+
   int cached_size = ::google::protobuf::internal::ToCachedSize(total_size);
   SetCachedSize(cached_size);
   return total_size;
@@ -1139,6 +1810,7 @@ void map::MergeFrom(const map& from) {
 
   cubes_.MergeFrom(from.cubes_);
   coins_.MergeFrom(from.coins_);
+  enemies_.MergeFrom(from.enemies_);
 }
 
 void map::CopyFrom(const ::google::protobuf::Message& from) {
@@ -1168,6 +1840,7 @@ void map::InternalSwap(map* other) {
   _internal_metadata_.Swap(&other->_internal_metadata_);
   CastToBase(&cubes_)->InternalSwap(CastToBase(&other->cubes_));
   CastToBase(&coins_)->InternalSwap(CastToBase(&other->coins_));
+  CastToBase(&enemies_)->InternalSwap(CastToBase(&other->enemies_));
 }
 
 ::google::protobuf::Metadata map::GetMetadata() const {
@@ -1180,6 +1853,12 @@ void map::InternalSwap(map* other) {
 }  // namespace map
 namespace google {
 namespace protobuf {
+template<> PROTOBUF_NOINLINE ::map::point_2f* Arena::CreateMaybeMessage< ::map::point_2f >(Arena* arena) {
+  return Arena::CreateInternal< ::map::point_2f >(arena);
+}
+template<> PROTOBUF_NOINLINE ::map::Enemy* Arena::CreateMaybeMessage< ::map::Enemy >(Arena* arena) {
+  return Arena::CreateInternal< ::map::Enemy >(arena);
+}
 template<> PROTOBUF_NOINLINE ::map::Coin* Arena::CreateMaybeMessage< ::map::Coin >(Arena* arena) {
   return Arena::CreateInternal< ::map::Coin >(arena);
 }

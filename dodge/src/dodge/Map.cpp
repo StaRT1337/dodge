@@ -10,7 +10,7 @@ void Map::destroy()
 
 void Map::on_type(std::vector<bool>* keys)
 {
-	player_.on_type(keys, &cubes_, &coins_);
+	player_.on_type(keys, &cubes_, &coins_, &enemies_);
 }
 
 void Map::set_map(IDWriteFactory* dw_factory, const std::string& map_name)
@@ -38,6 +38,9 @@ void Map::set_map(IDWriteFactory* dw_factory, const std::string& map_name)
 	coins_.clear();
 	coins_.shrink_to_fit();
 
+	enemies_.clear();
+	enemies_.shrink_to_fit();
+
 	dw_factory_ = dw_factory;
 
 	menu_button.init(dw_factory_);
@@ -50,9 +53,12 @@ void Map::set_map(IDWriteFactory* dw_factory, const std::string& map_name)
 	Cube cube;
 	cube.set_size(30, 30);
 
+	map::point_2f position;
+
 	for (const auto& p_cube : _map.cubes())
 	{
-		cube.set_position(p_cube.x(), p_cube.y());
+		position = p_cube.position();
+		cube.set_position(position.x(), position.y());
 
 		switch (p_cube.type())
 		{
@@ -70,6 +76,7 @@ void Map::set_map(IDWriteFactory* dw_factory, const std::string& map_name)
 			break;
 		}
 
+		cube.set_pos(cubes_.size());
 		cubes_.emplace_back(cube);
 	}
 
@@ -77,10 +84,23 @@ void Map::set_map(IDWriteFactory* dw_factory, const std::string& map_name)
 
 	for (const auto& p_coin : _map.coins())
 	{
-		auto cube = Utils::get_cube(p_coin.x(), p_coin.y(), &cubes_);
-		coin.set_cube(cube);
+		position = p_coin.position();
+		auto cube = Utils::get_cube(position.x(), position.y(), &cubes_);
 
-		coins_.emplace_back(coin, false);
+		coin.set_cube(cube);
+		coins_.emplace_back(coin);
+	}
+
+	for (const auto& p_enemy : _map.enemies())
+	{
+		Enemy enemy;
+
+		for (const auto& p_point : p_enemy.points())
+		{
+			enemy.add_point(D2D1::Point2F(p_point.x(), p_point.y()));
+		}
+
+		enemies_.emplace_back(enemy);
 	}
 
 	player_.start(&cubes_, &coins_);
@@ -96,12 +116,15 @@ void Map::draw(ID2D1HwndRenderTarget* d2d1_rt, ID2D1SolidColorBrush* d2d1_solidb
 		}
 	}
 
-	for (auto& pair : coins_)
+	for (auto& coin : coins_)
 	{
-		if (!pair.second)
-		{
-			pair.first.draw(d2d1_rt, d2d1_solidbrush);
-		}
+		coin.draw(d2d1_rt, d2d1_solidbrush);
+	}
+
+	for (auto& enemy : enemies_)
+	{
+
+		enemy.draw(d2d1_rt, d2d1_solidbrush);
 	}
 
 	menu_button.draw(d2d1_rt, d2d1_solidbrush);

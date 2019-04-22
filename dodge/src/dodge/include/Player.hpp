@@ -1,6 +1,8 @@
 #pragma once
 #include "Cube.hpp"
-#include "Coin.hpp"
+
+class Coin;
+class Enemy;
 
 class Player
 {
@@ -10,12 +12,12 @@ private:
 
 	const int check_collision(const D2D1_RECT_F& temp_stroke, std::vector<Cube>* cubes);
 public:
-	void on_type(std::vector<bool>* keys, std::vector<Cube>* cubes, std::vector<std::pair<Coin, bool>>* coins);
+	void on_type(std::vector<bool>* keys, std::vector<Cube>* cubes, std::vector<Coin>* coins, std::vector<Enemy>* enemies);
 
 	D2D1_RECT_F  get_position();
 	void set_position(const int x, const int y);
 
-	void start(std::vector<Cube>* cubes, std::vector<std::pair<Coin, bool>>* coins);
+	void start(std::vector<Cube>* cubes, std::vector<Coin>* coins);
 
 	void draw(ID2D1HwndRenderTarget* d2d1_rt, ID2D1SolidColorBrush* d2d1_solidbrush);
 };

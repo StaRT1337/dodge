@@ -14,8 +14,6 @@ private:
 	std::string window_name_;
 	std::string class_name_;
 
-	std::vector<std::pair<bool, short>> keys_;
-
 	std::vector<std::pair<Button, std::wstring>> maps_;
 
 	Map map_;
@@ -31,6 +29,7 @@ private:
 	unsigned int height_;
 
 	short wheel_delta_;
+	short key_;
 
 	static long __stdcall window_proc_fake(HWND hwnd, std::uint32_t msg, std::uintptr_t w_param, long l_param);
 	long __stdcall window_proc(HWND hwnd, std::uint32_t msg, std::uintptr_t w_param, long l_param);

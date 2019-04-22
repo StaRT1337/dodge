@@ -52,19 +52,6 @@ namespace Utils
 		sender->set_button_color(create_d2d1_color(186, 186, 186, 255));
 	} 
 
-	/*const std::string get_str_from_click(const click_type& type)
-	{
-		switch (type)
-		{
-		case click_type::ADD_CUBE:
-			return "Add border cube";
-		case click_type::REMOVE_CUBE:
-			return "Remove cube";
-		case click_type::SPAWN_CUBE:
-			return "Add spawn cube";
-		} 
-	} */
-
 	Cube get_cube(const float x, const float y, std::vector<Cube>* cubes)
 	{
 		for (auto& cube : *cubes)

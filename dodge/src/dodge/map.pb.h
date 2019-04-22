@@ -42,7 +42,7 @@ struct TableStruct_map_2eproto {
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
   static const ::google::protobuf::internal::AuxillaryParseTableField aux[]
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
-  static const ::google::protobuf::internal::ParseTable schema[3]
+  static const ::google::protobuf::internal::ParseTable schema[5]
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
   static const ::google::protobuf::internal::FieldMetadata field_metadata[];
   static const ::google::protobuf::internal::SerializationTable serialization_table[];
@@ -56,15 +56,23 @@ extern CoinDefaultTypeInternal _Coin_default_instance_;
 class Cube;
 class CubeDefaultTypeInternal;
 extern CubeDefaultTypeInternal _Cube_default_instance_;
+class Enemy;
+class EnemyDefaultTypeInternal;
+extern EnemyDefaultTypeInternal _Enemy_default_instance_;
 class map;
 class mapDefaultTypeInternal;
 extern mapDefaultTypeInternal _map_default_instance_;
+class point_2f;
+class point_2fDefaultTypeInternal;
+extern point_2fDefaultTypeInternal _point_2f_default_instance_;
 }  // namespace map
 namespace google {
 namespace protobuf {
 template<> ::map::Coin* Arena::CreateMaybeMessage<::map::Coin>(Arena*);
 template<> ::map::Cube* Arena::CreateMaybeMessage<::map::Cube>(Arena*);
+template<> ::map::Enemy* Arena::CreateMaybeMessage<::map::Enemy>(Arena*);
 template<> ::map::map* Arena::CreateMaybeMessage<::map::map>(Arena*);
+template<> ::map::point_2f* Arena::CreateMaybeMessage<::map::point_2f>(Arena*);
 }  // namespace protobuf
 }  // namespace google
 namespace map {
@@ -93,6 +101,243 @@ inline bool Cube_cube_type_Parse(
     Cube_cube_type_descriptor(), name, value);
 }
 // ===================================================================
+
+class point_2f :
+    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:map.point_2f) */ {
+ public:
+  point_2f();
+  virtual ~point_2f();
+
+  point_2f(const point_2f& from);
+
+  inline point_2f& operator=(const point_2f& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  #if LANG_CXX11
+  point_2f(point_2f&& from) noexcept
+    : point_2f() {
+    *this = ::std::move(from);
+  }
+
+  inline point_2f& operator=(point_2f&& from) noexcept {
+    if (GetArenaNoVirtual() == from.GetArenaNoVirtual()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+  #endif
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return default_instance().GetDescriptor();
+  }
+  static const point_2f& default_instance();
+
+  static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
+  static inline const point_2f* internal_default_instance() {
+    return reinterpret_cast<const point_2f*>(
+               &_point_2f_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    0;
+
+  void Swap(point_2f* other);
+  friend void swap(point_2f& a, point_2f& b) {
+    a.Swap(&b);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline point_2f* New() const final {
+    return CreateMaybeMessage<point_2f>(nullptr);
+  }
+
+  point_2f* New(::google::protobuf::Arena* arena) const final {
+    return CreateMaybeMessage<point_2f>(arena);
+  }
+  void CopyFrom(const ::google::protobuf::Message& from) final;
+  void MergeFrom(const ::google::protobuf::Message& from) final;
+  void CopyFrom(const point_2f& from);
+  void MergeFrom(const point_2f& from);
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  #if GOOGLE_PROTOBUF_ENABLE_EXPERIMENTAL_PARSER
+  static const char* _InternalParse(const char* begin, const char* end, void* object, ::google::protobuf::internal::ParseContext* ctx);
+  ::google::protobuf::internal::ParseFunc _ParseFunc() const final { return _InternalParse; }
+  #else
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input) final;
+  #endif  // GOOGLE_PROTOBUF_ENABLE_EXPERIMENTAL_PARSER
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const final;
+  ::google::protobuf::uint8* InternalSerializeWithCachedSizesToArray(
+      ::google::protobuf::uint8* target) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(point_2f* other);
+  private:
+  inline ::google::protobuf::Arena* GetArenaNoVirtual() const {
+    return nullptr;
+  }
+  inline void* MaybeArenaPtr() const {
+    return nullptr;
+  }
+  public:
+
+  ::google::protobuf::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // float x = 1;
+  void clear_x();
+  static const int kXFieldNumber = 1;
+  float x() const;
+  void set_x(float value);
+
+  // float y = 2;
+  void clear_y();
+  static const int kYFieldNumber = 2;
+  float y() const;
+  void set_y(float value);
+
+  // @@protoc_insertion_point(class_scope:map.point_2f)
+ private:
+  class HasBitSetters;
+
+  ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
+  float x_;
+  float y_;
+  mutable ::google::protobuf::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_map_2eproto;
+};
+// -------------------------------------------------------------------
+
+class Enemy :
+    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:map.Enemy) */ {
+ public:
+  Enemy();
+  virtual ~Enemy();
+
+  Enemy(const Enemy& from);
+
+  inline Enemy& operator=(const Enemy& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  #if LANG_CXX11
+  Enemy(Enemy&& from) noexcept
+    : Enemy() {
+    *this = ::std::move(from);
+  }
+
+  inline Enemy& operator=(Enemy&& from) noexcept {
+    if (GetArenaNoVirtual() == from.GetArenaNoVirtual()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+  #endif
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return default_instance().GetDescriptor();
+  }
+  static const Enemy& default_instance();
+
+  static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
+  static inline const Enemy* internal_default_instance() {
+    return reinterpret_cast<const Enemy*>(
+               &_Enemy_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    1;
+
+  void Swap(Enemy* other);
+  friend void swap(Enemy& a, Enemy& b) {
+    a.Swap(&b);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline Enemy* New() const final {
+    return CreateMaybeMessage<Enemy>(nullptr);
+  }
+
+  Enemy* New(::google::protobuf::Arena* arena) const final {
+    return CreateMaybeMessage<Enemy>(arena);
+  }
+  void CopyFrom(const ::google::protobuf::Message& from) final;
+  void MergeFrom(const ::google::protobuf::Message& from) final;
+  void CopyFrom(const Enemy& from);
+  void MergeFrom(const Enemy& from);
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  #if GOOGLE_PROTOBUF_ENABLE_EXPERIMENTAL_PARSER
+  static const char* _InternalParse(const char* begin, const char* end, void* object, ::google::protobuf::internal::ParseContext* ctx);
+  ::google::protobuf::internal::ParseFunc _ParseFunc() const final { return _InternalParse; }
+  #else
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input) final;
+  #endif  // GOOGLE_PROTOBUF_ENABLE_EXPERIMENTAL_PARSER
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const final;
+  ::google::protobuf::uint8* InternalSerializeWithCachedSizesToArray(
+      ::google::protobuf::uint8* target) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(Enemy* other);
+  private:
+  inline ::google::protobuf::Arena* GetArenaNoVirtual() const {
+    return nullptr;
+  }
+  inline void* MaybeArenaPtr() const {
+    return nullptr;
+  }
+  public:
+
+  ::google::protobuf::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // repeated .map.point_2f points = 1;
+  int points_size() const;
+  void clear_points();
+  static const int kPointsFieldNumber = 1;
+  ::map::point_2f* mutable_points(int index);
+  ::google::protobuf::RepeatedPtrField< ::map::point_2f >*
+      mutable_points();
+  const ::map::point_2f& points(int index) const;
+  ::map::point_2f* add_points();
+  const ::google::protobuf::RepeatedPtrField< ::map::point_2f >&
+      points() const;
+
+  // @@protoc_insertion_point(class_scope:map.Enemy)
+ private:
+  class HasBitSetters;
+
+  ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
+  ::google::protobuf::RepeatedPtrField< ::map::point_2f > points_;
+  mutable ::google::protobuf::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_map_2eproto;
+};
+// -------------------------------------------------------------------
 
 class Coin :
     public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:map.Coin) */ {
@@ -132,7 +377,7 @@ class Coin :
                &_Coin_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    0;
+    2;
 
   void Swap(Coin* other);
   friend void swap(Coin& a, Coin& b) {
@@ -189,25 +434,21 @@ class Coin :
 
   // accessors -------------------------------------------------------
 
-  // float x = 1;
-  void clear_x();
-  static const int kXFieldNumber = 1;
-  float x() const;
-  void set_x(float value);
-
-  // float y = 2;
-  void clear_y();
-  static const int kYFieldNumber = 2;
-  float y() const;
-  void set_y(float value);
+  // .map.point_2f position = 1;
+  bool has_position() const;
+  void clear_position();
+  static const int kPositionFieldNumber = 1;
+  const ::map::point_2f& position() const;
+  ::map::point_2f* release_position();
+  ::map::point_2f* mutable_position();
+  void set_allocated_position(::map::point_2f* position);
 
   // @@protoc_insertion_point(class_scope:map.Coin)
  private:
   class HasBitSetters;
 
   ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
-  float x_;
-  float y_;
+  ::map::point_2f* position_;
   mutable ::google::protobuf::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_map_2eproto;
 };
@@ -251,7 +492,7 @@ class Cube :
                &_Cube_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    1;
+    3;
 
   void Swap(Cube* other);
   friend void swap(Cube& a, Cube& b) {
@@ -338,32 +579,28 @@ class Cube :
 
   // accessors -------------------------------------------------------
 
+  // .map.point_2f position = 2;
+  bool has_position() const;
+  void clear_position();
+  static const int kPositionFieldNumber = 2;
+  const ::map::point_2f& position() const;
+  ::map::point_2f* release_position();
+  ::map::point_2f* mutable_position();
+  void set_allocated_position(::map::point_2f* position);
+
   // .map.Cube.cube_type type = 1;
   void clear_type();
   static const int kTypeFieldNumber = 1;
   ::map::Cube_cube_type type() const;
   void set_type(::map::Cube_cube_type value);
 
-  // int32 x = 2;
-  void clear_x();
-  static const int kXFieldNumber = 2;
-  ::google::protobuf::int32 x() const;
-  void set_x(::google::protobuf::int32 value);
-
-  // int32 y = 3;
-  void clear_y();
-  static const int kYFieldNumber = 3;
-  ::google::protobuf::int32 y() const;
-  void set_y(::google::protobuf::int32 value);
-
   // @@protoc_insertion_point(class_scope:map.Cube)
  private:
   class HasBitSetters;
 
   ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
+  ::map::point_2f* position_;
   int type_;
-  ::google::protobuf::int32 x_;
-  ::google::protobuf::int32 y_;
   mutable ::google::protobuf::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_map_2eproto;
 };
@@ -407,7 +644,7 @@ class map :
                &_map_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    2;
+    4;
 
   void Swap(map* other);
   friend void swap(map& a, map& b) {
@@ -488,6 +725,18 @@ class map :
   const ::google::protobuf::RepeatedPtrField< ::map::Coin >&
       coins() const;
 
+  // repeated .map.Enemy enemies = 3;
+  int enemies_size() const;
+  void clear_enemies();
+  static const int kEnemiesFieldNumber = 3;
+  ::map::Enemy* mutable_enemies(int index);
+  ::google::protobuf::RepeatedPtrField< ::map::Enemy >*
+      mutable_enemies();
+  const ::map::Enemy& enemies(int index) const;
+  ::map::Enemy* add_enemies();
+  const ::google::protobuf::RepeatedPtrField< ::map::Enemy >&
+      enemies() const;
+
   // @@protoc_insertion_point(class_scope:map.map)
  private:
   class HasBitSetters;
@@ -495,6 +744,7 @@ class map :
   ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
   ::google::protobuf::RepeatedPtrField< ::map::Cube > cubes_;
   ::google::protobuf::RepeatedPtrField< ::map::Coin > coins_;
+  ::google::protobuf::RepeatedPtrField< ::map::Enemy > enemies_;
   mutable ::google::protobuf::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_map_2eproto;
 };
@@ -507,34 +757,123 @@ class map :
   #pragma GCC diagnostic push
   #pragma GCC diagnostic ignored "-Wstrict-aliasing"
 #endif  // __GNUC__
-// Coin
+// point_2f
 
 // float x = 1;
-inline void Coin::clear_x() {
+inline void point_2f::clear_x() {
   x_ = 0;
 }
-inline float Coin::x() const {
-  // @@protoc_insertion_point(field_get:map.Coin.x)
+inline float point_2f::x() const {
+  // @@protoc_insertion_point(field_get:map.point_2f.x)
   return x_;
 }
-inline void Coin::set_x(float value) {
+inline void point_2f::set_x(float value) {
   
   x_ = value;
-  // @@protoc_insertion_point(field_set:map.Coin.x)
+  // @@protoc_insertion_point(field_set:map.point_2f.x)
 }
 
 // float y = 2;
-inline void Coin::clear_y() {
+inline void point_2f::clear_y() {
   y_ = 0;
 }
-inline float Coin::y() const {
-  // @@protoc_insertion_point(field_get:map.Coin.y)
+inline float point_2f::y() const {
+  // @@protoc_insertion_point(field_get:map.point_2f.y)
   return y_;
 }
-inline void Coin::set_y(float value) {
+inline void point_2f::set_y(float value) {
   
   y_ = value;
-  // @@protoc_insertion_point(field_set:map.Coin.y)
+  // @@protoc_insertion_point(field_set:map.point_2f.y)
+}
+
+// -------------------------------------------------------------------
+
+// Enemy
+
+// repeated .map.point_2f points = 1;
+inline int Enemy::points_size() const {
+  return points_.size();
+}
+inline void Enemy::clear_points() {
+  points_.Clear();
+}
+inline ::map::point_2f* Enemy::mutable_points(int index) {
+  // @@protoc_insertion_point(field_mutable:map.Enemy.points)
+  return points_.Mutable(index);
+}
+inline ::google::protobuf::RepeatedPtrField< ::map::point_2f >*
+Enemy::mutable_points() {
+  // @@protoc_insertion_point(field_mutable_list:map.Enemy.points)
+  return &points_;
+}
+inline const ::map::point_2f& Enemy::points(int index) const {
+  // @@protoc_insertion_point(field_get:map.Enemy.points)
+  return points_.Get(index);
+}
+inline ::map::point_2f* Enemy::add_points() {
+  // @@protoc_insertion_point(field_add:map.Enemy.points)
+  return points_.Add();
+}
+inline const ::google::protobuf::RepeatedPtrField< ::map::point_2f >&
+Enemy::points() const {
+  // @@protoc_insertion_point(field_list:map.Enemy.points)
+  return points_;
+}
+
+// -------------------------------------------------------------------
+
+// Coin
+
+// .map.point_2f position = 1;
+inline bool Coin::has_position() const {
+  return this != internal_default_instance() && position_ != nullptr;
+}
+inline void Coin::clear_position() {
+  if (GetArenaNoVirtual() == nullptr && position_ != nullptr) {
+    delete position_;
+  }
+  position_ = nullptr;
+}
+inline const ::map::point_2f& Coin::position() const {
+  const ::map::point_2f* p = position_;
+  // @@protoc_insertion_point(field_get:map.Coin.position)
+  return p != nullptr ? *p : *reinterpret_cast<const ::map::point_2f*>(
+      &::map::_point_2f_default_instance_);
+}
+inline ::map::point_2f* Coin::release_position() {
+  // @@protoc_insertion_point(field_release:map.Coin.position)
+  
+  ::map::point_2f* temp = position_;
+  position_ = nullptr;
+  return temp;
+}
+inline ::map::point_2f* Coin::mutable_position() {
+  
+  if (position_ == nullptr) {
+    auto* p = CreateMaybeMessage<::map::point_2f>(GetArenaNoVirtual());
+    position_ = p;
+  }
+  // @@protoc_insertion_point(field_mutable:map.Coin.position)
+  return position_;
+}
+inline void Coin::set_allocated_position(::map::point_2f* position) {
+  ::google::protobuf::Arena* message_arena = GetArenaNoVirtual();
+  if (message_arena == nullptr) {
+    delete position_;
+  }
+  if (position) {
+    ::google::protobuf::Arena* submessage_arena = nullptr;
+    if (message_arena != submessage_arena) {
+      position = ::google::protobuf::internal::GetOwnedMessage(
+          message_arena, position, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  position_ = position;
+  // @@protoc_insertion_point(field_set_allocated:map.Coin.position)
 }
 
 // -------------------------------------------------------------------
@@ -555,32 +894,55 @@ inline void Cube::set_type(::map::Cube_cube_type value) {
   // @@protoc_insertion_point(field_set:map.Cube.type)
 }
 
-// int32 x = 2;
-inline void Cube::clear_x() {
-  x_ = 0;
+// .map.point_2f position = 2;
+inline bool Cube::has_position() const {
+  return this != internal_default_instance() && position_ != nullptr;
 }
-inline ::google::protobuf::int32 Cube::x() const {
-  // @@protoc_insertion_point(field_get:map.Cube.x)
-  return x_;
+inline void Cube::clear_position() {
+  if (GetArenaNoVirtual() == nullptr && position_ != nullptr) {
+    delete position_;
+  }
+  position_ = nullptr;
 }
-inline void Cube::set_x(::google::protobuf::int32 value) {
+inline const ::map::point_2f& Cube::position() const {
+  const ::map::point_2f* p = position_;
+  // @@protoc_insertion_point(field_get:map.Cube.position)
+  return p != nullptr ? *p : *reinterpret_cast<const ::map::point_2f*>(
+      &::map::_point_2f_default_instance_);
+}
+inline ::map::point_2f* Cube::release_position() {
+  // @@protoc_insertion_point(field_release:map.Cube.position)
   
-  x_ = value;
-  // @@protoc_insertion_point(field_set:map.Cube.x)
+  ::map::point_2f* temp = position_;
+  position_ = nullptr;
+  return temp;
 }
-
-// int32 y = 3;
-inline void Cube::clear_y() {
-  y_ = 0;
-}
-inline ::google::protobuf::int32 Cube::y() const {
-  // @@protoc_insertion_point(field_get:map.Cube.y)
-  return y_;
-}
-inline void Cube::set_y(::google::protobuf::int32 value) {
+inline ::map::point_2f* Cube::mutable_position() {
   
-  y_ = value;
-  // @@protoc_insertion_point(field_set:map.Cube.y)
+  if (position_ == nullptr) {
+    auto* p = CreateMaybeMessage<::map::point_2f>(GetArenaNoVirtual());
+    position_ = p;
+  }
+  // @@protoc_insertion_point(field_mutable:map.Cube.position)
+  return position_;
+}
+inline void Cube::set_allocated_position(::map::point_2f* position) {
+  ::google::protobuf::Arena* message_arena = GetArenaNoVirtual();
+  if (message_arena == nullptr) {
+    delete position_;
+  }
+  if (position) {
+    ::google::protobuf::Arena* submessage_arena = nullptr;
+    if (message_arena != submessage_arena) {
+      position = ::google::protobuf::internal::GetOwnedMessage(
+          message_arena, position, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  position_ = position;
+  // @@protoc_insertion_point(field_set_allocated:map.Cube.position)
 }
 
 // -------------------------------------------------------------------
@@ -647,9 +1009,43 @@ map::coins() const {
   return coins_;
 }
 
+// repeated .map.Enemy enemies = 3;
+inline int map::enemies_size() const {
+  return enemies_.size();
+}
+inline void map::clear_enemies() {
+  enemies_.Clear();
+}
+inline ::map::Enemy* map::mutable_enemies(int index) {
+  // @@protoc_insertion_point(field_mutable:map.map.enemies)
+  return enemies_.Mutable(index);
+}
+inline ::google::protobuf::RepeatedPtrField< ::map::Enemy >*
+map::mutable_enemies() {
+  // @@protoc_insertion_point(field_mutable_list:map.map.enemies)
+  return &enemies_;
+}
+inline const ::map::Enemy& map::enemies(int index) const {
+  // @@protoc_insertion_point(field_get:map.map.enemies)
+  return enemies_.Get(index);
+}
+inline ::map::Enemy* map::add_enemies() {
+  // @@protoc_insertion_point(field_add:map.map.enemies)
+  return enemies_.Add();
+}
+inline const ::google::protobuf::RepeatedPtrField< ::map::Enemy >&
+map::enemies() const {
+  // @@protoc_insertion_point(field_list:map.map.enemies)
+  return enemies_;
+}
+
 #ifdef __GNUC__
   #pragma GCC diagnostic pop
 #endif  // __GNUC__
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------

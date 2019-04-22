@@ -1,9 +1,17 @@
 syntax = "proto3";
 package map;
 
-message Coin {
+message point_2f {
     float x = 1;
     float y = 2;
+}
+
+message Enemy {
+    repeated point_2f points = 1;
+}
+
+message Coin {
+    point_2f position = 1;
 }
 
 message Cube {
@@ -15,12 +23,11 @@ message Cube {
     }
 
     cube_type type = 1;
-
-    int32 x = 2;
-    int32 y = 3;
+    point_2f position = 2;
 }
 
 message map {
     repeated Cube cubes = 1;
     repeated Coin coins = 2;
+    repeated Enemy enemies = 3;
 }

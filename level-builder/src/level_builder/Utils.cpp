@@ -25,6 +25,15 @@ namespace Utils
 		return (color1.r == color2.r && color1.g == color2.g && color1.b == color2.b && color1.a == color2.a);
 	}
 
+	bool has_coin(const Cube& cube, std::vector<Coin>* coins)
+	{
+		auto iter = std::find_if(coins->begin(), coins->end(), [&cube = cube](Coin& coin) {
+			return coin.get_cube() == cube;
+		});
+
+		return iter != coins->end();
+	}
+
 	void get_keys(std::vector<bool>* keys)
 	{
 		for (auto i = 0u; i < 256; ++i)
@@ -66,6 +75,10 @@ namespace Utils
 			return "Add coin";
 		case click_type::REMOVE_COIN:
 			return "Remove coin";
+		case click_type::ADD_ENEMY:
+			return "Add enemy";
+		case click_type::REMOVE_ENEMY:
+			return "Remove enemy";
 		}
 	}
 

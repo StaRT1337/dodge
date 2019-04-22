@@ -19,7 +19,7 @@ int __stdcall WinMain(HINSTANCE instance, HINSTANCE prev_instance, char* cmd_lin
 			auto time = std::time(0);
 			auto local_time = std::localtime(&time);
 
-			auto str = fmt::format("{}/{}/{}, {}:{}:{} {}",
+			auto str = fmt::format("{}/{}/{}, {}:{}:{} {}\n",
 				local_time->tm_mday,
 				local_time->tm_mon,
 				local_time->tm_year - 100,

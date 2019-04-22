@@ -10,7 +10,7 @@ constexpr int d = 0x44;
 
 constexpr int speed = 4;
 
-void Player::on_type(std::vector<bool>* keys, std::vector<Cube>* cubes, std::vector<std::pair<Coin, bool>>* coins)
+void Player::on_type(std::vector<bool>* keys, std::vector<Cube>* cubes, std::vector<Coin>* coins, std::vector<Enemy>* enemies)
 {
 	if (stroke_rect_.left == -1 && stroke_rect_.top == -1) return;
 
@@ -66,6 +66,15 @@ void Player::on_type(std::vector<bool>* keys, std::vector<Cube>* cubes, std::vec
 		temp_player.left -= speed;
 	}
 
+	for (auto& enemy : *enemies)
+	{
+		if (enemy.check_collision(temp_stroke))
+		{
+			start(cubes, coins);
+			return;
+		}
+	}
+
 	switch (check_collision(temp_stroke, cubes))
 	{
 	case 0:
@@ -73,19 +82,10 @@ void Player::on_type(std::vector<bool>* keys, std::vector<Cube>* cubes, std::vec
 		stroke_rect_ = temp_stroke;
 		player_rect_ = temp_player;
 
-		float x;
-		float y;
-
-		for (auto& pair : *coins)
+		for (auto& coin : *coins)
 		{
-			x = pair.first.get_position().x - stroke_rect_.left;
-			y = pair.first.get_position().y - stroke_rect_.top;
-
-			if ((x <= 23.0f && x > 0) && (y <= 23.0f && y > 0))
-			{
-				pair.second = true;
-			}
-		}
+			coin.check_collision(this, stroke_rect_);
+		} 
 
 		break;
 	}
@@ -95,14 +95,17 @@ void Player::on_type(std::vector<bool>* keys, std::vector<Cube>* cubes, std::vec
 		stroke_rect_ = temp_stroke;
 		player_rect_ = temp_player;
 
-		auto iter = std::find_if_not(coins->begin(), coins->end(), [](std::pair<Coin, bool>& pair) {
-			return pair.second;
-		});
+		bool all_collected = true;
 
-		if (iter == coins->end())
+		for (const auto& coin : *coins)
 		{
-			start(cubes, coins);
+			if (!coin.collected)
+			{
+				all_collected = false;
+			}
 		}
+
+		if (all_collected) start(cubes, coins);
 
 		break;
 	}
@@ -165,7 +168,7 @@ const int Player::check_collision(const D2D1_RECT_F& temp_stroke, std::vector<Cu
 	{
 		auto type = Utils::get_cube(pair.first, pair.second, cubes).get_type();
 
-		if (type == cube_type::BORDER_CUBE || pair.first >= 725 || pair.first <= 0)
+		if (type == cube_type::BORDER_CUBE || pair.first >= 750 || pair.first <= 0)
 		{
 			top_collision = cube_type::BORDER_CUBE;
 		}
@@ -203,7 +206,7 @@ const int Player::check_collision(const D2D1_RECT_F& temp_stroke, std::vector<Cu
 	return 0;
 }
 
-void Player::start(std::vector<Cube>* cubes, std::vector<std::pair<Coin, bool>>* coins)
+void Player::start(std::vector<Cube>* cubes, std::vector<Coin>* coins)
 {
 	std::vector<std::pair<float, float>> spawn_cubes;
 
@@ -237,8 +240,8 @@ void Player::start(std::vector<Cube>* cubes, std::vector<std::pair<Coin, bool>>*
 		set_position(x, y);
 	}
 
-	for (auto& pair : *coins)
+	for (auto& coin : *coins)
 	{
-		pair.second = false;
+		coin.collected = false;
 	}
 }

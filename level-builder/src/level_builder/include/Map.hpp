@@ -3,6 +3,7 @@
 #include "Button.hpp"
 #include "Text.hpp"
 #include "Coin.hpp"
+#include "Enemy.hpp"
 
 #include "map.pb.h"
 
@@ -15,6 +16,8 @@ enum class click_type : std::uint32_t
 	END_CUBE,
 	ADD_COIN,
 	REMOVE_COIN,
+	ADD_ENEMY,
+	REMOVE_ENEMY,
 	last
 };
 
@@ -29,6 +32,11 @@ private:
 
 	std::vector<Cube> cubes_;
 	std::vector<Coin> coins_;
+	std::vector<Enemy> enemies_;
+
+	std::vector<D2D1_POINT_2F> enemy_points_;
+
+	Enemy enemy_;
 
 	click_type type_;
 
@@ -36,6 +44,7 @@ private:
 	Text left_text_;
 
 	map::map savemap_;
+	POINT mouse_position_;
 
 	bool is_new_;
 	bool clicked_;
@@ -51,7 +60,7 @@ public:
 
 	void destroy();
 
-	void on_type(std::vector<std::pair<bool, short>>* keys);
+	void on_type(const short key);
 	void on_wheel(const short delta);
 	void on_click(const POINT& mouse_position, const mouse_type& type);
 

@@ -15,8 +15,6 @@ namespace Utils
 	void map_click(IDWriteFactory* dw_factory, Map* map, Button* button, std::vector<std::pair<Button, std::wstring>>* maps);
 	void button_hover(Button* sender);
 
-	//const std::string get_str_from_click(const click_type& type);
-
 	Cube get_cube(const float x, const float y, std::vector<Cube>* cubes);
 
 	template <typename T>
