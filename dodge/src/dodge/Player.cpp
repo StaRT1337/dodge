@@ -10,7 +10,7 @@ constexpr int d = 0x44;
 
 constexpr int speed = 4;
 
-void Player::on_type(std::vector<bool>* keys, std::vector<Cube>* cubes, std::vector<Coin>* coins, std::vector<Enemy>* enemies)
+void Player::on_type(std::vector<bool>* keys, std::vector<Cube>* cubes, std::vector<Coin>* coins, std::vector<Enemy>* enemies, std::vector<SpinningEnemy>* spinning_enemies)
 {
 	if (stroke_rect_.left == -1 && stroke_rect_.top == -1) return;
 
@@ -66,13 +66,28 @@ void Player::on_type(std::vector<bool>* keys, std::vector<Cube>* cubes, std::vec
 		temp_player.left -= speed;
 	}
 
+	bool enemy_collision = false;
+
 	for (auto& enemy : *enemies)
 	{
 		if (enemy.check_collision(temp_stroke))
 		{
-			start(cubes, coins);
-			return;
+			enemy_collision = true;
 		}
+	}
+
+	for (auto& enemy : *spinning_enemies)
+	{
+		if (enemy.check_collision(temp_stroke))
+		{
+			enemy_collision = true;
+		}
+	}
+
+	if (enemy_collision)
+	{
+		start(cubes, coins);
+		return;
 	}
 
 	switch (check_collision(temp_stroke, cubes))

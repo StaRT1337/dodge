@@ -4,6 +4,7 @@
 #include "Player.hpp"
 #include "Coin.hpp"
 #include "Enemy.hpp"
+#include "SpinningEnemy.hpp"
 
 #include "map.pb.h"
 
@@ -29,6 +30,7 @@ private:
 	std::vector<Cube> cubes_;
 	std::vector<Coin> coins_;
 	std::vector<Enemy> enemies_;
+	std::vector<SpinningEnemy> spinning_enemies_;
 
 	click_type type_;
 

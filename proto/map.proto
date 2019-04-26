@@ -6,6 +6,15 @@ message point_2f {
     float y = 2;
 }
 
+message SpinningEnemy {
+    point_2f position = 1;
+
+    int32 amount = 2;
+
+    float spacing = 3;
+    float speed = 4;
+}
+
 message Enemy {
     repeated point_2f points = 1;
 }
@@ -30,4 +39,5 @@ message map {
     repeated Cube cubes = 1;
     repeated Coin coins = 2;
     repeated Enemy enemies = 3;
+    repeated SpinningEnemy spinning_enemies = 4;
 }

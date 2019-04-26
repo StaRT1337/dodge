@@ -10,15 +10,7 @@ void Enemy::add_point(const D2D1_POINT_2F& point)
 
 const bool Enemy::check_collision(const D2D1_RECT_F & position)
 {
-	float x = position_.x - position.left;
-	float y = position_.y - position.top;
-
-	if ((x <= 23.0f && x > 0) && (y <= 23.0f && y > 0))
-	{
-		return true;
-	}
-
-	return false;
+	return base_.check_collision(position);
 }
 
 void Enemy::clear()

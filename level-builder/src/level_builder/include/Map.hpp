@@ -4,8 +4,16 @@
 #include "Text.hpp"
 #include "Coin.hpp"
 #include "Enemy.hpp"
+#include "SpinningEnemy.hpp"
+#include "Dialog.hpp"
 
 #include "map.pb.h"
+
+enum class dialog_type : std::uint32_t
+{
+	MAP_SAVE,
+	SPINNING_ENEMY
+};
 
 enum class click_type : std::uint32_t
 {
@@ -18,6 +26,8 @@ enum class click_type : std::uint32_t
 	REMOVE_COIN,
 	ADD_ENEMY,
 	REMOVE_ENEMY,
+	ADD_SPINNING_ENEMY,
+	REMOVE_SPINNING_ENEMY,
 	last
 };
 
@@ -33,12 +43,17 @@ private:
 	std::vector<Cube> cubes_;
 	std::vector<Coin> coins_;
 	std::vector<Enemy> enemies_;
+	std::vector<SpinningEnemy> spinning_enemies_;
 
 	std::vector<D2D1_POINT_2F> enemy_points_;
 
 	Enemy enemy_;
+	SpinningEnemy spinning_enemy_;
+
+	Dialog dialog_;
 
 	click_type type_;
+	dialog_type dialog_type_;
 
 	Text right_text_;
 	Text left_text_;
@@ -54,6 +69,7 @@ private:
 	bool waiting_for_input_;
 
 	void setup(IDWriteFactory* dw_factory);
+	void spawn_cube(Cube* cube, const cube_type& type);
 public:
 	Button save_button;
 	Button menu_button;

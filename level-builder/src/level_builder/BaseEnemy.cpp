@@ -8,6 +8,14 @@ D2D1_POINT_2F BaseEnemy::get_position()
 	return position_;
 }
 
+const bool BaseEnemy::check_collision(const D2D1_RECT_F & position)
+{
+	auto delta_x = position_.x - std::max(position.left, std::min(position_.x, position.left + 23.0f));
+	auto delta_y = position_.y - std::max(position.top, std::min(position_.y, position.top + 23.0f));
+
+	return (delta_x * delta_x + delta_y * delta_y) < (8.0f * 8.0f);
+}
+
 void BaseEnemy::set_position(const float x, const float y)
 {
 	position_.x = x;

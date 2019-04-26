@@ -338,10 +338,12 @@ void Game::render()
 		d2d1_rt_->Clear(Utils::create_d2d1_color(180, 181, 254, 255));
 
 		maps_button.draw(d2d1_rt_, d2d1_solidbrush_);
+
 		for (auto& pair : maps_)
 		{
 			pair.first.draw(d2d1_rt_, d2d1_solidbrush_);
 		}
+
 	}
 }
 

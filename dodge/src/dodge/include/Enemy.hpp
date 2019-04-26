@@ -1,6 +1,7 @@
 #pragma once
 #include "BaseEnemy.hpp"
 #include "Player.hpp"
+#include "Cube.hpp"
 
 class Enemy
 {

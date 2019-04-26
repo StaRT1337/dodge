@@ -14,6 +14,7 @@
 #include <fstream>
 #include <filesystem>
 #include <random>
+#include <cmath>
 
 #include "fmt/core.h"
 #include "fmt/format.h"

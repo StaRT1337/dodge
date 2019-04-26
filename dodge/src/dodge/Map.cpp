@@ -10,7 +10,7 @@ void Map::destroy()
 
 void Map::on_type(std::vector<bool>* keys)
 {
-	player_.on_type(keys, &cubes_, &coins_, &enemies_);
+	player_.on_type(keys, &cubes_, &coins_, &enemies_, &spinning_enemies_);
 }
 
 void Map::set_map(IDWriteFactory* dw_factory, const std::string& map_name)
@@ -32,14 +32,10 @@ void Map::set_map(IDWriteFactory* dw_factory, const std::string& map_name)
 
 	map_name_ = map_name;
 
-	cubes_.clear();
-	cubes_.shrink_to_fit();
-
-	coins_.clear();
-	coins_.shrink_to_fit();
-
-	enemies_.clear();
-	enemies_.shrink_to_fit();
+	cubes_ = {};
+	coins_ = {};
+	enemies_ = {};
+	spinning_enemies_ = {};
 
 	dw_factory_ = dw_factory;
 
@@ -103,6 +99,21 @@ void Map::set_map(IDWriteFactory* dw_factory, const std::string& map_name)
 		enemies_.emplace_back(enemy);
 	}
 
+	SpinningEnemy enemy;
+
+	for (const auto& p_enemy : _map.spinning_enemies())
+	{
+		auto position = p_enemy.position();
+		enemy.set_position(position.x(), position.y());
+
+		enemy.amount = p_enemy.amount();
+		enemy.spacing = p_enemy.spacing();
+		enemy.speed = p_enemy.speed();
+
+		enemy.set_enemies();
+		spinning_enemies_.emplace_back(enemy);
+	}
+
 	player_.start(&cubes_, &coins_);
 }
 
@@ -124,6 +135,11 @@ void Map::draw(ID2D1HwndRenderTarget* d2d1_rt, ID2D1SolidColorBrush* d2d1_solidb
 	for (auto& enemy : enemies_)
 	{
 
+		enemy.draw(d2d1_rt, d2d1_solidbrush);
+	}
+
+	for (auto& enemy : spinning_enemies_)
+	{
 		enemy.draw(d2d1_rt, d2d1_solidbrush);
 	}
 

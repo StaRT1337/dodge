@@ -42,7 +42,7 @@ struct TableStruct_map_2eproto {
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
   static const ::google::protobuf::internal::AuxillaryParseTableField aux[]
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
-  static const ::google::protobuf::internal::ParseTable schema[5]
+  static const ::google::protobuf::internal::ParseTable schema[6]
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
   static const ::google::protobuf::internal::FieldMetadata field_metadata[];
   static const ::google::protobuf::internal::SerializationTable serialization_table[];
@@ -59,6 +59,9 @@ extern CubeDefaultTypeInternal _Cube_default_instance_;
 class Enemy;
 class EnemyDefaultTypeInternal;
 extern EnemyDefaultTypeInternal _Enemy_default_instance_;
+class SpinningEnemy;
+class SpinningEnemyDefaultTypeInternal;
+extern SpinningEnemyDefaultTypeInternal _SpinningEnemy_default_instance_;
 class map;
 class mapDefaultTypeInternal;
 extern mapDefaultTypeInternal _map_default_instance_;
@@ -71,6 +74,7 @@ namespace protobuf {
 template<> ::map::Coin* Arena::CreateMaybeMessage<::map::Coin>(Arena*);
 template<> ::map::Cube* Arena::CreateMaybeMessage<::map::Cube>(Arena*);
 template<> ::map::Enemy* Arena::CreateMaybeMessage<::map::Enemy>(Arena*);
+template<> ::map::SpinningEnemy* Arena::CreateMaybeMessage<::map::SpinningEnemy>(Arena*);
 template<> ::map::map* Arena::CreateMaybeMessage<::map::map>(Arena*);
 template<> ::map::point_2f* Arena::CreateMaybeMessage<::map::point_2f>(Arena*);
 }  // namespace protobuf
@@ -221,6 +225,142 @@ class point_2f :
 };
 // -------------------------------------------------------------------
 
+class SpinningEnemy :
+    public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:map.SpinningEnemy) */ {
+ public:
+  SpinningEnemy();
+  virtual ~SpinningEnemy();
+
+  SpinningEnemy(const SpinningEnemy& from);
+
+  inline SpinningEnemy& operator=(const SpinningEnemy& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  #if LANG_CXX11
+  SpinningEnemy(SpinningEnemy&& from) noexcept
+    : SpinningEnemy() {
+    *this = ::std::move(from);
+  }
+
+  inline SpinningEnemy& operator=(SpinningEnemy&& from) noexcept {
+    if (GetArenaNoVirtual() == from.GetArenaNoVirtual()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+  #endif
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return default_instance().GetDescriptor();
+  }
+  static const SpinningEnemy& default_instance();
+
+  static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
+  static inline const SpinningEnemy* internal_default_instance() {
+    return reinterpret_cast<const SpinningEnemy*>(
+               &_SpinningEnemy_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    1;
+
+  void Swap(SpinningEnemy* other);
+  friend void swap(SpinningEnemy& a, SpinningEnemy& b) {
+    a.Swap(&b);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline SpinningEnemy* New() const final {
+    return CreateMaybeMessage<SpinningEnemy>(nullptr);
+  }
+
+  SpinningEnemy* New(::google::protobuf::Arena* arena) const final {
+    return CreateMaybeMessage<SpinningEnemy>(arena);
+  }
+  void CopyFrom(const ::google::protobuf::Message& from) final;
+  void MergeFrom(const ::google::protobuf::Message& from) final;
+  void CopyFrom(const SpinningEnemy& from);
+  void MergeFrom(const SpinningEnemy& from);
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  #if GOOGLE_PROTOBUF_ENABLE_EXPERIMENTAL_PARSER
+  static const char* _InternalParse(const char* begin, const char* end, void* object, ::google::protobuf::internal::ParseContext* ctx);
+  ::google::protobuf::internal::ParseFunc _ParseFunc() const final { return _InternalParse; }
+  #else
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input) final;
+  #endif  // GOOGLE_PROTOBUF_ENABLE_EXPERIMENTAL_PARSER
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const final;
+  ::google::protobuf::uint8* InternalSerializeWithCachedSizesToArray(
+      ::google::protobuf::uint8* target) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(SpinningEnemy* other);
+  private:
+  inline ::google::protobuf::Arena* GetArenaNoVirtual() const {
+    return nullptr;
+  }
+  inline void* MaybeArenaPtr() const {
+    return nullptr;
+  }
+  public:
+
+  ::google::protobuf::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // .map.point_2f position = 1;
+  bool has_position() const;
+  void clear_position();
+  static const int kPositionFieldNumber = 1;
+  const ::map::point_2f& position() const;
+  ::map::point_2f* release_position();
+  ::map::point_2f* mutable_position();
+  void set_allocated_position(::map::point_2f* position);
+
+  // int32 amount = 2;
+  void clear_amount();
+  static const int kAmountFieldNumber = 2;
+  ::google::protobuf::int32 amount() const;
+  void set_amount(::google::protobuf::int32 value);
+
+  // float spacing = 3;
+  void clear_spacing();
+  static const int kSpacingFieldNumber = 3;
+  float spacing() const;
+  void set_spacing(float value);
+
+  // float speed = 4;
+  void clear_speed();
+  static const int kSpeedFieldNumber = 4;
+  float speed() const;
+  void set_speed(float value);
+
+  // @@protoc_insertion_point(class_scope:map.SpinningEnemy)
+ private:
+  class HasBitSetters;
+
+  ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
+  ::map::point_2f* position_;
+  ::google::protobuf::int32 amount_;
+  float spacing_;
+  float speed_;
+  mutable ::google::protobuf::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_map_2eproto;
+};
+// -------------------------------------------------------------------
+
 class Enemy :
     public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:map.Enemy) */ {
  public:
@@ -259,7 +399,7 @@ class Enemy :
                &_Enemy_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    1;
+    2;
 
   void Swap(Enemy* other);
   friend void swap(Enemy& a, Enemy& b) {
@@ -377,7 +517,7 @@ class Coin :
                &_Coin_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    2;
+    3;
 
   void Swap(Coin* other);
   friend void swap(Coin& a, Coin& b) {
@@ -492,7 +632,7 @@ class Cube :
                &_Cube_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    3;
+    4;
 
   void Swap(Cube* other);
   friend void swap(Cube& a, Cube& b) {
@@ -644,7 +784,7 @@ class map :
                &_map_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    4;
+    5;
 
   void Swap(map* other);
   friend void swap(map& a, map& b) {
@@ -737,6 +877,18 @@ class map :
   const ::google::protobuf::RepeatedPtrField< ::map::Enemy >&
       enemies() const;
 
+  // repeated .map.SpinningEnemy spinning_enemies = 4;
+  int spinning_enemies_size() const;
+  void clear_spinning_enemies();
+  static const int kSpinningEnemiesFieldNumber = 4;
+  ::map::SpinningEnemy* mutable_spinning_enemies(int index);
+  ::google::protobuf::RepeatedPtrField< ::map::SpinningEnemy >*
+      mutable_spinning_enemies();
+  const ::map::SpinningEnemy& spinning_enemies(int index) const;
+  ::map::SpinningEnemy* add_spinning_enemies();
+  const ::google::protobuf::RepeatedPtrField< ::map::SpinningEnemy >&
+      spinning_enemies() const;
+
   // @@protoc_insertion_point(class_scope:map.map)
  private:
   class HasBitSetters;
@@ -745,6 +897,7 @@ class map :
   ::google::protobuf::RepeatedPtrField< ::map::Cube > cubes_;
   ::google::protobuf::RepeatedPtrField< ::map::Coin > coins_;
   ::google::protobuf::RepeatedPtrField< ::map::Enemy > enemies_;
+  ::google::protobuf::RepeatedPtrField< ::map::SpinningEnemy > spinning_enemies_;
   mutable ::google::protobuf::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_map_2eproto;
 };
@@ -785,6 +938,103 @@ inline void point_2f::set_y(float value) {
   
   y_ = value;
   // @@protoc_insertion_point(field_set:map.point_2f.y)
+}
+
+// -------------------------------------------------------------------
+
+// SpinningEnemy
+
+// .map.point_2f position = 1;
+inline bool SpinningEnemy::has_position() const {
+  return this != internal_default_instance() && position_ != nullptr;
+}
+inline void SpinningEnemy::clear_position() {
+  if (GetArenaNoVirtual() == nullptr && position_ != nullptr) {
+    delete position_;
+  }
+  position_ = nullptr;
+}
+inline const ::map::point_2f& SpinningEnemy::position() const {
+  const ::map::point_2f* p = position_;
+  // @@protoc_insertion_point(field_get:map.SpinningEnemy.position)
+  return p != nullptr ? *p : *reinterpret_cast<const ::map::point_2f*>(
+      &::map::_point_2f_default_instance_);
+}
+inline ::map::point_2f* SpinningEnemy::release_position() {
+  // @@protoc_insertion_point(field_release:map.SpinningEnemy.position)
+  
+  ::map::point_2f* temp = position_;
+  position_ = nullptr;
+  return temp;
+}
+inline ::map::point_2f* SpinningEnemy::mutable_position() {
+  
+  if (position_ == nullptr) {
+    auto* p = CreateMaybeMessage<::map::point_2f>(GetArenaNoVirtual());
+    position_ = p;
+  }
+  // @@protoc_insertion_point(field_mutable:map.SpinningEnemy.position)
+  return position_;
+}
+inline void SpinningEnemy::set_allocated_position(::map::point_2f* position) {
+  ::google::protobuf::Arena* message_arena = GetArenaNoVirtual();
+  if (message_arena == nullptr) {
+    delete position_;
+  }
+  if (position) {
+    ::google::protobuf::Arena* submessage_arena = nullptr;
+    if (message_arena != submessage_arena) {
+      position = ::google::protobuf::internal::GetOwnedMessage(
+          message_arena, position, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  position_ = position;
+  // @@protoc_insertion_point(field_set_allocated:map.SpinningEnemy.position)
+}
+
+// int32 amount = 2;
+inline void SpinningEnemy::clear_amount() {
+  amount_ = 0;
+}
+inline ::google::protobuf::int32 SpinningEnemy::amount() const {
+  // @@protoc_insertion_point(field_get:map.SpinningEnemy.amount)
+  return amount_;
+}
+inline void SpinningEnemy::set_amount(::google::protobuf::int32 value) {
+  
+  amount_ = value;
+  // @@protoc_insertion_point(field_set:map.SpinningEnemy.amount)
+}
+
+// float spacing = 3;
+inline void SpinningEnemy::clear_spacing() {
+  spacing_ = 0;
+}
+inline float SpinningEnemy::spacing() const {
+  // @@protoc_insertion_point(field_get:map.SpinningEnemy.spacing)
+  return spacing_;
+}
+inline void SpinningEnemy::set_spacing(float value) {
+  
+  spacing_ = value;
+  // @@protoc_insertion_point(field_set:map.SpinningEnemy.spacing)
+}
+
+// float speed = 4;
+inline void SpinningEnemy::clear_speed() {
+  speed_ = 0;
+}
+inline float SpinningEnemy::speed() const {
+  // @@protoc_insertion_point(field_get:map.SpinningEnemy.speed)
+  return speed_;
+}
+inline void SpinningEnemy::set_speed(float value) {
+  
+  speed_ = value;
+  // @@protoc_insertion_point(field_set:map.SpinningEnemy.speed)
 }
 
 // -------------------------------------------------------------------
@@ -1039,9 +1289,41 @@ map::enemies() const {
   return enemies_;
 }
 
+// repeated .map.SpinningEnemy spinning_enemies = 4;
+inline int map::spinning_enemies_size() const {
+  return spinning_enemies_.size();
+}
+inline void map::clear_spinning_enemies() {
+  spinning_enemies_.Clear();
+}
+inline ::map::SpinningEnemy* map::mutable_spinning_enemies(int index) {
+  // @@protoc_insertion_point(field_mutable:map.map.spinning_enemies)
+  return spinning_enemies_.Mutable(index);
+}
+inline ::google::protobuf::RepeatedPtrField< ::map::SpinningEnemy >*
+map::mutable_spinning_enemies() {
+  // @@protoc_insertion_point(field_mutable_list:map.map.spinning_enemies)
+  return &spinning_enemies_;
+}
+inline const ::map::SpinningEnemy& map::spinning_enemies(int index) const {
+  // @@protoc_insertion_point(field_get:map.map.spinning_enemies)
+  return spinning_enemies_.Get(index);
+}
+inline ::map::SpinningEnemy* map::add_spinning_enemies() {
+  // @@protoc_insertion_point(field_add:map.map.spinning_enemies)
+  return spinning_enemies_.Add();
+}
+inline const ::google::protobuf::RepeatedPtrField< ::map::SpinningEnemy >&
+map::spinning_enemies() const {
+  // @@protoc_insertion_point(field_list:map.map.spinning_enemies)
+  return spinning_enemies_;
+}
+
 #ifdef __GNUC__
   #pragma GCC diagnostic pop
 #endif  // __GNUC__
+// -------------------------------------------------------------------
+
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------

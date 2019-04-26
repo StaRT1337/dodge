@@ -115,7 +115,7 @@ void Editor::init(HINSTANCE instance, HINSTANCE prev_instance, char* cmd_line, i
 	GetWindowRect(hwnd_, &rc);
 	SetWindowPos(hwnd_, 0, (GetSystemMetrics(SM_CXSCREEN) - rc.right) / 2, (GetSystemMetrics(SM_CYSCREEN) - rc.bottom) / 2, 0, 0, SWP_NOZORDER | SWP_NOSIZE);
 
-	hr = D2D1CreateFactory(D2D1_FACTORY_TYPE_SINGLE_THREADED, &d2d1_factory_);
+	hr = D2D1CreateFactory(D2D1_FACTORY_TYPE_MULTI_THREADED, &d2d1_factory_);
 	if (FAILED(hr))
 	{
 		throw std::exception("Failed to create Direct2D factory");

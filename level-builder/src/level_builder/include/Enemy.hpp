@@ -20,6 +20,8 @@ public:
 	Enemy() : finished(false), has_points(false), pos_(-1), position_(D2D1_POINT_2F{ -1, -1 }) {};
 
 	const bool has_point(const D2D1_POINT_2F& point);
+	const bool cube_in_point(Cube* cube);
+
 	const D2D1_POINT_2F last_point();
 
 	void add_point(const D2D1_POINT_2F& point);

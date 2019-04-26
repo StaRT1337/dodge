@@ -30,6 +30,58 @@ const bool Enemy::has_point(const D2D1_POINT_2F& point)
 	return count > 2;
 }
 
+const bool Enemy::cube_in_point(Cube* cube)
+{
+	for (auto point = points_.begin(); point != points_.end(); ++point)
+	{
+		auto x = cube->get_position().x + 15;
+		auto y = cube->get_position().y + 15;
+
+		if (x == point->x && y == point->y) return true;
+
+		if (point + 1 == points_.end())
+		{
+			break;
+		}
+
+		auto next_point = point + 1;
+		float total;
+
+		if (point->x == next_point->x)
+		{
+			if (x != point->x) return false;
+
+			total = point->y - next_point->y;
+
+			if (total > 0)
+			{
+				if (y < point->y && y > next_point->y) return true;
+			}
+			else if (total < 0)
+			{
+				if (y > point->y && y < next_point->y) return true;
+			}
+		}
+		else if (point->y == next_point->y)
+		{
+			if (y != point->y) return false;
+
+			total = point->x - next_point->x;
+
+			if (total > 0)
+			{
+				if (x < point->x && x > next_point->x) return true;
+			}
+			else if (total < 0)
+			{
+				if (x > point->x && x < next_point->x) return true;
+			}
+		}
+	}
+
+	return false;
+}
+
 const D2D1_POINT_2F Enemy::last_point()
 {
 	return points_.back();

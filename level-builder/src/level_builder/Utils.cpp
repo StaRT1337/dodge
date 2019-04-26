@@ -79,6 +79,10 @@ namespace Utils
 			return "Add enemy";
 		case click_type::REMOVE_ENEMY:
 			return "Remove enemy";
+		case click_type::ADD_SPINNING_ENEMY:
+			return "Add spinning enemy";
+		case click_type::REMOVE_SPINNING_ENEMY:
+			return "Remove spinning enemy";
 		}
 	}
 

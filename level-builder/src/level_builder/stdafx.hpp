@@ -12,8 +12,10 @@
 #include <codecvt>
 #include <fstream>
 #include <ctime>
+#include <any>
 
 #include <boost/algorithm/string.hpp>
+#include <boost/lexical_cast.hpp>
 
 #include "fmt/core.h"
 #include "fmt/format.h"

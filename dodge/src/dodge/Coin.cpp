@@ -15,10 +15,12 @@ const D2D1_POINT_2F Coin::get_position()
 
 void Coin::check_collision(Player* player, const D2D1_RECT_F& position)
 {
-	float x = position_.x - position.left;
-	float y = position_.y - position.top;
+	auto delta_x = position_.x - std::max(position.left, std::min(position_.x, position.left + 23.0f));
+	auto delta_y = position_.y - std::max(position.top, std::min(position_.y, position.top + 23.0f));
 
-	if ((x <= 23.0f && x > 0) && (y <= 23.0f && y > 0))
+	auto collision =  (delta_x * delta_x + delta_y * delta_y) < (8.0f * 8.0f);
+
+	if (collision)
 	{
 		collected = true;
 	}
